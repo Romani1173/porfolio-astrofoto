@@ -7,6 +7,16 @@ const fotos = (await getCollection('fotos')).sort(
 	(a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf(),
 );
 const base = import.meta.env.BASE_URL;
+const categoryKeywords: Record<string, string> = {
+	'Galàxies': 'galaxia galaxia galàxia galaxy',
+	'Nebuloses': 'nebulosa nebuloses nebula',
+	'Cúmuls i Estrelles': 'cumul cumuls estrella estrelles cluster',
+	Cel: 'cel sky',
+};
+const searchableText = (value: string) => value
+	.normalize('NFD')
+	.replace(/[\u0300-\u036f]/g, '')
+	.toLocaleLowerCase();
 ---
 
 <Layout title="Catàleg" minimal>
@@ -34,7 +44,7 @@ const base = import.meta.env.BASE_URL;
 			</div>
 		</div>
 		<div class="photo-grid" id="grid-fotos">
-			{fotos.map((foto) => <div data-search={`${foto.data.objecte} ${foto.data.constellacio} ${foto.data.categoria}`.toLocaleLowerCase()}><PhotoCard foto={foto} /></div>)}
+			{fotos.map((foto) => <div data-search={searchableText(`${foto.data.objecte} ${foto.data.constellacio} ${foto.data.categoria} ${categoryKeywords[foto.data.categoria]} ${foto.data.caracteristiques}`)}><PhotoCard foto={foto} /></div>)}
 			<p class="empty-state" id="sense-resultats" hidden>No s'ha trobat cap objecte amb aquesta cerca.</p>
 		</div>
 	</section>
@@ -46,7 +56,11 @@ const base = import.meta.env.BASE_URL;
 	const empty = document.querySelector<HTMLElement>('#sense-resultats');
 
 	search?.addEventListener('input', () => {
-		const term = search.value.trim().toLocaleLowerCase();
+		const term = search.value
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.trim()
+			.toLocaleLowerCase();
 		let visible = 0;
 		cards.forEach((card) => {
 			const matches = card.dataset.search?.includes(term) ?? false;
