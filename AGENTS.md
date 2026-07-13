@@ -17,6 +17,7 @@
 - Las fichas permiten ampliar la imagen principal y las adicionales al pulsarlas; el visor se cierra con la `×`, al tocar fuera o con `Esc`.
 - El catálogo permite buscar **solo por el campo `objecte`** y ordenar por fecha reciente o por nombre natural (`M2` antes que `M10`, `NGC 2237` antes que `NGC 6960`). Esta ordenación está disponible también en cada categoría.
 - El diseño del catálogo y las categorías está aprobado en este punto; no cambiarlo de forma amplia sin petición expresa.
+- La portada usa `public/imagenes/portada.webp`, con estrellas visibles, la firma blanca `Juan José Romero` en Bradley Hand abajo a la izquierda y el mensaje principal desplazado 10 mm hacia arriba. El acceso “Explora el catàleg” debe permanecer abajo a la derecha.
 
 ## Trabajo y publicación
 
