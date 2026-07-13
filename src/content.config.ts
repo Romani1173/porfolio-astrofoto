@@ -1,0 +1,62 @@
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+
+const fotos = defineCollection({
+    // 1. Le decimos a Astro que busque en tu nueva carpeta "fotos"
+    loader: glob({ base: './src/content/fotos', pattern: '**/*.{md,mdx}' }),
+    
+    // 2. Definimos tu frontmatter estricto en catalán
+    schema: z.object({
+        objecte: z.string(),
+		imatge: z.string(),
+		imatges_addicionals: z.array(z.object({
+			tipus: z.enum(['starless', 'crop', 'fov', 'annotated', 'process', 'other']),
+			fitxer: z.string(),
+			titol: z.string(),
+			descripcio: z.string().optional(),
+		})).optional().default([]),
+        constellacio: z.string(),
+        caracteristiques: z.string(),
+        
+        // 3. Regla inamovible: Solo permite estas 4 categorías exactas
+        categoria: z.enum([
+            'Galàxies', 
+            'Nebuloses', 
+            'Cúmuls i Estrelles', 
+            'Cel'
+        ]),
+        
+        equip: z.object({
+            ota: z.string(),
+            roda_filtres: z.string(),
+            enfocador: z.string(),
+            guiat: z.string(),
+            muntura: z.string(),
+        }),
+        camera: z.object({
+            principal: z.string(),
+            filtres: z.string(),
+        }),
+        exposicio: z.object({
+            temps_total: z.string(),
+            gain: z.string(),
+            offset: z.string(),
+            subframes: z.string(),
+            calibratge: z.string(),
+        }),
+        tractament: z.object({
+            adquisicio: z.string(),
+            processat: z.string(),
+        }),
+        entorn: z.object({
+            lloc: z.string(),
+            // 4. Convierte tu fecha ISO automáticamente para poder ordenarlas
+            data: z.coerce.date(),
+            bortle: z.string(),
+        }),
+    }),
+});
+
+// Exportamos la colección con el nuevo nombre "fotos"
+export const collections = { fotos };

@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PhotoCard from '../../components/PhotoCard.astro';
+
+export async function getStaticPaths() {
+	const fotos = await getCollection('fotos');
+	const categories = ['Galàxies', 'Nebuloses', 'Cúmuls i Estrelles', 'Cel'];
+	return categories.map((categoria) => ({ params: { categoria } }));
+}
+
+const { categoria } = Astro.params;
+const fotos = (await getCollection('fotos'))
+	.filter((foto) => foto.data.categoria === categoria)
+	.sort((a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf());
+---
+
+<Layout title={categoria} description={`Fotografies de ${categoria.toLocaleLowerCase()} del meu catàleg de cel profund.`}>
+	<a class="back-link" href="/">← Tornar al catàleg</a>
+	<section aria-labelledby="category-heading">
+		<div class="page-heading">
+			<h1 id="category-heading">{categoria}</h1>
+			<p>{fotos.length} {fotos.length === 1 ? 'objecte fotografiat' : 'objectes fotografiats'}</p>
+		</div>
+		<div class="photo-grid">
+			{fotos.length ? fotos.map((foto) => <PhotoCard foto={foto} />) : <p class="empty-state">Encara no hi ha cap fotografia en aquesta categoria.</p>}
+		</div>
+	</section>
+</Layout>

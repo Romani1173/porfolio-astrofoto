@@ -1,0 +1,159 @@
+=== ESTRUCTURA DE PROYECTO ===
+.
+./resumen_proyecto.txt
+./astro.config.mjs
+./public
+./public/favicon.ico
+./public/imagenes
+./public/imagenes/M3.jpg
+./public/imagenes/NGC6960_EV.jpg
+./public/imagenes/NGC6960_CWV_crop.jpg
+./public/imagenes/M29.jpg
+./public/imagenes/M65+M66.jpg
+./public/imagenes/M35_annotated.jpg
+./public/imagenes/M16.jpg
+./public/imagenes/M51_FOV.jpg
+./public/imagenes/M1.jpg
+./public/imagenes/M63_finding.jpg
+./public/imagenes/LDN1400.jpg
+./public/imagenes/M42_annotated.jpg
+./public/imagenes/M38.jpg
+./public/imagenes/M63.jpg
+./public/imagenes/M42_finding.jpg
+./public/imagenes/M71_annotated.jpg
+./public/imagenes/M38_annotated.jpg
+./public/imagenes/M71.jpg
+./public/imagenes/NGC6960_CWV.jpg
+./public/imagenes/IC1396_annotated.jpg
+./public/imagenes/NGC6960_EV_starless.jpg
+./public/imagenes/M16_starless.jpg
+./public/imagenes/M42.jpg
+./public/imagenes/IC1396.jpg
+./public/imagenes/M57.jpg
+./public/imagenes/M29_annotated.jpg
+./public/imagenes/B150.jpg
+./public/imagenes/M42_red.jpg
+./public/imagenes/IC443.jpg
+./public/imagenes/NGC6960_EV_crop.jpg
+./public/imagenes/IC1396_starless.jpg
+./public/imagenes/NGC6960_EV_annotated.jpg
+./public/imagenes/M44.jpg
+./public/imagenes/IC1396_process.jpg
+./public/imagenes/M63_annotated.jpg
+./public/imagenes/M3_FOV.jpg
+./public/imagenes/M45.jpg
+./public/imagenes/M51.jpg
+./public/imagenes/M27_crop.jpg
+./public/imagenes/M52.jpg
+./public/imagenes/M35.jpg
+./public/imagenes/M20_annotated.jpg
+./public/imagenes/M65+M66_annotated.jpg
+./public/imagenes/M63_FOV.jpg
+./public/imagenes/M20.jpg
+./public/imagenes/M1_FOV.jpg
+./public/imagenes/M27_FOV.jpg
+./public/imagenes/M36.jpg
+./public/imagenes/IC434.jpg
+./public/imagenes/M20_crop.jpg
+./public/imagenes/M37.jpg
+./public/imagenes/M8.jpg
+./public/imagenes/M33.jpg
+./public/imagenes/M44_annotated.jpg
+./public/imagenes/NGC6960_EV_process.jpg
+./public/imagenes/M31.jpg
+./public/imagenes/NGC6960_CWV_starless.jpg
+./public/favicon.svg
+./package-lock.json
+./package.json
+./tsconfig.json
+./src
+./src/content.config.ts
+./src/content
+./src/content/fotos
+./src/consts.ts
+./src/styles
+./src/styles/global.css
+./src/components
+./src/components/FormattedDate.astro
+./src/components/Footer.astro
+./src/components/HeaderLink.astro
+./src/components/Header.astro
+./src/components/BaseHead.astro
+./src/layouts
+./src/layouts/BlogPost.astro
+./src/layouts/Layout.astro
+./src/assets
+./src/assets/blog-placeholder-about.jpg
+./src/assets/blog-placeholder-2.jpg
+./src/assets/blog-placeholder-3.jpg
+./src/assets/blog-placeholder-1.jpg
+./src/assets/blog-placeholder-4.jpg
+./src/assets/blog-placeholder-5.jpg
+./src/assets/fonts
+./src/pages
+./src/pages/foto
+./src/pages/about.astro
+./src/pages/categoria
+./src/pages/rss.xml.js
+./src/pages/index.astro
+./src/pages/blog
+
+=== CONFIGURACIÓN DE ASTRO ===
+// @ts-check
+
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import { defineConfig, fontProviders } from 'astro/config';
+
+// https://astro.build/config
+export default defineConfig({
+	site: 'https://example.com',
+	integrations: [mdx(), sitemap()],
+	fonts: [
+		{
+			provider: fontProviders.local(),
+			name: 'Atkinson',
+			cssVariable: '--font-atkinson',
+			fallbacks: ['sans-serif'],
+			options: {
+				variants: [
+					{
+						src: ['./src/assets/fonts/atkinson-regular.woff'],
+						weight: 400,
+						style: 'normal',
+						display: 'swap',
+					},
+					{
+						src: ['./src/assets/fonts/atkinson-bold.woff'],
+						weight: 700,
+						style: 'normal',
+						display: 'swap',
+					},
+				],
+			},
+		},
+	],
+});
+
+=== DEPENDENCIAS (PACKAGE.JSON) ===
+{
+  "name": "porfolio-astrofoto",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.2",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.0.7",
+    "sharp": "^0.35.0"
+  }
+}

@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const fotos = await getCollection('fotos');
+	return fotos.map((foto) => ({ params: { id: foto.id }, props: { foto } }));
+}
+
+const { foto } = Astro.props;
+const { Content } = await render(foto);
+const date = new Intl.DateTimeFormat('ca-ES', { dateStyle: 'long' }).format(foto.data.entorn.data);
+---
+
+<Layout title={foto.data.objecte} description={foto.data.caracteristiques}>
+	<article class="photo-detail">
+		<a class="back-link" href={`/categoria/${encodeURIComponent(foto.data.categoria)}`}>← Tornar a {foto.data.categoria}</a>
+		<header class="page-heading"><h1>{foto.data.objecte}</h1></header>
+		<div class="photo-detail__image"><img src={`/imagenes/${foto.data.imatge}`} alt={`Fotografia astronòmica de ${foto.data.objecte}`} fetchpriority="high" /></div>
+		<p class="photo-detail__summary">{foto.data.caracteristiques}</p>
+		<div class="data-grid">
+			<section class="data-panel" aria-labelledby="general"><h2 id="general">Informació general</h2><dl class="data-list"><div><dt>Constel·lació</dt><dd>{foto.data.constellacio}</dd></div><div><dt>Categoria</dt><dd>{foto.data.categoria}</dd></div><div><dt>Data</dt><dd>{date}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="capture"><h2 id="capture">Captura</h2><dl class="data-list"><div><dt>Temps total</dt><dd>{foto.data.exposicio.temps_total}</dd></div><div><dt>Subframes</dt><dd>{foto.data.exposicio.subframes}</dd></div><div><dt>Gain / Offset</dt><dd>{foto.data.exposicio.gain} / {foto.data.exposicio.offset}</dd></div><div><dt>Calibratge</dt><dd>{foto.data.exposicio.calibratge}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="equipment"><h2 id="equipment">Equip</h2><dl class="data-list"><div><dt>Telescopi</dt><dd>{foto.data.equip.ota}</dd></div><div><dt>Càmera</dt><dd>{foto.data.camera.principal}</dd></div><div><dt>Filtres</dt><dd>{foto.data.camera.filtres}</dd></div><div><dt>Muntura</dt><dd>{foto.data.equip.muntura}</dd></div><div><dt>Guiat</dt><dd>{foto.data.equip.guiat}</dd></div>{foto.data.equip.enfocador !== 'N/A' && <div><dt>Enfocador</dt><dd>{foto.data.equip.enfocador}</dd></div>}{foto.data.equip.roda_filtres !== 'N/A' && <div><dt>Roda de filtres</dt><dd>{foto.data.equip.roda_filtres}</dd></div>}</dl></section>
+			<section class="data-panel" aria-labelledby="process"><h2 id="process">Processat i entorn</h2><dl class="data-list"><div><dt>Processat</dt><dd>{foto.data.tractament.processat}</dd></div>{foto.data.tractament.adquisicio !== 'N/A' && <div><dt>Adquisició</dt><dd>{foto.data.tractament.adquisicio}</dd></div>}<div><dt>Lloc</dt><dd>{foto.data.entorn.lloc}</dd></div><div><dt>Cel</dt><dd>Classe Bortle {foto.data.entorn.bortle}</dd></div></dl></section>
+		</div>
+		{foto.data.imatges_addicionals.length > 0 && (
+			<section class="additional-images" aria-labelledby="additional-images-heading">
+				<h2 id="additional-images-heading">Versions addicionals</h2>
+				<div class="additional-images__grid">
+					{foto.data.imatges_addicionals.map((imatge) => (
+						<figure>
+							<img src={`/imagenes/${imatge.fitxer}`} alt={`${imatge.titol}: ${foto.data.objecte}`} loading="lazy" decoding="async" />
+							<figcaption><strong>{imatge.titol}</strong>{imatge.descripcio && <span>{imatge.descripcio}</span>}</figcaption>
+						</figure>
+					))}
+				</div>
+			</section>
+		)}
+		<div class="detail-content"><Content /></div>
+	</article>
+</Layout>

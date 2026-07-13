@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+interface Props { title?: string; description?: string; }
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const pageTitle = title === SITE_TITLE ? SITE_TITLE : `${title} | ${SITE_TITLE}`;
+const currentPath = Astro.url.pathname;
+const nav = [
+	{ href: '/', label: 'Inici' },
+	{ href: '/categoria/Gal%C3%A0xies', label: 'Galàxies' },
+	{ href: '/categoria/Nebuloses', label: 'Nebuloses' },
+	{ href: '/categoria/C%C3%BAmuls%20i%20Estrelles', label: 'Cúmuls i estrelles' },
+	{ href: '/categoria/Cel', label: 'Cel' },
+];
+---
+
+<!doctype html>
+<html lang="ca">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#080b12" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<header class="site-header site-shell">
+			<h1 class="site-title"><a href="/">{SITE_TITLE}</a></h1>
+			<p class="site-tagline">{SITE_DESCRIPTION}</p>
+			<nav class="site-nav" aria-label="Navegació principal">
+				{nav.map((item) => <a href={item.href} aria-current={currentPath === decodeURIComponent(item.href) ? 'page' : undefined}>{item.label}</a>)}
+			</nav>
+		</header>
+		<main class="site-shell"><slot /></main>
+		<footer class="site-footer site-shell">© {new Date().getFullYear()} {SITE_TITLE}</footer>
+	</body>
+</html>
