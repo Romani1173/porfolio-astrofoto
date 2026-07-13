@@ -138,7 +138,7 @@ main { padding: 1rem 0 4rem; }
 	.catalog-controls__search { align-items: stretch; flex-direction: column; gap: .15rem; }
 	.catalog-search { width: 100%; max-width: none; }
 	.catalog-count { margin: 0; }
-	.catalog-controls { margin-bottom: .8rem; padding: .65rem .75rem .7rem; }
+	.catalog-controls { display: block; min-height: 0; height: auto; margin-bottom: .8rem; padding: .65rem .75rem .7rem; }
 	.catalog-controls__top { gap: .4rem .75rem; padding-bottom: .5rem; }
 	.catalog-controls__search { padding-top: .5rem; }
 }
