@@ -15,6 +15,16 @@
 - La web pública activa se publica con Cloudflare Pages en `https://porfolio-astrofoto.pages.dev`.
 - GitHub Pages está también configurado como alternativa, pero el enlace público de referencia es el de Cloudflare Pages.
 - Las fichas permiten ampliar la imagen principal y las adicionales al pulsarlas; el visor se cierra con la `×`, al tocar fuera o con `Esc`.
+- El catálogo permite buscar **solo por el campo `objecte`** y ordenar por fecha reciente o por nombre natural (`M2` antes que `M10`, `NGC 2237` antes que `NGC 6960`). Esta ordenación está disponible también en cada categoría.
+- El diseño del catálogo y las categorías está aprobado en este punto; no cambiarlo de forma amplia sin petición expresa.
+
+## Trabajo y publicación
+
+- El proyecto editable es esta carpeta: `work/porfolio-astrofoto`.
+- Ejecutar `npm run dev` en una terminal para la vista local y conservarla abierta mientras se prueba el sitio.
+- Para Git (`git status`, `git add`, `git commit`, `git push`) usar una **segunda terminal**; la que ejecuta el servidor local no acepta esos comandos.
+- Tras verificar con `npm run build`, publicar con `git push origin main`. Cloudflare Pages se actualiza automáticamente después de recibir el cambio en GitHub; puede requerir uno o dos minutos y una recarga forzada.
+- Antes de subir, revisar `git status` para distinguir cambios de código de las nuevas fichas e imágenes del autor.
 
 ## Fichas de objetos
 
