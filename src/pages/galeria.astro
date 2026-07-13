@@ -34,11 +34,18 @@ const searchableText = (value: string) => value
 						<input id="buscador" type="search" placeholder="M31, NGC 2237, …" autocomplete="off" />
 					</div>
 				</div>
+				<div class="catalog-order">
+					<label for="ordre">Ordena</label>
+					<select id="ordre">
+						<option value="date">Data: recents</option>
+						<option value="name">Nom: A–Z</option>
+					</select>
+				</div>
 				<p class="catalog-count">{fotos.length} {fotos.length === 1 ? 'objecte' : 'objectes'}</p>
 			</div>
 		</div>
 		<div class="photo-grid" id="grid-fotos">
-			{fotos.map((foto) => <div data-search={searchableText(foto.data.objecte)}><PhotoCard foto={foto} /></div>)}
+			{fotos.map((foto) => <div data-card data-search={searchableText(foto.data.objecte)} data-name={foto.data.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} /></div>)}
 			<p class="empty-state" id="sense-resultats" hidden>No s'ha trobat cap objecte amb aquesta cerca.</p>
 		</div>
 	</section>
@@ -46,8 +53,11 @@ const searchableText = (value: string) => value
 
 <script>
 	const search = document.querySelector<HTMLInputElement>('#buscador');
-	const cards = [...document.querySelectorAll<HTMLElement>('[data-search]')];
+	const order = document.querySelector<HTMLSelectElement>('#ordre');
+	const grid = document.querySelector<HTMLElement>('#grid-fotos');
+	const cards = [...document.querySelectorAll<HTMLElement>('[data-card]')];
 	const empty = document.querySelector<HTMLElement>('#sense-resultats');
+	const collator = new Intl.Collator('ca', { numeric: true, sensitivity: 'base' });
 
 	search?.addEventListener('input', () => {
 		const term = search.value
@@ -62,5 +72,12 @@ const searchableText = (value: string) => value
 			if (matches) visible += 1;
 		});
 		if (empty) empty.hidden = visible !== 0;
+	});
+
+	order?.addEventListener('change', () => {
+		const sorted = [...cards].sort((a, b) => order.value === 'name'
+			? collator.compare(a.dataset.name ?? '', b.dataset.name ?? '')
+			: Number(b.dataset.date) - Number(a.dataset.date));
+		grid?.append(...sorted);
 	});
 </script>
