@@ -22,7 +22,6 @@ const base = import.meta.env.BASE_URL;
 		<div class="page-heading">
 			<h1 id="category-heading">{categoria}</h1>
 			<div class="category-toolbar">
-				<p>{fotos.length} {fotos.length === 1 ? 'objecte fotografiat' : 'objectes fotografiats'}</p>
 				<div class="catalog-order">
 					<label for="ordre">Ordena</label>
 					<select id="ordre">
@@ -30,6 +29,7 @@ const base = import.meta.env.BASE_URL;
 						<option value="name">Nom: A–Z</option>
 					</select>
 				</div>
+				<p>{fotos.length} {fotos.length === 1 ? 'objecte fotografiat' : 'objectes fotografiats'}</p>
 			</div>
 		</div>
 		<div class="photo-grid" id="grid-fotos">
