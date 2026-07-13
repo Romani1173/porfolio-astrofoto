@@ -6,19 +6,20 @@ import PhotoCard from '../components/PhotoCard.astro';
 const fotos = (await getCollection('fotos')).sort(
 	(a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf(),
 );
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Catàleg" minimal>
 	<section aria-labelledby="collection-heading">
 		<div class="catalog-controls">
 			<div class="catalog-controls__top">
-				<a class="catalog-home" href="/" id="collection-heading" aria-label="Tornar a la portada">← El<span class="catalog-home__meu">meu</span>Cel Profund</a>
+				<a class="catalog-home" href={base} id="collection-heading" aria-label="Tornar a la portada">← El<span class="catalog-home__meu">meu</span>Cel Profund</a>
 				<nav class="catalog-category-nav" aria-label="Filtra per categoria">
-					<a href="/galeria" aria-current="page">Tots</a>
-					<a href="/categoria/Gal%C3%A0xies">Galàxies</a>
-					<a href="/categoria/Nebuloses">Nebuloses</a>
-					<a href="/categoria/C%C3%BAmuls%20i%20Estrelles">Cúmuls i estrelles</a>
-					<a href="/categoria/Cel">Cel</a>
+					<a href={`${base}galeria`} aria-current="page">Tots</a>
+					<a href={`${base}categoria/Gal%C3%A0xies`}>Galàxies</a>
+					<a href={`${base}categoria/Nebuloses`}>Nebuloses</a>
+					<a href={`${base}categoria/C%C3%BAmuls%20i%20Estrelles`}>Cúmuls i estrelles</a>
+					<a href={`${base}categoria/Cel`}>Cel</a>
 				</nav>
 			</div>
 			<div class="catalog-controls__search">

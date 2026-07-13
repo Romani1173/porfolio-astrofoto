@@ -13,10 +13,11 @@ const { categoria } = Astro.params;
 const fotos = (await getCollection('fotos'))
 	.filter((foto) => foto.data.categoria === categoria)
 	.sort((a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf());
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={categoria} description={`Fotografies de ${categoria.toLocaleLowerCase()} del meu catàleg de cel profund.`} minimal>
-	<a class="back-link" href="/galeria">← Tornar al catàleg</a>
+	<a class="back-link" href={`${base}galeria`}>← Tornar al catàleg</a>
 	<section aria-labelledby="category-heading">
 		<div class="page-heading">
 			<h1 id="category-heading">{categoria}</h1>

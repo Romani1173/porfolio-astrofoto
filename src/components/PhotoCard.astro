@@ -5,11 +5,12 @@ interface Props { foto: CollectionEntry<'fotos'>; }
 const { foto } = Astro.props;
 const date = new Intl.DateTimeFormat('ca-ES', { dateStyle: 'long' }).format(foto.data.entorn.data);
 const hasProcess = foto.data.imatges_addicionals.some((imatge) => imatge.tipus === 'process');
+const base = import.meta.env.BASE_URL;
 ---
 
 <article class="photo-card">
-	<a href={`/foto/${foto.id}`} aria-label={`Veure la fitxa de ${foto.data.objecte}`}>
-		<img src={`/imagenes/${foto.data.imatge}`} alt={`Fotografia astronòmica de ${foto.data.objecte}`} loading="lazy" decoding="async" />
+	<a href={`${base}foto/${foto.id}`} aria-label={`Veure la fitxa de ${foto.data.objecte}`}>
+		<img src={`${base}imagenes/${foto.data.imatge}`} alt={`Fotografia astronòmica de ${foto.data.objecte}`} loading="lazy" decoding="async" />
 		<div class="photo-card__body">
 			<h2>{foto.data.objecte}</h2>
 			<p><b>Constel·lació:</b> {foto.data.constellacio}</p>
