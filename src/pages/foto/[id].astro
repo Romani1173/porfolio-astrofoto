@@ -12,7 +12,7 @@ const { Content } = await render(foto);
 const date = new Intl.DateTimeFormat('ca-ES', { dateStyle: 'long' }).format(foto.data.entorn.data);
 ---
 
-<Layout title={foto.data.objecte} description={foto.data.caracteristiques}>
+<Layout title={foto.data.objecte} description={foto.data.caracteristiques} minimal>
 	<article class="photo-detail">
 		<a class="back-link" href={`/categoria/${encodeURIComponent(foto.data.categoria)}`}>← Tornar a {foto.data.categoria}</a>
 		<header class="page-heading"><h1>{foto.data.objecte}</h1></header>

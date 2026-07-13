@@ -15,8 +15,8 @@ const fotos = (await getCollection('fotos'))
 	.sort((a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf());
 ---
 
-<Layout title={categoria} description={`Fotografies de ${categoria.toLocaleLowerCase()} del meu catàleg de cel profund.`}>
-	<a class="back-link" href="/">← Tornar al catàleg</a>
+<Layout title={categoria} description={`Fotografies de ${categoria.toLocaleLowerCase()} del meu catàleg de cel profund.`} minimal>
+	<a class="back-link" href="/galeria">← Tornar al catàleg</a>
 	<section aria-labelledby="category-heading">
 		<div class="page-heading">
 			<h1 id="category-heading">{categoria}</h1>

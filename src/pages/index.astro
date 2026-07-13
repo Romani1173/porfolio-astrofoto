@@ -1,42 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import PhotoCard from '../components/PhotoCard.astro';
-
-const fotos = (await getCollection('fotos')).sort(
-	(a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf(),
-);
 ---
 
-<Layout title="Inici">
-	<section aria-labelledby="collection-heading">
-		<div class="intro">
-			<p id="collection-heading">Recull de captures de cel profund. <strong>{fotos.length} {fotos.length === 1 ? 'objecte' : 'objectes'} fotografiats</strong>.</p>
-		</div>
-		<div class="search">
-			<label for="buscador">Cerca al catàleg</label>
-			<input id="buscador" type="search" placeholder="M31, Andròmeda, nebulosa…" autocomplete="off" />
-		</div>
-		<div class="photo-grid" id="grid-fotos">
-			{fotos.map((foto) => <div data-search={`${foto.data.objecte} ${foto.data.constellacio} ${foto.data.categoria}`.toLocaleLowerCase()}><PhotoCard foto={foto} /></div>)}
-			<p class="empty-state" id="sense-resultats" hidden>No s'ha trobat cap objecte amb aquesta cerca.</p>
+<Layout title="Inici" hero>
+	<section class="welcome-hero" aria-labelledby="welcome-title">
+		<div class="welcome-hero__content">
+			<h1 id="welcome-title">El meu Cel Profund</h1>
+			<p class="welcome-hero__description">Un recull personal de fotografies de cel profund.</p>
+			<a class="welcome-hero__cta" href="/galeria">Explora el catàleg <span aria-hidden="true">→</span></a>
 		</div>
 	</section>
 </Layout>
-
-<script>
-	const search = document.querySelector<HTMLInputElement>('#buscador');
-	const cards = [...document.querySelectorAll<HTMLElement>('[data-search]')];
-	const empty = document.querySelector<HTMLElement>('#sense-resultats');
-
-	search?.addEventListener('input', () => {
-		const term = search.value.trim().toLocaleLowerCase();
-		let visible = 0;
-		cards.forEach((card) => {
-			const matches = card.dataset.search?.includes(term) ?? false;
-			card.hidden = !matches;
-			if (matches) visible += 1;
-		});
-		if (empty) empty.hidden = visible !== 0;
-	});
-</script>

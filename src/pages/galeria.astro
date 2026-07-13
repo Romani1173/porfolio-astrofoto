@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PhotoCard from '../components/PhotoCard.astro';
+
+const fotos = (await getCollection('fotos')).sort(
+	(a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf(),
+);
+---
+
+<Layout title="Catàleg" minimal>
+	<section aria-labelledby="collection-heading">
+		<div class="catalog-controls">
+			<div class="catalog-controls__top">
+				<a class="catalog-home" href="/" id="collection-heading" aria-label="Tornar a la portada">← El<span class="catalog-home__meu">meu</span>Cel Profund</a>
+				<nav class="catalog-category-nav" aria-label="Filtra per categoria">
+					<a href="/galeria" aria-current="page">Tots</a>
+					<a href="/categoria/Gal%C3%A0xies">Galàxies</a>
+					<a href="/categoria/Nebuloses">Nebuloses</a>
+					<a href="/categoria/C%C3%BAmuls%20i%20Estrelles">Cúmuls i estrelles</a>
+					<a href="/categoria/Cel">Cel</a>
+				</nav>
+			</div>
+			<div class="catalog-controls__search">
+				<div class="search catalog-search">
+					<label class="sr-only" for="buscador">Cerca al catàleg</label>
+					<div class="catalog-search__field">
+						<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
+						<input id="buscador" type="search" placeholder="M31, Andromeda, …" autocomplete="off" />
+					</div>
+				</div>
+				<p class="catalog-count">{fotos.length} {fotos.length === 1 ? 'objecte' : 'objectes'}</p>
+			</div>
+		</div>
+		<div class="photo-grid" id="grid-fotos">
+			{fotos.map((foto) => <div data-search={`${foto.data.objecte} ${foto.data.constellacio} ${foto.data.categoria}`.toLocaleLowerCase()}><PhotoCard foto={foto} /></div>)}
+			<p class="empty-state" id="sense-resultats" hidden>No s'ha trobat cap objecte amb aquesta cerca.</p>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const search = document.querySelector<HTMLInputElement>('#buscador');
+	const cards = [...document.querySelectorAll<HTMLElement>('[data-search]')];
+	const empty = document.querySelector<HTMLElement>('#sense-resultats');
+
+	search?.addEventListener('input', () => {
+		const term = search.value.trim().toLocaleLowerCase();
+		let visible = 0;
+		cards.forEach((card) => {
+			const matches = card.dataset.search?.includes(term) ?? false;
+			card.hidden = !matches;
+			if (matches) visible += 1;
+		});
+		if (empty) empty.hidden = visible !== 0;
+	});
+</script>
