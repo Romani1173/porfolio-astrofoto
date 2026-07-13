@@ -10,6 +10,12 @@
 - Conservar la tipografía elegida por el autor: Inter para los textos y Space Mono para los datos técnicos.
 - Mantener la estética oscura actual y no rediseñar el sitio de forma amplia sin solicitarlo primero.
 
+## Publicación y estado actual
+
+- La web pública activa se publica con Cloudflare Pages en `https://porfolio-astrofoto.pages.dev`.
+- GitHub Pages está también configurado como alternativa, pero el enlace público de referencia es el de Cloudflare Pages.
+- Las fichas permiten ampliar la imagen principal y las adicionales al pulsarlas; el visor se cierra con la `×`, al tocar fuera o con `Esc`.
+
 ## Fichas de objetos
 
 - Cada objeto es un archivo Markdown en `src/content/fotos/`.
