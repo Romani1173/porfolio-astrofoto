@@ -9,15 +9,13 @@ const hasProcess = foto.data.imatges_addicionals.some((imatge) => imatge.tipus =
 
 <article class="photo-card">
 	<a href={`/foto/${foto.id}`} aria-label={`Veure la fitxa de ${foto.data.objecte}`}>
-		<div class="photo-card__image">
-			<img src={`/imagenes/${foto.data.imatge}`} alt={`Fotografia astronòmica de ${foto.data.objecte}`} loading="lazy" decoding="async" />
-			{hasProcess && <span class="photo-card__process" title="Inclou el flux de processat">Procés inclòs</span>}
-		</div>
+		<img src={`/imagenes/${foto.data.imatge}`} alt={`Fotografia astronòmica de ${foto.data.objecte}`} loading="lazy" decoding="async" />
 		<div class="photo-card__body">
 			<h2>{foto.data.objecte}</h2>
 			<p><b>Constel·lació:</b> {foto.data.constellacio}</p>
 			<p><b>Exposició:</b> {foto.data.exposicio.temps_total}</p>
 			<p>{date}</p>
+			{hasProcess && <p class="photo-card__process">Inclou el flux de processat</p>}
 		</div>
 	</a>
 </article>
