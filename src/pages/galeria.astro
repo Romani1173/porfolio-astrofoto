@@ -26,7 +26,7 @@ const fotos = (await getCollection('fotos')).sort(
 					<label class="sr-only" for="buscador">Cerca al catàleg</label>
 					<div class="catalog-search__field">
 						<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
-						<input id="buscador" type="search" placeholder="M31, Andromeda, …" autocomplete="off" />
+						<input id="buscador" type="search" placeholder="M31, Andromeda, nebulosa, …" autocomplete="off" />
 					</div>
 				</div>
 				<p class="catalog-count">{fotos.length} {fotos.length === 1 ? 'objecte' : 'objectes'}</p>
