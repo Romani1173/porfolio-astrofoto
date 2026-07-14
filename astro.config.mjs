@@ -8,7 +8,7 @@ const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 
 // https://astro.build/config
 export default defineConfig({
-	site: isGitHubPages ? 'https://romani1173.github.io' : 'http://localhost:4321',
+	site: isGitHubPages ? 'https://romani1173.github.io' : 'https://porfolio-astrofoto.pages.dev',
 	base: isGitHubPages ? '/porfolio-astrofoto' : '/',
 	integrations: [mdx(), sitemap()],
 });

@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import type { Lang } from '../i18n';
+import { categoryByValue, categoryHref, copy, languageLinks, localeFor } from '../i18n';
+
+interface Props { foto: CollectionEntry<'fotos'>; lang: Lang; }
+const { foto, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const t = copy[lang];
+const category = categoryByValue(foto.data.categoria);
+const categoryLabel = category.labels[lang];
+const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).format(foto.data.entorn.data);
+---
+
+<Layout title={foto.data.objecte} description={foto.data.caracteristiques} minimal lang={lang} languageLinks={languageLinks.photo(foto.id, base)}>
+	<article class="photo-detail">
+		<a class="back-link" href={categoryHref(lang, category.key, base)}>← {t.backToCategory(categoryLabel)}</a>
+		<header class="page-heading"><h1>{foto.data.objecte}</h1></header>
+		<div class="photo-detail__image">
+			<button class="image-zoom-trigger" type="button" data-lightbox-src={`${base}imagenes/${foto.data.imatge}`} data-lightbox-alt={`${t.astroPhoto} ${foto.data.objecte}`} aria-label={`${t.enlarge}: ${foto.data.objecte}`}>
+				<img src={`${base}imagenes/${foto.data.imatge}`} alt={`${t.astroPhoto} ${foto.data.objecte}`} fetchpriority="high" />
+				<span aria-hidden="true">{t.enlarge} ↗</span>
+			</button>
+		</div>
+		<p class="photo-detail__summary">{foto.data.caracteristiques}</p>
+		<div class="data-grid">
+			<section class="data-panel" aria-labelledby="general"><h2 id="general">{t.generalInfo}</h2><dl class="data-list"><div><dt>{t.constellation}</dt><dd>{foto.data.constellacio}</dd></div><div><dt>{t.category}</dt><dd>{categoryLabel}</dd></div><div><dt>{t.date}</dt><dd>{date}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="capture"><h2 id="capture">{t.capture}</h2><dl class="data-list"><div><dt>{t.totalTime}</dt><dd>{foto.data.exposicio.temps_total}</dd></div><div><dt>{t.subframes}</dt><dd>{foto.data.exposicio.subframes}</dd></div><div><dt>Gain / Offset</dt><dd>{foto.data.exposicio.gain} / {foto.data.exposicio.offset}</dd></div><div><dt>{t.calibration}</dt><dd>{foto.data.exposicio.calibratge}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="equipment"><h2 id="equipment">{t.equipment}</h2><dl class="data-list"><div><dt>{t.telescope}</dt><dd>{foto.data.equip.ota}</dd></div><div><dt>{t.camera}</dt><dd>{foto.data.camera.principal}</dd></div><div><dt>{t.filters}</dt><dd>{foto.data.camera.filtres}</dd></div><div><dt>{t.mount}</dt><dd>{foto.data.equip.muntura}</dd></div><div><dt>{t.guiding}</dt><dd>{foto.data.equip.guiat}</dd></div>{foto.data.equip.enfocador !== 'N/A' && <div><dt>{t.focuser}</dt><dd>{foto.data.equip.enfocador}</dd></div>}{foto.data.equip.roda_filtres !== 'N/A' && <div><dt>{t.filterWheel}</dt><dd>{foto.data.equip.roda_filtres}</dd></div>}</dl></section>
+			<section class="data-panel" aria-labelledby="process"><h2 id="process">{t.processingEnvironment}</h2><dl class="data-list"><div><dt>{t.processing}</dt><dd>{foto.data.tractament.processat}</dd></div>{foto.data.tractament.adquisicio !== 'N/A' && <div><dt>{t.acquisition}</dt><dd>{foto.data.tractament.adquisicio}</dd></div>}<div><dt>{t.place}</dt><dd>{foto.data.entorn.lloc}</dd></div><div><dt>{t.sky}</dt><dd>Bortle {foto.data.entorn.bortle}</dd></div></dl></section>
+		</div>
+		{foto.data.imatges_addicionals.length > 0 && (
+			<section class="additional-images" aria-labelledby="additional-images-heading">
+				<h2 id="additional-images-heading">{t.additionalVersions}</h2>
+				<div class="additional-images__grid">
+					{foto.data.imatges_addicionals.map((imatge) => (
+						<figure>
+							<button class="image-zoom-trigger" type="button" data-lightbox-src={`${base}imagenes/${imatge.fitxer}`} data-lightbox-alt={`${imatge.titol}: ${foto.data.objecte}`} aria-label={`${t.enlarge}: ${imatge.titol}`}>
+								<img src={`${base}imagenes/${imatge.fitxer}`} alt={`${imatge.titol}: ${foto.data.objecte}`} loading="lazy" decoding="async" />
+								<span aria-hidden="true">{t.enlarge} ↗</span>
+							</button>
+							<figcaption><strong>{imatge.titol}</strong>{imatge.descripcio && <span>{imatge.descripcio}</span>}</figcaption>
+						</figure>
+					))}
+				</div>
+			</section>
+		)}
+	</article>
+	<dialog class="image-lightbox" aria-label={t.enlargedImage}>
+		<button class="image-lightbox__close" type="button" aria-label={t.closeImage}>×</button>
+		<img alt="" />
+	</dialog>
+</Layout>
+
+<script>
+	const lightbox = document.querySelector<HTMLDialogElement>('.image-lightbox');
+	const lightboxImage = lightbox?.querySelector<HTMLImageElement>('img');
+	const closeButton = lightbox?.querySelector<HTMLButtonElement>('.image-lightbox__close');
+	document.querySelectorAll<HTMLButtonElement>('.image-zoom-trigger').forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			if (!lightbox || !lightboxImage) return;
+			lightboxImage.src = trigger.dataset.lightboxSrc ?? '';
+			lightboxImage.alt = trigger.dataset.lightboxAlt ?? '';
+			lightbox.showModal();
+		});
+	});
+	closeButton?.addEventListener('click', () => lightbox?.close());
+	lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) lightbox.close(); });
+</script>

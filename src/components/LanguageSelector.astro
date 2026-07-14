@@ -1,0 +1,21 @@
+---
+import type { Lang } from '../i18n';
+import { copy, languages } from '../i18n';
+
+interface Props { lang: Lang; links: Record<Lang, string>; }
+const { lang, links } = Astro.props;
+const labels = { ca: 'Català', es: 'Español', en: 'English' };
+---
+
+<nav class="language-selector" aria-label={copy[lang].languageSelector}>
+	{languages.map((language) => (
+		<a href={links[language]} lang={language} hreflang={language} aria-label={labels[language]} aria-current={language === lang ? 'page' : undefined}>
+			<svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true">
+				{language === 'ca' && <><rect width="24" height="16" fill="#f5c400" /><path d="M0 2h24M0 6h24M0 10h24M0 14h24" stroke="#d9232e" stroke-width="2" /></>}
+				{language === 'es' && <><rect width="24" height="16" fill="#aa151b" /><rect y="4" width="24" height="8" fill="#f1bf00" /></>}
+				{language === 'en' && <><rect width="24" height="16" fill="#21468b" /><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="4" /><path d="M0 0l24 16M24 0L0 16" stroke="#cf142b" stroke-width="1.5" /><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5" /><path d="M12 0v16M0 8h24" stroke="#cf142b" stroke-width="3" /></>}
+			</svg>
+			<span>{language.toUpperCase()}</span>
+		</a>
+	))}
+</nav>

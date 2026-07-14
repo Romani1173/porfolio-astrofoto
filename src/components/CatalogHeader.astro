@@ -1,0 +1,23 @@
+---
+import type { CategoryKey, Lang } from '../i18n';
+import { categories, categoryHref, copy, galleryHref, homeHref } from '../i18n';
+
+interface Props { lang: Lang; currentCategory?: CategoryKey; catalogue?: boolean; }
+const { lang, currentCategory, catalogue = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const t = copy[lang];
+---
+
+<div class="catalog-controls__top">
+	{catalogue ? (
+		<a class="catalog-home" href={homeHref(lang, base)} aria-label={t.backHome}>← El<span class="catalog-home__meu">meu</span>Cel Profund</a>
+	) : (
+		<a class="catalog-home" href={galleryHref(lang, base)}>← {t.backCatalogue}</a>
+	)}
+	<nav class="catalog-category-nav" aria-label={t.categoryNav}>
+		<a href={galleryHref(lang, base)} aria-current={catalogue ? 'page' : undefined}>{t.all}</a>
+		{categories.map((category) => (
+			<a href={categoryHref(lang, category.key, base)} aria-current={currentCategory === category.key ? 'page' : undefined}>{category.labels[lang]}</a>
+		))}
+	</nav>
+</div>

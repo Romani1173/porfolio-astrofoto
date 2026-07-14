@@ -1,18 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-const base = import.meta.env.BASE_URL;
+import HomePage from '../components/HomePage.astro';
 ---
 
-<Layout title="Inici" hero>
-	<section class="welcome-hero" style={`--hero-image: url('${base}imagenes/portada.webp')`} aria-labelledby="welcome-title">
-		<div class="welcome-hero__content">
-			<div class="welcome-hero__message">
-				<h1 id="welcome-title">El meu Cel Profund</h1>
-				<p class="welcome-hero__description">Un recull personal de fotografies de cel profund.</p>
-			</div>
-			<a class="welcome-hero__cta" href={`${base}galeria`}>Explora el catàleg <span aria-hidden="true">→</span></a>
-		</div>
-		<p class="welcome-hero__signature">Juan José Romero</p>
-	</section>
-</Layout>
+<HomePage lang="ca" />

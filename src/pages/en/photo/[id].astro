@@ -1,13 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import PhotoDetail from '../../components/PhotoDetail.astro';
-
+import PhotoDetail from '../../../components/PhotoDetail.astro';
 export async function getStaticPaths() {
 	const fotos = await getCollection('fotos');
 	return fotos.map((foto) => ({ params: { id: foto.id }, props: { foto } }));
 }
-
 const { foto } = Astro.props;
 ---
 
-<PhotoDetail lang="ca" foto={foto} />
+<PhotoDetail lang="en" foto={foto} />

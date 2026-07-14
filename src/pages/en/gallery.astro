@@ -1,8 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import CatalogPage from '../components/CatalogPage.astro';
-
+import CatalogPage from '../../components/CatalogPage.astro';
 const fotos = (await getCollection('fotos')).sort((a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf());
 ---
 
-<CatalogPage lang="ca" fotos={fotos} />
+<CatalogPage lang="en" fotos={fotos} />

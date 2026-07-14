@@ -3,7 +3,7 @@
 ## Comunicación
 
 - Comunicarse con el autor en español, de forma clara y paso a paso.
-- El contenido público del sitio y las etiquetas de las fichas se escriben en catalán.
+- El sitio es multilingüe: catalán (`ca`), castellano (`es`) e inglés (`en`). Los textos generales se centralizan en `src/i18n.ts`.
 
 ## Diseño
 
@@ -18,6 +18,14 @@
 - El catálogo permite buscar **solo por el campo `objecte`** y ordenar por fecha reciente o por nombre natural (`M2` antes que `M10`, `NGC 2237` antes que `NGC 6960`). Esta ordenación está disponible también en cada categoría.
 - El diseño del catálogo y las categorías está aprobado en este punto; no cambiarlo de forma amplia sin petición expresa.
 - La portada usa `public/imagenes/portada.webp`, con estrellas visibles, la firma blanca `Juan José Romero` en Bradley Hand abajo a la izquierda y el mensaje principal desplazado 10 mm hacia arriba. El acceso “Explora el catàleg” debe permanecer abajo a la derecha.
+
+## Idiomas
+
+- El catalán conserva las rutas históricas sin prefijo. El castellano usa `/es/` y el inglés `/en/`.
+- El selector de idioma muestra las banderas y los códigos `CA`, `ES` y `EN`; debe llevar siempre a la página equivalente, no a la portada genérica.
+- Las rutas localizadas son: catálogo `/es/galeria` y `/en/gallery`; categorías `/es/categoria/...` y `/en/category/...`; fichas `/es/foto/...` y `/en/photo/...`.
+- La fase 1 traduce la interfaz, navegación, etiquetas técnicas, fechas y metadatos. Los nombres, descripciones y textos particulares de cada objeto permanecen en catalán hasta la fase 2.
+- No duplicar traducciones generales dentro de las páginas: usar `src/i18n.ts` y los componentes compartidos.
 
 ## Trabajo y publicación
 

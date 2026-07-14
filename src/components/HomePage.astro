@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Lang } from '../i18n';
+import { copy, galleryHref, languageLinks } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const t = copy[lang];
+---
+
+<Layout title={lang === 'ca' ? 'Inici' : t.home} hero lang={lang} languageLinks={languageLinks.home(base)}>
+	<section class="welcome-hero" style={`--hero-image: url('${base}imagenes/portada.webp')`} aria-labelledby="welcome-title">
+		<div class="welcome-hero__content">
+			<div class="welcome-hero__message">
+				<h1 id="welcome-title">El meu Cel Profund</h1>
+				<p class="welcome-hero__description">{t.siteDescription}</p>
+			</div>
+			<a class="welcome-hero__cta" href={galleryHref(lang, base)}>{t.explore} <span aria-hidden="true">→</span></a>
+		</div>
+		<p class="welcome-hero__signature">Juan José Romero</p>
+	</section>
+</Layout>

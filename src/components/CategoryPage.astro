@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import CatalogHeader from './CatalogHeader.astro';
+import PhotoCard from './PhotoCard.astro';
+import type { CategoryKey, Lang } from '../i18n';
+import { categories, copy, languageLinks } from '../i18n';
+
+interface Props { lang: Lang; categoryKey: CategoryKey; fotos: CollectionEntry<'fotos'>[]; }
+const { lang, categoryKey, fotos } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const category = categories.find((item) => item.key === categoryKey)!;
+const label = category.labels[lang];
+const t = copy[lang];
+---
+
+<Layout title={label} description={t.categoryDescription(label)} minimal lang={lang} languageLinks={languageLinks.category(categoryKey, base)}>
+	<section aria-labelledby="category-heading">
+		<div class="catalog-controls"><CatalogHeader lang={lang} currentCategory={categoryKey} /></div>
+		<div class="page-heading">
+			<h1 id="category-heading">{label}</h1>
+			<div class="category-toolbar">
+				<div class="catalog-order">
+					<label for="ordre">{t.order}</label>
+					<select id="ordre"><option value="date">{t.recent}</option><option value="name">{t.name}</option></select>
+				</div>
+				<p class="catalog-count">{fotos.length} {fotos.length === 1 ? t.photographedObject : t.photographedObjects}</p>
+			</div>
+		</div>
+		<div class="photo-grid" id="grid-fotos">
+			{fotos.length ? fotos.map((foto) => <div data-card data-name={foto.data.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>) : <p class="empty-state">{t.emptyCategory}</p>}
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const order = document.querySelector<HTMLSelectElement>('#ordre');
+	const grid = document.querySelector<HTMLElement>('#grid-fotos');
+	const cards = [...document.querySelectorAll<HTMLElement>('[data-card]')];
+	const collator = new Intl.Collator(document.documentElement.lang, { numeric: true, sensitivity: 'base' });
+	order?.addEventListener('change', () => {
+		const sorted = [...cards].sort((a, b) => order.value === 'name'
+			? collator.compare(a.dataset.name ?? '', b.dataset.name ?? '')
+			: Number(b.dataset.date) - Number(a.dataset.date));
+		grid?.append(...sorted);
+	});
+</script>

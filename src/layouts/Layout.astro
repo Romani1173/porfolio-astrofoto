@@ -1,24 +1,25 @@
 ---
 import '../styles/global.css';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_TITLE } from '../consts';
+import LanguageSelector from '../components/LanguageSelector.astro';
+import type { Lang } from '../i18n';
+import { copy, galleryHref, homeHref, languageLinks as makeLanguageLinks } from '../i18n';
 
-interface Props { title?: string; description?: string; hero?: boolean; minimal?: boolean; }
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, hero = false, minimal = false } = Astro.props;
+interface Props { title?: string; description?: string; hero?: boolean; minimal?: boolean; lang?: Lang; languageLinks?: Record<Lang, string>; }
+const { title = SITE_TITLE, hero = false, minimal = false, lang = 'ca', languageLinks = makeLanguageLinks.home(import.meta.env.BASE_URL) } = Astro.props;
+const description = Astro.props.description ?? copy[lang].siteDescription;
 const pageTitle = title === SITE_TITLE ? SITE_TITLE : `${title} | ${SITE_TITLE}`;
 const currentPath = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const nav = [
-	{ href: base, label: 'Inici' },
-	{ href: `${base}galeria`, label: 'Catàleg' },
-	{ href: `${base}categoria/Gal%C3%A0xies`, label: 'Galàxies' },
-	{ href: `${base}categoria/Nebuloses`, label: 'Nebuloses' },
-	{ href: `${base}categoria/C%C3%BAmuls%20i%20Estrelles`, label: 'Cúmuls i estrelles' },
-	{ href: `${base}categoria/Cel`, label: 'Cel' },
+	{ href: homeHref(lang, base), label: copy[lang].home },
+	{ href: galleryHref(lang, base), label: copy[lang].catalogue },
 ];
 ---
 
 <!doctype html>
-<html lang="ca">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,6 +30,9 @@ const nav = [
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet" />
 		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 		<link rel="icon" href={`${base}favicon.ico`} />
+		<link rel="canonical" href={canonicalURL} />
+		{Object.entries(languageLinks).map(([language, href]) => <link rel="alternate" hreflang={language} href={new URL(href, Astro.site)} />)}
+		<link rel="alternate" hreflang="x-default" href={new URL(languageLinks.ca, Astro.site)} />
 		<title>{pageTitle}</title>
 	</head>
 	<body class:list={{ 'home-page': hero }}>
@@ -38,6 +42,9 @@ const nav = [
 				{nav.map((item) => <a href={item.href} aria-current={currentPath === decodeURIComponent(item.href) ? 'page' : undefined}>{item.label}</a>)}
 			</nav>}
 		</header>}
+		<div class:list={{ 'language-selector-shell': true, 'language-selector-shell--hero': hero, 'site-shell': !hero }}>
+			<LanguageSelector lang={lang} links={languageLinks} />
+		</div>
 		<main class:list={{ 'site-shell': true, 'home-main': hero, 'minimal-main': minimal }}><slot /></main>
 		<footer class="site-footer site-shell">© {new Date().getFullYear()} {SITE_TITLE}</footer>
 	</body>
