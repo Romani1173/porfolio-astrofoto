@@ -14,11 +14,32 @@ const fotos = (await getCollection('fotos'))
 	.filter((foto) => foto.data.categoria === categoria)
 	.sort((a, b) => b.data.entorn.data.valueOf() - a.data.entorn.data.valueOf());
 const base = import.meta.env.BASE_URL;
+const categories = [
+	{ name: 'Galàxies', href: 'Gal%C3%A0xies' },
+	{ name: 'Nebuloses', href: 'Nebuloses' },
+	{ name: 'Cúmuls i Estrelles', label: 'Cúmuls i estrelles', href: 'C%C3%BAmuls%20i%20Estrelles' },
+	{ name: 'Cel', href: 'Cel' },
+];
 ---
 
 <Layout title={categoria} description={`Fotografies de ${categoria.toLocaleLowerCase()} del meu catàleg de cel profund.`} minimal>
-	<a class="back-link" href={`${base}galeria`}>← Tornar al catàleg</a>
 	<section aria-labelledby="category-heading">
+		<div class="catalog-controls">
+			<div class="catalog-controls__top">
+				<a class="catalog-home" href={`${base}galeria`}>← Tornar al catàleg</a>
+				<nav class="catalog-category-nav" aria-label="Filtra per categoria">
+					<a href={`${base}galeria`}>Tots</a>
+					{categories.map((category) => (
+						<a
+							href={`${base}categoria/${category.href}`}
+							aria-current={category.name === categoria ? 'page' : undefined}
+						>
+							{category.label ?? category.name}
+						</a>
+					))}
+				</nav>
+			</div>
+		</div>
 		<div class="page-heading">
 			<h1 id="category-heading">{categoria}</h1>
 			<div class="category-toolbar">
