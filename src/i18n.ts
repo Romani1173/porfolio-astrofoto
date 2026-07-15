@@ -19,7 +19,7 @@ export const copy = {
 	ca: {
 		siteDescription: 'Un recull personal de fotografies de cel profund.',
 		home: 'Inici', catalogue: 'Catàleg', all: 'Tots', backHome: 'Tornar a la portada', backCatalogue: 'Tornar al catàleg',
-		explore: 'Explora el catàleg', categoryNav: 'Filtra per categoria', search: 'Cerca al catàleg', searchPlaceholder: 'M31, NGC 2237, …',
+		explore: 'Explora el catàleg', categoryNav: 'Filtra per categoria', search: 'Cerca al catàleg', searchPlaceholder: 'M31, NGC2237, …',
 		order: 'Ordena', recent: 'Data: recents', name: 'Nom: A–Z', object: 'objecte', objects: 'objectes', photographedObject: 'objecte fotografiat', photographedObjects: 'objectes fotografiats',
 		noResults: "No s'ha trobat cap objecte amb aquesta cerca.", emptyCategory: 'Encara no hi ha cap fotografia en aquesta categoria.',
 		viewPhoto: 'Veure la fitxa de', astroPhoto: 'Fotografia astronòmica de', constellation: 'Constel·lació', exposure: 'Exposició', includesProcess: 'Inclou el flux de processat',
@@ -31,7 +31,7 @@ export const copy = {
 	es: {
 		siteDescription: 'Una colección personal de fotografías de cielo profundo.',
 		home: 'Inicio', catalogue: 'Catálogo', all: 'Todas', backHome: 'Volver a la portada', backCatalogue: 'Volver al catálogo',
-		explore: 'Explora el catálogo', categoryNav: 'Filtrar por categoría', search: 'Buscar en el catálogo', searchPlaceholder: 'M31, NGC 2237, …',
+		explore: 'Explora el catálogo', categoryNav: 'Filtrar por categoría', search: 'Buscar en el catálogo', searchPlaceholder: 'M31, NGC2237, …',
 		order: 'Ordenar', recent: 'Fecha: recientes', name: 'Nombre: A–Z', object: 'objeto', objects: 'objetos', photographedObject: 'objeto fotografiado', photographedObjects: 'objetos fotografiados',
 		noResults: 'No se ha encontrado ningún objeto con esta búsqueda.', emptyCategory: 'Todavía no hay ninguna fotografía en esta categoría.',
 		viewPhoto: 'Ver la ficha de', astroPhoto: 'Fotografía astronómica de', constellation: 'Constelación', exposure: 'Exposición', includesProcess: 'Incluye el flujo de procesado',
@@ -43,7 +43,7 @@ export const copy = {
 	en: {
 		siteDescription: 'A personal collection of deep-sky photographs.',
 		home: 'Home', catalogue: 'Catalogue', all: 'All', backHome: 'Back to the home page', backCatalogue: 'Back to the catalogue',
-		explore: 'Explore the catalogue', categoryNav: 'Filter by category', search: 'Search the catalogue', searchPlaceholder: 'M31, NGC 2237, …',
+		explore: 'Explore the catalogue', categoryNav: 'Filter by category', search: 'Search the catalogue', searchPlaceholder: 'M31, NGC2237, …',
 		order: 'Sort', recent: 'Date: newest', name: 'Name: A–Z', object: 'object', objects: 'objects', photographedObject: 'photographed object', photographedObjects: 'photographed objects',
 		noResults: 'No objects match this search.', emptyCategory: 'There are no photographs in this category yet.',
 		viewPhoto: 'View the details for', astroPhoto: 'Astronomical photograph of', constellation: 'Constellation', exposure: 'Exposure', includesProcess: 'Includes the processing workflow',

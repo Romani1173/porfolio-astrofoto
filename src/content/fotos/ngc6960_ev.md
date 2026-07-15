@@ -1,8 +1,8 @@
 ---
-objecte: "NGC 6960 – Part oriental (est) del Western Veil Nebula"
+objecte: "NGC6960 – Part oriental (est) del Western Veil Nebula"
 imatge: "NGC6960_EV.jpg"
 constellacio: "Cygnus"
-caracteristiques: "Aquesta imatge mostra la secció oriental de NGC 6960, a la constel·lació de Cygnus, que forma part del complex filamentós de gas conegut com la Nebulosa del Vel, restes d’una supernova que va esclatar fa uns 10.000 anys. La zona fotografiada s’estén cap a l’est de l’estrella 52 Cygni, tot i que aquesta no apareix al camp. L’estructura està dominada per emissions en [O III] (5007 Å), responsables del color blavós, i per línies d’Hα i [S II], visibles en vermell, resultat de l’excitació del gas pel pas de l’ona de xoc a través del medi interestel·lar. NGC 6960 es troba a uns 1.470 anys llum i presenta una mida angular total d’uns 70 minuts d’arc."
+caracteristiques: "Aquesta imatge mostra la secció oriental de NGC6960, a la constel·lació de Cygnus, que forma part del complex filamentós de gas conegut com la Nebulosa del Vel, restes d’una supernova que va esclatar fa uns 10.000 anys. La zona fotografiada s’estén cap a l’est de l’estrella 52 Cygni, tot i que aquesta no apareix al camp. L’estructura està dominada per emissions en [O III] (5007 Å), responsables del color blavós, i per línies d’Hα i [S II], visibles en vermell, resultat de l’excitació del gas pel pas de l’ona de xoc a través del medi interestel·lar. NGC6960 es troba a uns 1.470 anys llum i presenta una mida angular total d’uns 70 minuts d’arc."
 categoria: "Nebuloses"
 equip:
   ota: "TS102 f/5.6"
@@ -42,4 +42,3 @@ imatges_addicionals:
     titol: "Procés de tractament"
     descripcio: "Flux de treball de postprocessat amb PixInsight."
 ---
-
