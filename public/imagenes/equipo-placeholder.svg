@@ -69,6 +69,15 @@
       <rect x="752" y="319" width="36" height="176" rx="10" fill="#242e3d" stroke="#7c8999" stroke-width="6"/>
       <rect x="1002" y="319" width="36" height="176" rx="10" fill="#242e3d" stroke="#7c8999" stroke-width="6"/>
       <path d="M770 498v48M1020 498v48M770 536h250" fill="none" stroke="#6c798b" stroke-width="15" stroke-linecap="round"/>
+      <!-- guide scope and guide camera -->
+      <rect x="760" y="218" width="425" height="72" rx="28" fill="url(#tube)" stroke="#657386" stroke-width="7"/>
+      <rect x="730" y="210" width="72" height="88" rx="20" fill="#161f2b" stroke="#718095" stroke-width="7"/>
+      <ellipse cx="739" cy="254" rx="18" ry="34" fill="#090f19" stroke="#b79a43" stroke-width="5"/>
+      <rect x="865" y="207" width="24" height="94" rx="8" fill="#242e3d" stroke="#7c8999" stroke-width="5"/>
+      <rect x="1050" y="207" width="24" height="94" rx="8" fill="#242e3d" stroke="#7c8999" stroke-width="5"/>
+      <rect x="1182" y="228" width="78" height="53" rx="12" fill="#202b39" stroke="#8290a1" stroke-width="6"/>
+      <rect x="1251" y="236" width="46" height="37" rx="9" fill="#111925" stroke="#647286" stroke-width="5"/>
+      <path d="M877 302v32M1062 302v32" stroke="#5d6c80" stroke-width="12" stroke-linecap="round"/>
       <!-- imaging train -->
       <rect x="1246" y="356" width="81" height="103" rx="17" fill="#1b2534" stroke="#7d8999" stroke-width="7"/>
       <circle cx="1362" cy="407" r="65" fill="#1b2431" stroke="#9aa6b5" stroke-width="9"/>
@@ -85,6 +94,19 @@
     <rect x="1000" y="533" width="94" height="65" rx="12" fill="#172231" stroke="#68788c" stroke-width="6"/>
     <path d="M977 551c74-4 112-28 137-68 28-45 80-55 133-50" fill="none" stroke="#d0b656" stroke-width="6" stroke-linecap="round"/>
     <path d="M954 591c12 42 30 65 70 77 39 12 64 41 71 82" fill="none" stroke="#4d80b7" stroke-width="6" stroke-linecap="round"/>
+    <!-- flat-field panel -->
+    <g transform="rotate(-8 266 711)">
+      <rect x="128" y="612" width="276" height="198" rx="18" fill="#101824" stroke="#69788b" stroke-width="8"/>
+      <rect x="150" y="634" width="232" height="154" rx="10" fill="#d9cf9b" stroke="#e4c66a" stroke-width="5" opacity=".84"/>
+      <path d="M266 810v67M207 881h118" stroke="#59677a" stroke-width="14" stroke-linecap="round"/>
+    </g>
+    <!-- capture-control unit -->
+    <rect x="1240" y="657" width="194" height="137" rx="17" fill="#111925" stroke="#718095" stroke-width="8"/>
+    <rect x="1260" y="677" width="154" height="81" rx="9" fill="#0b1220" stroke="#3c526e" stroke-width="5"/>
+    <path d="M1280 706h74M1280 728h104" stroke="#e4c66a" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+    <circle cx="1393" cy="708" r="7" fill="#62d0ac"/>
+    <path d="M1287 797v48M1387 797v48M1258 850h158" stroke="#566579" stroke-width="13" stroke-linecap="round"/>
+    <path d="M1242 731c-78-5-112-33-147-80" fill="none" stroke="#4d80b7" stroke-width="6" stroke-linecap="round"/>
   </g>
 
   <path d="M78 735h282" stroke="#e4c66a" stroke-width="2" opacity=".45"/>
