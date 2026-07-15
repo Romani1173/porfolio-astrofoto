@@ -18,7 +18,7 @@ export const categories: Array<{
 export const copy = {
 	ca: {
 		siteDescription: 'Un recull personal de fotografies de cel profund.',
-		home: 'Inici', catalogue: 'Catàleg', all: 'Tots', backHome: 'Tornar a la portada', backCatalogue: 'Tornar al catàleg',
+		home: 'Inici', catalogue: 'Catàleg', myEquipment: 'El meu equip', all: 'Tots', backHome: 'Tornar a la portada', backCatalogue: 'Tornar al catàleg',
 		explore: 'Explora el catàleg', categoryNav: 'Filtra per categoria', search: 'Cerca al catàleg', searchPlaceholder: 'M31, NGC2237, …',
 		order: 'Ordena', recent: 'Data: recents', name: 'Nom: A–Z', object: 'objecte', objects: 'objectes', photographedObject: 'objecte fotografiat', photographedObjects: 'objectes fotografiats',
 		noResults: "No s'ha trobat cap objecte amb aquesta cerca.", emptyCategory: 'Encara no hi ha cap fotografia en aquesta categoria.',
@@ -30,7 +30,7 @@ export const copy = {
 	},
 	es: {
 		siteDescription: 'Una colección personal de fotografías de cielo profundo.',
-		home: 'Inicio', catalogue: 'Catálogo', all: 'Todas', backHome: 'Volver a la portada', backCatalogue: 'Volver al catálogo',
+		home: 'Inicio', catalogue: 'Catálogo', myEquipment: 'Mi equipo', all: 'Todas', backHome: 'Volver a la portada', backCatalogue: 'Volver al catálogo',
 		explore: 'Explora el catálogo', categoryNav: 'Filtrar por categoría', search: 'Buscar en el catálogo', searchPlaceholder: 'M31, NGC2237, …',
 		order: 'Ordenar', recent: 'Fecha: recientes', name: 'Nombre: A–Z', object: 'objeto', objects: 'objetos', photographedObject: 'objeto fotografiado', photographedObjects: 'objetos fotografiados',
 		noResults: 'No se ha encontrado ningún objeto con esta búsqueda.', emptyCategory: 'Todavía no hay ninguna fotografía en esta categoría.',
@@ -42,7 +42,7 @@ export const copy = {
 	},
 	en: {
 		siteDescription: 'A personal collection of deep-sky photographs.',
-		home: 'Home', catalogue: 'Catalogue', all: 'All', backHome: 'Back to the home page', backCatalogue: 'Back to the catalogue',
+		home: 'Home', catalogue: 'Catalogue', myEquipment: 'My equipment', all: 'All', backHome: 'Back to the home page', backCatalogue: 'Back to the catalogue',
 		explore: 'Explore the catalogue', categoryNav: 'Filter by category', search: 'Search the catalogue', searchPlaceholder: 'M31, NGC2237, …',
 		order: 'Sort', recent: 'Date: newest', name: 'Name: A–Z', object: 'object', objects: 'objects', photographedObject: 'photographed object', photographedObjects: 'photographed objects',
 		noResults: 'No objects match this search.', emptyCategory: 'There are no photographs in this category yet.',
@@ -57,6 +57,7 @@ export const copy = {
 export const localeFor = (lang: Lang) => ({ ca: 'ca-ES', es: 'es-ES', en: 'en-GB' })[lang];
 export const homeHref = (lang: Lang, base = '/') => lang === 'ca' ? base : `${base}${lang}/`;
 export const galleryHref = (lang: Lang, base = '/') => lang === 'ca' ? `${base}galeria` : `${base}${lang}/${lang === 'en' ? 'gallery' : 'galeria'}`;
+export const equipmentHref = (lang: Lang, base = '/') => lang === 'ca' ? `${base}equip` : `${base}${lang}/${lang === 'en' ? 'equipment' : 'equipo'}`;
 export const photoHref = (lang: Lang, id: string, base = '/') => lang === 'ca' ? `${base}foto/${id}` : `${base}${lang}/${lang === 'en' ? 'photo' : 'foto'}/${id}`;
 export const categoryHref = (lang: Lang, key: CategoryKey, base = '/') => {
 	const category = categories.find((item) => item.key === key)!;
@@ -68,6 +69,7 @@ export const categoryByValue = (value: string) => categories.find((item) => item
 export const languageLinks = {
 	home: (base = '/') => ({ ca: homeHref('ca', base), es: homeHref('es', base), en: homeHref('en', base) }),
 	gallery: (base = '/') => ({ ca: galleryHref('ca', base), es: galleryHref('es', base), en: galleryHref('en', base) }),
+	equipment: (base = '/') => ({ ca: equipmentHref('ca', base), es: equipmentHref('es', base), en: equipmentHref('en', base) }),
 	category: (key: CategoryKey, base = '/') => ({ ca: categoryHref('ca', key, base), es: categoryHref('es', key, base), en: categoryHref('en', key, base) }),
 	photo: (id: string, base = '/') => ({ ca: photoHref('ca', id, base), es: photoHref('es', id, base), en: photoHref('en', id, base) }),
 };

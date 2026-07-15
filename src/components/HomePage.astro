@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n';
-import { copy, galleryHref, languageLinks } from '../i18n';
+import { copy, equipmentHref, galleryHref, languageLinks } from '../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -16,7 +16,10 @@ const t = copy[lang];
 				<h1 id="welcome-title">El meu Cel Profund</h1>
 				<p class="welcome-hero__description">{t.siteDescription}</p>
 			</div>
-			<a class="welcome-hero__cta" href={galleryHref(lang, base)}>{t.explore} <span aria-hidden="true">→</span></a>
+			<div class="welcome-hero__actions">
+				<a class="welcome-hero__cta welcome-hero__cta--equipment" href={equipmentHref(lang, base)}>{t.myEquipment} <span aria-hidden="true">＋</span></a>
+				<a class="welcome-hero__cta" href={galleryHref(lang, base)}>{t.explore} <span aria-hidden="true">→</span></a>
+			</div>
 		</div>
 		<p class="welcome-hero__signature">Juan José Romero</p>
 	</section>

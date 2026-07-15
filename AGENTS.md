@@ -34,6 +34,8 @@
 ## Trabajo y publicación
 
 - El proyecto editable es esta carpeta: `work/porfolio-astrofoto`.
+- La sección gráfica “Mi equipo” se desarrolla en la rama local `mi-equipo`. No fusionar, subir a GitHub ni publicar esta rama hasta que el autor haya aprobado el resultado final.
+- Las imágenes provisionales de “Mi equipo” deben sustituirse por fotografías reales del autor antes de publicar; conservar mientras tanto la interacción local para poder decidir encuadres y puntos sensitivos.
 - Ejecutar `npm run dev` en una terminal para la vista local y conservarla abierta mientras se prueba el sitio.
 - Para Git (`git status`, `git add`, `git commit`, `git push`) usar una **segunda terminal**; la que ejecuta el servidor local no acepta esos comandos.
 - Tras verificar con `npm run build`, publicar con `git push origin main`. Cloudflare Pages se actualiza automáticamente después de recibir el cambio en GitHub; puede requerir uno o dos minutos y una recarga forzada.

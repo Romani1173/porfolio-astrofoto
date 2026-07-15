@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Lang } from '../i18n';
+import { copy, homeHref, languageLinks } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const t = copy[lang];
+
+const pageCopy = {
+	ca: {
+		back: 'Tornar a la portada',
+		prototype: 'Prototip local',
+		instruction: 'Explora els punts de l’equip',
+		imageAlt: 'Esquema provisional de l’equip d’astrofotografia muntat',
+		items: [
+			{ id: 'ota', number: '01', kicker: 'Tub òptic', title: 'TS102 f/5.6', specs: 'Refractor apocromàtic · 102 mm · f/5.6', x: 64, y: 33, zoom: 1.85, originX: 68, originY: 31 },
+			{ id: 'train', number: '02', kicker: 'Tren d’imatge', title: 'Enfocament i captura', specs: 'ZWO EAF · EFW 7 posicions · ASI294MM', x: 85, y: 43, zoom: 2.3, originX: 86, originY: 40 },
+			{ id: 'mount', number: '03', kicker: 'Muntura i trípode', title: 'Wave 150i', specs: 'Muntura harmònica · configuració transportable', x: 45, y: 59, zoom: 2, originX: 45, originY: 58 },
+			{ id: 'control', number: '04', kicker: 'Electrònica a bord', title: 'Control i guiatge', specs: 'PegasusAstro UCH · PPBMicro · ASI220MM', x: 58, y: 61, zoom: 2.25, originX: 58, originY: 59 },
+		],
+	},
+	es: {
+		back: 'Volver a la portada',
+		prototype: 'Prototipo local',
+		instruction: 'Explora los puntos del equipo',
+		imageAlt: 'Esquema provisional del equipo de astrofotografía montado',
+		items: [
+			{ id: 'ota', number: '01', kicker: 'Tubo óptico', title: 'TS102 f/5.6', specs: 'Refractor apocromático · 102 mm · f/5.6', x: 64, y: 33, zoom: 1.85, originX: 68, originY: 31 },
+			{ id: 'train', number: '02', kicker: 'Tren de imagen', title: 'Enfoque y captura', specs: 'ZWO EAF · EFW 7 posiciones · ASI294MM', x: 85, y: 43, zoom: 2.3, originX: 86, originY: 40 },
+			{ id: 'mount', number: '03', kicker: 'Montura y trípode', title: 'Wave 150i', specs: 'Montura armónica · configuración transportable', x: 45, y: 59, zoom: 2, originX: 45, originY: 58 },
+			{ id: 'control', number: '04', kicker: 'Electrónica a bordo', title: 'Control y guiado', specs: 'PegasusAstro UCH · PPBMicro · ASI220MM', x: 58, y: 61, zoom: 2.25, originX: 58, originY: 59 },
+		],
+	},
+	en: {
+		back: 'Back to the home page',
+		prototype: 'Local prototype',
+		instruction: 'Explore the equipment points',
+		imageAlt: 'Provisional diagram of the assembled astrophotography equipment',
+		items: [
+			{ id: 'ota', number: '01', kicker: 'Optical tube', title: 'TS102 f/5.6', specs: 'Apochromatic refractor · 102 mm · f/5.6', x: 64, y: 33, zoom: 1.85, originX: 68, originY: 31 },
+			{ id: 'train', number: '02', kicker: 'Imaging train', title: 'Focus and capture', specs: 'ZWO EAF · EFW 7 positions · ASI294MM', x: 85, y: 43, zoom: 2.3, originX: 86, originY: 40 },
+			{ id: 'mount', number: '03', kicker: 'Mount and tripod', title: 'Wave 150i', specs: 'Harmonic mount · portable setup', x: 45, y: 59, zoom: 2, originX: 45, originY: 58 },
+			{ id: 'control', number: '04', kicker: 'On-board electronics', title: 'Control and guiding', specs: 'PegasusAstro UCH · PPBMicro · ASI220MM', x: 58, y: 61, zoom: 2.25, originX: 58, originY: 59 },
+		],
+	},
+}[lang];
+
+const image = `${base}imagenes/equipo-placeholder.svg`;
+const first = pageCopy.items[0];
+---
+
+<Layout minimal lang={lang} title={t.myEquipment} languageLinks={languageLinks.equipment(base)}>
+	<article class="equipment-page" data-equipment-explorer>
+		<header class="equipment-heading">
+			<a class="back-link" href={homeHref(lang, base)}>← {pageCopy.back}</a>
+			<div class="equipment-heading__title">
+				<div>
+					<p class="equipment-kicker">{pageCopy.prototype}</p>
+					<h1>{t.myEquipment}</h1>
+				</div>
+				<p class="equipment-instruction"><span aria-hidden="true">◎</span> {pageCopy.instruction}</p>
+			</div>
+		</header>
+
+		<div class="equipment-explorer">
+			<section class="equipment-stage" aria-label={pageCopy.instruction}>
+				<img src={image} alt={pageCopy.imageAlt} />
+				<div class="equipment-stage__shade" aria-hidden="true"></div>
+				{pageCopy.items.map((item, index) => (
+					<button
+						type="button"
+						class:list={{ 'equipment-hotspot': true, 'is-active': index === 0 }}
+						style={`--x:${item.x}%;--y:${item.y}%`}
+						aria-label={`${item.kicker}: ${item.title}`}
+						aria-pressed={index === 0 ? 'true' : 'false'}
+						data-equipment-control
+						data-id={item.id}
+						data-number={item.number}
+						data-kicker={item.kicker}
+						data-title={item.title}
+						data-specs={item.specs}
+						data-zoom={item.zoom}
+						data-origin-x={item.originX}
+						data-origin-y={item.originY}
+					>
+						<span>{item.number}</span>
+					</button>
+				))}
+				<span class="equipment-stage__counter" data-equipment-counter>{first.number} / 04</span>
+			</section>
+
+			<aside class="equipment-inspector" aria-live="polite">
+				<div class="equipment-inspector__visual">
+					<img
+						src={image}
+						alt=""
+						style={`--zoom:${first.zoom};--origin-x:${first.originX}%;--origin-y:${first.originY}%`}
+						data-equipment-detail-image
+					/>
+					<span class="equipment-inspector__number" data-equipment-number>{first.number}</span>
+				</div>
+				<div class="equipment-inspector__copy">
+					<p data-equipment-kicker>{first.kicker}</p>
+					<h2 data-equipment-title>{first.title}</h2>
+					<span data-equipment-specs>{first.specs}</span>
+				</div>
+			</aside>
+		</div>
+
+		<nav class="equipment-views" aria-label={pageCopy.instruction}>
+			{pageCopy.items.map((item, index) => (
+				<button
+					type="button"
+					class:list={{ 'equipment-view': true, 'is-active': index === 0 }}
+					aria-pressed={index === 0 ? 'true' : 'false'}
+					data-equipment-control
+					data-id={item.id}
+					data-number={item.number}
+					data-kicker={item.kicker}
+					data-title={item.title}
+					data-specs={item.specs}
+					data-zoom={item.zoom}
+					data-origin-x={item.originX}
+					data-origin-y={item.originY}
+				>
+					<span class="equipment-view__image">
+						<img src={image} alt="" style={`--zoom:${item.zoom};--origin-x:${item.originX}%;--origin-y:${item.originY}%`} />
+					</span>
+					<span class="equipment-view__label"><b>{item.number}</b> {item.kicker}</span>
+				</button>
+			))}
+		</nav>
+	</article>
+</Layout>
+
+<script>
+	const explorers = document.querySelectorAll<HTMLElement>('[data-equipment-explorer]');
+
+	explorers.forEach((explorer) => {
+		const controls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-control]');
+		const detailImage = explorer.querySelector<HTMLElement>('[data-equipment-detail-image]');
+		const number = explorer.querySelector<HTMLElement>('[data-equipment-number]');
+		const counter = explorer.querySelector<HTMLElement>('[data-equipment-counter]');
+		const kicker = explorer.querySelector<HTMLElement>('[data-equipment-kicker]');
+		const title = explorer.querySelector<HTMLElement>('[data-equipment-title]');
+		const specs = explorer.querySelector<HTMLElement>('[data-equipment-specs]');
+
+		const activate = (control: HTMLButtonElement) => {
+			const data = control.dataset;
+			controls.forEach((item) => {
+				const active = item.dataset.id === data.id;
+				item.classList.toggle('is-active', active);
+				item.setAttribute('aria-pressed', String(active));
+			});
+			if (detailImage) {
+				detailImage.style.setProperty('--zoom', data.zoom ?? '1');
+				detailImage.style.setProperty('--origin-x', `${data.originX ?? 50}%`);
+				detailImage.style.setProperty('--origin-y', `${data.originY ?? 50}%`);
+			}
+			if (number) number.textContent = data.number ?? '';
+			if (counter) counter.textContent = `${data.number ?? ''} / 04`;
+			if (kicker) kicker.textContent = data.kicker ?? '';
+			if (title) title.textContent = data.title ?? '';
+			if (specs) specs.textContent = data.specs ?? '';
+		};
+
+		controls.forEach((control) => {
+			control.addEventListener('click', () => activate(control));
+			control.addEventListener('focus', () => activate(control));
+			control.addEventListener('pointerenter', () => activate(control));
+		});
+	});
+</script>
