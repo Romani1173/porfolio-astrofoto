@@ -1,0 +1,13 @@
+---
+import EquipmentItemPage from '../../../../components/EquipmentItemPage.astro';
+import { equipmentGroups } from '../../../../data/equipment';
+
+export function getStaticPaths() {
+	return equipmentGroups.flatMap((group) => group.items.map((equipmentItem) => ({
+		params: { category: group.slug.es, item: equipmentItem.slug.es },
+		props: { groupId: group.id, itemId: equipmentItem.id },
+	})));
+}
+const { groupId, itemId } = Astro.props;
+---
+<EquipmentItemPage lang="es" groupId={groupId} itemId={itemId} />

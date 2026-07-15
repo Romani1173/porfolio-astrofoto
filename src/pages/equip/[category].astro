@@ -1,0 +1,10 @@
+---
+import EquipmentCategoryPage from '../../components/EquipmentCategoryPage.astro';
+import { equipmentGroups } from '../../data/equipment';
+
+export function getStaticPaths() {
+	return equipmentGroups.map((group) => ({ params: { category: group.slug.ca }, props: { groupId: group.id } }));
+}
+const { groupId } = Astro.props;
+---
+<EquipmentCategoryPage lang="ca" groupId={groupId} />
