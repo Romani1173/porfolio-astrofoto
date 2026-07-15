@@ -3,11 +3,13 @@ import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n';
 import { copy, localeFor, photoHref } from '../i18n';
 import { photoText } from '../photoTranslations';
+import { photoTechnicalText } from '../technicalTranslations';
 
 interface Props { foto: CollectionEntry<'fotos'>; lang?: Lang; }
 const { foto, lang = 'ca' } = Astro.props;
 const t = copy[lang];
 const text = photoText(foto, lang);
+const technical = photoTechnicalText(foto, lang);
 const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).format(foto.data.entorn.data);
 const hasProcess = foto.data.imatges_addicionals.some((imatge) => imatge.tipus === 'process');
 const base = import.meta.env.BASE_URL;
@@ -18,8 +20,8 @@ const base = import.meta.env.BASE_URL;
 		<img src={`${base}imagenes/${foto.data.imatge}`} alt={`${t.astroPhoto} ${text.objecte}`} loading="lazy" decoding="async" />
 		<div class="photo-card__body">
 			<h2>{text.objecte}</h2>
-			<p><b>{t.constellation}:</b> {foto.data.constellacio}</p>
-			<p><b>{t.exposure}:</b> {foto.data.exposicio.temps_total}</p>
+			<p><b>{t.constellation}:</b> {technical.constellacio}</p>
+			<p><b>{t.exposure}:</b> {technical.tempsTotal}</p>
 			<p>{date}</p>
 			{hasProcess && <p class="photo-card__process">{t.includesProcess}</p>}
 		</div>

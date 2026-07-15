@@ -29,7 +29,7 @@ entorn:
 traduccions:
   es:
     objecte: "NGC6960 – Parte oriental del Velo occidental"
-    caracteristiques: "Esta imagen muestra la sección oriental de NGC6960, en la constelación de Cygnus, que forma parte del complejo filamentoso de gas conocido como la nebulosa del Velo, restos de una supernova que explotó hace unos 10.000 años. La zona fotografiada se extiende hacia el este de la estrella 52 Cygni, aunque esta no aparece en el campo. La estructura está dominada por emisiones de [O III] (5007 Å), responsables del color azulado, y por líneas de Hα y [S II], visibles en rojo, como resultado de la excitación del gas por el paso de la onda de choque a través del medio interestelar. NGC6960 se encuentra a unos 1.470 años luz y presenta un tamaño angular total de unos 70 minutos de arco."
+    caracteristiques: "Esta imagen muestra la sección oriental de NGC6960, en la constelación del Cisne, que forma parte del complejo filamentoso de gas conocido como la nebulosa del Velo, restos de una supernova que explotó hace unos 10.000 años. La zona fotografiada se extiende hacia el este de la estrella 52 Cygni, aunque esta no aparece en el campo. La estructura está dominada por emisiones de [O III] (5007 Å), responsables del color azulado, y por líneas de Hα y [S II], visibles en rojo, como resultado de la excitación del gas por el paso de la onda de choque a través del medio interestelar. NGC6960 se encuentra a unos 1.470 años luz y presenta un tamaño angular total de unos 70 minutos de arco."
   en:
     objecte: "NGC6960 – Eastern section of the Western Veil"
     caracteristiques: "This image shows the eastern section of NGC6960 in the constellation Cygnus, part of the filamentary gas complex known as the Veil Nebula, the remains of a supernova that exploded around 10,000 years ago. The photographed area extends eastwards from the star 52 Cygni, although the star itself does not appear in the field. The structure is dominated by [O III] emission at 5007 Å, responsible for the bluish colour, and by Hα and [S II] lines visible in red. These emissions result from gas excited by the passage of the shock wave through the interstellar medium. NGC6960 lies about 1,470 light-years away and has a total angular size of approximately 70 arcminutes."
@@ -41,7 +41,7 @@ imatges_addicionals:
     traduccions:
       es:
         titol: "Versión sin estrellas"
-        descripcio: "Resultado después de eliminar el denso campo estelar de Cygnus."
+        descripcio: "Resultado después de eliminar el denso campo estelar del Cisne."
       en:
         titol: "Starless version"
         descripcio: "Result after removing the dense Cygnus star field."

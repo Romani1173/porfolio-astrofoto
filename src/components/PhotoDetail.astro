@@ -4,12 +4,14 @@ import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n';
 import { categoryByValue, categoryHref, copy, languageLinks, localeFor } from '../i18n';
 import { additionalImageText, photoText } from '../photoTranslations';
+import { photoTechnicalText } from '../technicalTranslations';
 
 interface Props { foto: CollectionEntry<'fotos'>; lang: Lang; }
 const { foto, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const t = copy[lang];
 const text = photoText(foto, lang);
+const technical = photoTechnicalText(foto, lang);
 const category = categoryByValue(foto.data.categoria);
 const categoryLabel = category.labels[lang];
 const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).format(foto.data.entorn.data);
@@ -27,10 +29,10 @@ const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).for
 		</div>
 		<p class="photo-detail__summary">{text.caracteristiques}</p>
 		<div class="data-grid">
-			<section class="data-panel" aria-labelledby="general"><h2 id="general">{t.generalInfo}</h2><dl class="data-list"><div><dt>{t.constellation}</dt><dd>{foto.data.constellacio}</dd></div><div><dt>{t.category}</dt><dd>{categoryLabel}</dd></div><div><dt>{t.date}</dt><dd>{date}</dd></div></dl></section>
-			<section class="data-panel" aria-labelledby="capture"><h2 id="capture">{t.capture}</h2><dl class="data-list"><div><dt>{t.totalTime}</dt><dd>{foto.data.exposicio.temps_total}</dd></div><div><dt>{t.subframes}</dt><dd>{foto.data.exposicio.subframes}</dd></div><div><dt>Gain / Offset</dt><dd>{foto.data.exposicio.gain} / {foto.data.exposicio.offset}</dd></div><div><dt>{t.calibration}</dt><dd>{foto.data.exposicio.calibratge}</dd></div></dl></section>
-			<section class="data-panel" aria-labelledby="equipment"><h2 id="equipment">{t.equipment}</h2><dl class="data-list"><div><dt>{t.telescope}</dt><dd>{foto.data.equip.ota}</dd></div><div><dt>{t.camera}</dt><dd>{foto.data.camera.principal}</dd></div><div><dt>{t.filters}</dt><dd>{foto.data.camera.filtres}</dd></div><div><dt>{t.mount}</dt><dd>{foto.data.equip.muntura}</dd></div><div><dt>{t.guiding}</dt><dd>{foto.data.equip.guiat}</dd></div>{foto.data.equip.enfocador !== 'N/A' && <div><dt>{t.focuser}</dt><dd>{foto.data.equip.enfocador}</dd></div>}{foto.data.equip.roda_filtres !== 'N/A' && <div><dt>{t.filterWheel}</dt><dd>{foto.data.equip.roda_filtres}</dd></div>}</dl></section>
-			<section class="data-panel" aria-labelledby="process"><h2 id="process">{t.processingEnvironment}</h2><dl class="data-list"><div><dt>{t.processing}</dt><dd>{foto.data.tractament.processat}</dd></div>{foto.data.tractament.adquisicio !== 'N/A' && <div><dt>{t.acquisition}</dt><dd>{foto.data.tractament.adquisicio}</dd></div>}<div><dt>{t.place}</dt><dd>{foto.data.entorn.lloc}</dd></div><div><dt>{t.sky}</dt><dd>Bortle {foto.data.entorn.bortle}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="general"><h2 id="general">{t.generalInfo}</h2><dl class="data-list"><div><dt>{t.constellation}</dt><dd>{technical.constellacio}</dd></div><div><dt>{t.category}</dt><dd>{categoryLabel}</dd></div><div><dt>{t.date}</dt><dd>{date}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="capture"><h2 id="capture">{t.capture}</h2><dl class="data-list"><div><dt>{t.totalTime}</dt><dd>{technical.tempsTotal}</dd></div><div><dt>{t.subframes}</dt><dd>{technical.subframes}</dd></div><div><dt>{t.gainOffset}</dt><dd>{foto.data.exposicio.gain} / {foto.data.exposicio.offset}</dd></div><div><dt>{t.calibration}</dt><dd>{technical.calibratge}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="equipment"><h2 id="equipment">{t.equipment}</h2><dl class="data-list"><div><dt>{t.telescope}</dt><dd>{technical.ota}</dd></div><div><dt>{t.camera}</dt><dd>{technical.camera}</dd></div><div><dt>{t.filters}</dt><dd>{technical.filtres}</dd></div><div><dt>{t.mount}</dt><dd>{technical.muntura}</dd></div><div><dt>{t.guiding}</dt><dd>{technical.guiat}</dd></div>{foto.data.equip.enfocador !== 'N/A' && <div><dt>{t.focuser}</dt><dd>{technical.enfocador}</dd></div>}{foto.data.equip.roda_filtres !== 'N/A' && <div><dt>{t.filterWheel}</dt><dd>{technical.rodaFiltres}</dd></div>}</dl></section>
+			<section class="data-panel" aria-labelledby="process"><h2 id="process">{t.processingEnvironment}</h2><dl class="data-list"><div><dt>{t.processing}</dt><dd>{technical.processat}</dd></div>{foto.data.tractament.adquisicio !== 'N/A' && <div><dt>{t.acquisition}</dt><dd>{technical.adquisicio}</dd></div>}<div><dt>{t.place}</dt><dd>{technical.lloc}</dd></div><div><dt>{t.sky}</dt><dd>Bortle {foto.data.entorn.bortle}</dd></div></dl></section>
 		</div>
 		{foto.data.imatges_addicionals.length > 0 && (
 			<section class="additional-images" aria-labelledby="additional-images-heading">
