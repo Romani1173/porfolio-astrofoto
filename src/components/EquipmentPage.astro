@@ -8,63 +8,6 @@ const { lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const t = copy[lang];
 
-const pageCopy = {
-	ca: {
-		back: 'Tornar a la portada',
-		prototype: 'Prototip local',
-		instruction: 'Explora els punts de l’equip',
-		imageAlt: 'Esquema provisional de l’equip d’astrofotografia muntat',
-		items: [
-			{ id: 'ota', number: '01', kicker: 'Captura principal', title: 'OTA principal', specs: 'Tub òptic principal de captura', x: 54, y: 39, zoom: 1.75, originX: 55, originY: 38 },
-			{ id: 'reducer', number: '02', kicker: 'Tren òptic', title: 'Reductor-aplanador', specs: 'Correcció de camp · reducció focal', x: 78, y: 41, zoom: 2.55, originX: 79, originY: 40 },
-			{ id: 'filter-wheel', number: '03', kicker: 'Tren d’imatge', title: 'Roda portafiltres', specs: 'Selecció automatitzada de filtres', x: 85, y: 45, zoom: 2.65, originX: 85, originY: 41 },
-			{ id: 'main-camera', number: '04', kicker: 'Captura principal', title: 'Càmera principal', specs: 'Sensor principal de captura', x: 93, y: 43, zoom: 2.75, originX: 93, originY: 41 },
-			{ id: 'guide-scope', number: '05', kicker: 'Seguiment', title: 'Tub de seguiment', specs: 'Tub òptic dedicat al guiatge', x: 58, y: 25, zoom: 2.3, originX: 59, originY: 24 },
-			{ id: 'guide-camera', number: '06', kicker: 'Seguiment', title: 'Càmera de seguiment', specs: 'Sensor dedicat al guiatge', x: 75, y: 27, zoom: 2.65, originX: 75, originY: 25 },
-			{ id: 'power', number: '07', kicker: 'Electrònica a bord', title: 'Alimentació i escalfadors', specs: 'Distribució d’alimentació · cintes calefactores · sensor de temperatura i humitat', x: 56, y: 57, zoom: 2.45, originX: 56, originY: 56 },
-			{ id: 'usb', number: '08', kicker: 'Connectivitat', title: 'Hub USB', specs: 'Connexió USB centralitzada de tots els equips', x: 66, y: 59, zoom: 2.55, originX: 66, originY: 57 },
-			{ id: 'flats', number: '09', kicker: 'Calibratge', title: 'Panell de flats', specs: 'Il·luminació uniforme per a les preses de flats', x: 17, y: 69, zoom: 2.05, originX: 17, originY: 70 },
-			{ id: 'capture-control', number: '10', kicker: 'Control de captura', title: 'Equip de control', specs: 'Control local del programari de captura', x: 83, y: 72, zoom: 2.15, originX: 83, originY: 71 },
-		],
-	},
-	es: {
-		back: 'Volver a la portada',
-		prototype: 'Prototipo local',
-		instruction: 'Explora los puntos del equipo',
-		imageAlt: 'Esquema provisional del equipo de astrofotografía montado',
-		items: [
-			{ id: 'ota', number: '01', kicker: 'Captura principal', title: 'OTA principal', specs: 'Tubo óptico principal de captura', x: 54, y: 39, zoom: 1.75, originX: 55, originY: 38 },
-			{ id: 'reducer', number: '02', kicker: 'Tren óptico', title: 'Reductor-aplanador', specs: 'Corrección de campo · reducción focal', x: 78, y: 41, zoom: 2.55, originX: 79, originY: 40 },
-			{ id: 'filter-wheel', number: '03', kicker: 'Tren de imagen', title: 'Rueda portafiltros', specs: 'Selección automatizada de filtros', x: 85, y: 45, zoom: 2.65, originX: 85, originY: 41 },
-			{ id: 'main-camera', number: '04', kicker: 'Captura principal', title: 'Cámara principal', specs: 'Sensor principal de captura', x: 93, y: 43, zoom: 2.75, originX: 93, originY: 41 },
-			{ id: 'guide-scope', number: '05', kicker: 'Seguimiento', title: 'Tubo de seguimiento', specs: 'Tubo óptico dedicado al guiado', x: 58, y: 25, zoom: 2.3, originX: 59, originY: 24 },
-			{ id: 'guide-camera', number: '06', kicker: 'Seguimiento', title: 'Cámara de seguimiento', specs: 'Sensor dedicado al guiado', x: 75, y: 27, zoom: 2.65, originX: 75, originY: 25 },
-			{ id: 'power', number: '07', kicker: 'Electrónica a bordo', title: 'Alimentación y calentadores', specs: 'Distribución de alimentación · cintas calentadoras · sensor de temperatura y humedad', x: 56, y: 57, zoom: 2.45, originX: 56, originY: 56 },
-			{ id: 'usb', number: '08', kicker: 'Conectividad', title: 'Hub USB', specs: 'Conexión USB centralizada de todos los equipos', x: 66, y: 59, zoom: 2.55, originX: 66, originY: 57 },
-			{ id: 'flats', number: '09', kicker: 'Calibración', title: 'Panel de flats', specs: 'Iluminación uniforme para las tomas de flats', x: 17, y: 69, zoom: 2.05, originX: 17, originY: 70 },
-			{ id: 'capture-control', number: '10', kicker: 'Control de captura', title: 'Equipo de control', specs: 'Control local del software de captura', x: 83, y: 72, zoom: 2.15, originX: 83, originY: 71 },
-		],
-	},
-	en: {
-		back: 'Back to the home page',
-		prototype: 'Local prototype',
-		instruction: 'Explore the equipment points',
-		imageAlt: 'Provisional diagram of the assembled astrophotography equipment',
-		items: [
-			{ id: 'ota', number: '01', kicker: 'Main capture', title: 'Main OTA', specs: 'Main optical tube for image capture', x: 54, y: 39, zoom: 1.75, originX: 55, originY: 38 },
-			{ id: 'reducer', number: '02', kicker: 'Optical train', title: 'Reducer-flattener', specs: 'Field correction · focal reduction', x: 78, y: 41, zoom: 2.55, originX: 79, originY: 40 },
-			{ id: 'filter-wheel', number: '03', kicker: 'Imaging train', title: 'Filter wheel', specs: 'Automated filter selection', x: 85, y: 45, zoom: 2.65, originX: 85, originY: 41 },
-			{ id: 'main-camera', number: '04', kicker: 'Main capture', title: 'Main camera', specs: 'Main image-capture sensor', x: 93, y: 43, zoom: 2.75, originX: 93, originY: 41 },
-			{ id: 'guide-scope', number: '05', kicker: 'Tracking', title: 'Guide scope', specs: 'Dedicated optical tube for guiding', x: 58, y: 25, zoom: 2.3, originX: 59, originY: 24 },
-			{ id: 'guide-camera', number: '06', kicker: 'Tracking', title: 'Guide camera', specs: 'Dedicated guiding sensor', x: 75, y: 27, zoom: 2.65, originX: 75, originY: 25 },
-			{ id: 'power', number: '07', kicker: 'On-board electronics', title: 'Power and dew heaters', specs: 'Power distribution · dew heaters · temperature and humidity sensor', x: 56, y: 57, zoom: 2.45, originX: 56, originY: 56 },
-			{ id: 'usb', number: '08', kicker: 'Connectivity', title: 'USB hub', specs: 'Centralised USB connection for all equipment', x: 66, y: 59, zoom: 2.55, originX: 66, originY: 57 },
-			{ id: 'flats', number: '09', kicker: 'Calibration', title: 'Flat-field panel', specs: 'Uniform illumination for flat-field frames', x: 17, y: 69, zoom: 2.05, originX: 17, originY: 70 },
-			{ id: 'capture-control', number: '10', kicker: 'Capture control', title: 'Control unit', specs: 'Local control of the image-capture software', x: 83, y: 72, zoom: 2.15, originX: 83, originY: 71 },
-		],
-	},
-}[lang];
-
 const photos = {
 	left: `${base}imagenes/equipo-vista-lateral-izquierda.webp`,
 	right: `${base}imagenes/equipo-vista-lateral-derecha.webp`,
@@ -74,116 +17,234 @@ const photos = {
 	placeholder: `${base}imagenes/equipo-placeholder.svg`,
 };
 
-const viewCopy = {
+const localized = {
 	ca: {
-		left: 'Lateral esquerra', right: 'Lateral dreta', rear: 'Vista posterior', electronics: 'Detall d’electrònica', mount: 'Detall de muntura',
-		alt: 'Fotografia provisional de l’equip d’astrofotografia',
+		back: 'Tornar a la portada', prototype: 'Prototip local', instruction: 'Explora les quatre àrees de l’equip', area: 'Àrea',
+		photoAlt: 'Fotografia provisional de l’equip d’astrofotografia', pending: 'Pendent de fotografia',
+		views: { left: 'Lateral esquerra', right: 'Lateral dreta', rear: 'Vista posterior', electronics: 'Detall d’electrònica', mount: 'Detall de muntura' },
+		groups: {
+			main: { title: 'Tren principal', summary: 'Captura i formació de la imatge' },
+			guide: { title: 'Tren de guiatge', summary: 'Seguiment de precisió' },
+			mount: { title: 'Muntura i trípode', summary: 'Suport i seguiment equatorial' },
+			electronics: { title: 'Electrònica i control', summary: 'Alimentació, climatització i connexions' },
+		},
+		items: {
+			ota: ['Captura principal', 'OTA principal', 'Tub òptic principal de captura'],
+			reducer: ['Tren òptic', 'Reductor-aplanador', 'Correcció de camp i reducció focal'],
+			focuser: ['Enfocament', 'Enfocador', 'Control de l’enfocament del tren principal'],
+			filterWheel: ['Tren d’imatge', 'Roda portafiltres', 'Selecció automatitzada de filtres'],
+			mainCamera: ['Captura principal', 'Càmera principal', 'Sensor principal de captura'],
+			guideScope: ['Guiatge', 'Tub de guiatge', 'Tub òptic dedicat al seguiment'],
+			guideCamera: ['Guiatge', 'Càmera de guiatge', 'Sensor dedicat al seguiment'],
+			mount: ['Seguiment', 'Wave 150i', 'Muntura harmònica'],
+			tripod: ['Suport', 'Trípode', 'Suport i base d’unió de la muntura'],
+			power: ['Electrònica', 'Distribució d’alimentació', 'Alimentació centralitzada dels equips'],
+			heaters: ['Control tèrmic', 'Escalfadors', 'Cintes de l’OTA principal i del tub de guiatge'],
+			sensor: ['Control ambiental', 'Sensor ambiental', 'Mesura de temperatura i humitat'],
+			usb: ['Connectivitat', 'Hub USB', 'Connexió centralitzada dels equips'],
+			captureControl: ['Control de captura', 'Equip de control', 'Control local del programari de captura'],
+		},
+		calibration: { title: 'Calibratge i accessoris', summary: 'Panell de flats i altres accessoris' },
 	},
 	es: {
-		left: 'Lateral izquierda', right: 'Lateral derecha', rear: 'Vista posterior', electronics: 'Detalle de electrónica', mount: 'Detalle de montura',
-		alt: 'Fotografía provisional del equipo de astrofotografía',
+		back: 'Volver a la portada', prototype: 'Prototipo local', instruction: 'Explora las cuatro áreas del equipo', area: 'Área',
+		photoAlt: 'Fotografía provisional del equipo de astrofotografía', pending: 'Pendiente de fotografía',
+		views: { left: 'Lateral izquierda', right: 'Lateral derecha', rear: 'Vista posterior', electronics: 'Detalle de electrónica', mount: 'Detalle de montura' },
+		groups: {
+			main: { title: 'Tren principal', summary: 'Captura y formación de la imagen' },
+			guide: { title: 'Tren de guiado', summary: 'Seguimiento de precisión' },
+			mount: { title: 'Montura y trípode', summary: 'Soporte y seguimiento ecuatorial' },
+			electronics: { title: 'Electrónica y control', summary: 'Alimentación, climatización y conexiones' },
+		},
+		items: {
+			ota: ['Captura principal', 'OTA principal', 'Tubo óptico principal de captura'],
+			reducer: ['Tren óptico', 'Reductor-aplanador', 'Corrección de campo y reducción focal'],
+			focuser: ['Enfoque', 'Enfocador', 'Control del enfoque del tren principal'],
+			filterWheel: ['Tren de imagen', 'Rueda portafiltros', 'Selección automatizada de filtros'],
+			mainCamera: ['Captura principal', 'Cámara principal', 'Sensor principal de captura'],
+			guideScope: ['Guiado', 'Tubo de guiado', 'Tubo óptico dedicado al seguimiento'],
+			guideCamera: ['Guiado', 'Cámara de guiado', 'Sensor dedicado al seguimiento'],
+			mount: ['Seguimiento', 'Wave 150i', 'Montura armónica'],
+			tripod: ['Soporte', 'Trípode', 'Soporte y base de unión de la montura'],
+			power: ['Electrónica', 'Distribución de alimentación', 'Alimentación centralizada de los equipos'],
+			heaters: ['Control térmico', 'Calentadores', 'Cintas del OTA principal y del tubo de guiado'],
+			sensor: ['Control ambiental', 'Sensor ambiental', 'Medición de temperatura y humedad'],
+			usb: ['Conectividad', 'Hub USB', 'Conexión centralizada de los equipos'],
+			captureControl: ['Control de captura', 'Equipo de control', 'Control local del software de captura'],
+		},
+		calibration: { title: 'Calibración y accesorios', summary: 'Panel de flats y otros accesorios' },
 	},
 	en: {
-		left: 'Left side', right: 'Right side', rear: 'Rear view', electronics: 'Electronics detail', mount: 'Mount detail',
-		alt: 'Provisional photograph of the astrophotography equipment',
+		back: 'Back to the home page', prototype: 'Local prototype', instruction: 'Explore the four equipment areas', area: 'Area',
+		photoAlt: 'Provisional photograph of the astrophotography equipment', pending: 'Photograph pending',
+		views: { left: 'Left side', right: 'Right side', rear: 'Rear view', electronics: 'Electronics detail', mount: 'Mount detail' },
+		groups: {
+			main: { title: 'Main imaging train', summary: 'Image capture and formation' },
+			guide: { title: 'Guiding train', summary: 'Precision tracking' },
+			mount: { title: 'Mount and tripod', summary: 'Support and equatorial tracking' },
+			electronics: { title: 'Electronics and control', summary: 'Power, climate control and connections' },
+		},
+		items: {
+			ota: ['Main capture', 'Main OTA', 'Main optical tube for image capture'],
+			reducer: ['Optical train', 'Reducer-flattener', 'Field correction and focal reduction'],
+			focuser: ['Focusing', 'Focuser', 'Focus control for the main imaging train'],
+			filterWheel: ['Imaging train', 'Filter wheel', 'Automated filter selection'],
+			mainCamera: ['Main capture', 'Main camera', 'Main image-capture sensor'],
+			guideScope: ['Guiding', 'Guide scope', 'Dedicated optical tube for tracking'],
+			guideCamera: ['Guiding', 'Guide camera', 'Dedicated tracking sensor'],
+			mount: ['Tracking', 'Wave 150i', 'Harmonic mount'],
+			tripod: ['Support', 'Tripod', 'Mount support and connection base'],
+			power: ['Electronics', 'Power distribution', 'Centralised equipment power'],
+			heaters: ['Thermal control', 'Dew heaters', 'Straps for the main OTA and guide scope'],
+			sensor: ['Environmental control', 'Environmental sensor', 'Temperature and humidity measurement'],
+			usb: ['Connectivity', 'USB hub', 'Centralised equipment connection'],
+			captureControl: ['Capture control', 'Control unit', 'Local control of the capture software'],
+		},
+		calibration: { title: 'Calibration and accessories', summary: 'Flat-field panel and other accessories' },
 	},
 }[lang];
 
 const views = [
-	{ id: 'left', number: '01', label: viewCopy.left, image: photos.left, defaultItem: 'ota' },
-	{ id: 'right', number: '02', label: viewCopy.right, image: photos.right, defaultItem: 'reducer' },
-	{ id: 'rear', number: '03', label: viewCopy.rear, image: photos.rear, defaultItem: 'filter-wheel' },
-	{ id: 'electronics', number: '04', label: viewCopy.electronics, image: photos.electronics, defaultItem: 'power' },
-	{ id: 'mount', number: '05', label: viewCopy.mount, image: photos.mount, defaultItem: 'guide-scope' },
+	{ id: 'left', number: '01', label: localized.views.left, image: photos.left },
+	{ id: 'right', number: '02', label: localized.views.right, image: photos.right },
+	{ id: 'rear', number: '03', label: localized.views.rear, image: photos.rear },
+	{ id: 'electronics', number: '04', label: localized.views.electronics, image: photos.electronics },
+	{ id: 'mount', number: '05', label: localized.views.mount, image: photos.mount },
 ];
 
-const visuals: Record<string, { view: string; image: string; x: number; y: number; zoom: number; originX: number; originY: number; hotspot: boolean }> = {
-	ota: { view: 'left', image: photos.left, x: 34, y: 24, zoom: 1.85, originX: 34, originY: 24, hotspot: true },
-	reducer: { view: 'right', image: photos.right, x: 39, y: 37, zoom: 2.2, originX: 39, originY: 37, hotspot: true },
-	'filter-wheel': { view: 'rear', image: photos.rear, x: 48, y: 55, zoom: 2.3, originX: 48, originY: 55, hotspot: true },
-	'main-camera': { view: 'rear', image: photos.rear, x: 56, y: 67, zoom: 2.2, originX: 56, originY: 67, hotspot: true },
-	'guide-scope': { view: 'mount', image: photos.mount, x: 38, y: 9, zoom: 2.15, originX: 38, originY: 9, hotspot: true },
-	'guide-camera': { view: 'mount', image: photos.mount, x: 14, y: 23, zoom: 2.35, originX: 14, originY: 23, hotspot: true },
-	power: { view: 'electronics', image: photos.electronics, x: 60, y: 31, zoom: 2.25, originX: 60, originY: 31, hotspot: true },
-	usb: { view: 'mount', image: photos.mount, x: 47, y: 27, zoom: 2.3, originX: 47, originY: 27, hotspot: true },
-	flats: { view: 'other', image: photos.placeholder, x: 17, y: 69, zoom: 2.05, originX: 17, originY: 70, hotspot: false },
-	'capture-control': { view: 'other', image: photos.placeholder, x: 83, y: 72, zoom: 2.15, originX: 83, originY: 71, hotspot: false },
+const groups = [
+	{ id: 'main', number: '01', ...localized.groups.main, view: 'left', image: photos.left, zoom: 1.45, originX: 58, originY: 38 },
+	{ id: 'guide', number: '02', ...localized.groups.guide, view: 'left', image: photos.left, zoom: 1.8, originX: 59, originY: 27 },
+	{ id: 'mount', number: '03', ...localized.groups.mount, view: 'left', image: photos.left, zoom: 1.6, originX: 46, originY: 58 },
+	{ id: 'electronics', number: '04', ...localized.groups.electronics, view: 'electronics', image: photos.electronics, zoom: 1.75, originX: 60, originY: 31 },
+];
+
+const groupHotspots = [
+	{ group: 'main', view: 'left', x: 76, y: 47 }, { group: 'guide', view: 'left', x: 59, y: 27 },
+	{ group: 'mount', view: 'left', x: 47, y: 53 }, { group: 'electronics', view: 'left', x: 55, y: 39 },
+	{ group: 'main', view: 'right', x: 29, y: 42 }, { group: 'guide', view: 'right', x: 35, y: 24 },
+	{ group: 'mount', view: 'right', x: 51, y: 52 }, { group: 'electronics', view: 'right', x: 48, y: 34 },
+].map((point) => ({ ...groups.find((group) => group.id === point.group)!, ...point }));
+
+const item = (key: keyof typeof localized.items, id: string, group: string, number: string, view: string, image: string, zoom: number, originX: number, originY: number) => {
+	const [kicker, title, specs] = localized.items[key];
+	return { id, group, number, kicker, title, specs, view, image, zoom, originX, originY };
 };
 
-const items = pageCopy.items.map((item) => ({ ...item, ...visuals[item.id] }));
-const first = items[0];
+const items = [
+	item('ota', 'ota', 'main', '01', 'left', photos.left, 1.85, 34, 24),
+	item('reducer', 'reducer', 'main', '02', 'right', photos.right, 2.2, 39, 37),
+	item('focuser', 'focuser', 'main', '03', 'right', photos.right, 2.25, 43, 39),
+	item('filterWheel', 'filter-wheel', 'main', '04', 'rear', photos.rear, 2.3, 48, 55),
+	item('mainCamera', 'main-camera', 'main', '05', 'rear', photos.rear, 2.2, 56, 67),
+	item('guideScope', 'guide-scope', 'guide', '01', 'left', photos.left, 2.05, 59, 25),
+	item('guideCamera', 'guide-camera', 'guide', '02', 'left', photos.left, 2.35, 66, 33),
+	item('mount', 'wave-150i', 'mount', '01', 'left', photos.left, 1.9, 45, 48),
+	item('tripod', 'tripod', 'mount', '02', 'left', photos.left, 1.55, 48, 75),
+	item('power', 'power', 'electronics', '01', 'electronics', photos.electronics, 2.25, 60, 31),
+	item('heaters', 'heaters', 'electronics', '02', 'right', photos.right, 1.9, 70, 13),
+	item('sensor', 'sensor', 'electronics', '03', 'right', photos.right, 2.1, 80, 18),
+	item('usb', 'usb', 'electronics', '04', 'mount', photos.mount, 2.3, 47, 27),
+	item('captureControl', 'capture-control', 'electronics', '05', 'other', photos.placeholder, 2.15, 83, 71),
+];
+
+const firstGroup = groups[0];
 const firstView = views[0];
-const total = String(items.length).padStart(2, '0');
 ---
 
 <Layout minimal lang={lang} title={t.myEquipment} languageLinks={languageLinks.equipment(base)}>
-	<article class="equipment-page" data-equipment-explorer data-equipment-total={total}>
+	<article class="equipment-page" data-equipment-explorer>
 		<header class="equipment-heading">
-			<a class="back-link" href={homeHref(lang, base)}>← {pageCopy.back}</a>
+			<a class="back-link" href={homeHref(lang, base)}>← {localized.back}</a>
 			<div class="equipment-heading__title">
 				<div>
-					<p class="equipment-kicker">{pageCopy.prototype}</p>
+					<p class="equipment-kicker">{localized.prototype}</p>
 					<h1>{t.myEquipment}</h1>
 				</div>
-				<p class="equipment-instruction"><span aria-hidden="true">◎</span> {pageCopy.instruction}</p>
+				<p class="equipment-instruction"><span aria-hidden="true">◎</span> {localized.instruction}</p>
 			</div>
 		</header>
 
 		<div class="equipment-explorer">
-			<section class="equipment-stage" aria-label={pageCopy.instruction}>
+			<section class="equipment-stage" aria-label={localized.instruction}>
 				<div class="equipment-stage__backdrop" aria-hidden="true">
 					<img src={firstView.image} alt="" data-equipment-stage-backdrop />
 				</div>
 				<div class="equipment-stage__photo">
-					<img src={firstView.image} alt={`${viewCopy.alt}: ${firstView.label}`} data-equipment-stage-image />
-					{items.filter((item) => item.hotspot).map((item) => (
+					<img src={firstView.image} alt={`${localized.photoAlt}: ${firstView.label}`} data-equipment-stage-image />
+					{groupHotspots.map((point) => (
 						<button
 							type="button"
-							class:list={{ 'equipment-hotspot': true, 'is-active': item.id === first.id }}
-							style={`--x:${item.x}%;--y:${item.y}%`}
-							hidden={item.view !== firstView.id}
-							aria-label={`${item.kicker}: ${item.title}`}
-							aria-pressed={item.id === first.id ? 'true' : 'false'}
-							data-equipment-control
-							data-equipment-hotspot
-							data-id={item.id}
-							data-view={item.view}
-							data-image={item.image}
-							data-number={item.number}
-							data-kicker={item.kicker}
-							data-title={item.title}
-							data-specs={item.specs}
-							data-zoom={item.zoom}
-							data-origin-x={item.originX}
-							data-origin-y={item.originY}
+							class:list={{ 'equipment-hotspot': true, 'equipment-hotspot--group': true, 'is-active': point.group === firstGroup.id }}
+							style={`--x:${point.x}%;--y:${point.y}%`}
+							hidden={point.view !== firstView.id}
+							aria-label={point.title}
+							aria-pressed={point.group === firstGroup.id ? 'true' : 'false'}
+							data-equipment-group-control
+							data-equipment-group-hotspot
+							data-group={point.group}
+							data-view={point.view}
+							data-default-view={point.view}
+							data-number={point.number}
+							data-kicker={`${localized.area} ${point.number}`}
+							data-title={point.title}
+							data-specs={point.summary}
+							data-image={point.image}
+							data-zoom={point.zoom}
+							data-origin-x={point.originX}
+							data-origin-y={point.originY}
 						>
-							<span>{item.number}</span>
+							<span>{point.number}</span>
 						</button>
 					))}
 				</div>
 				<div class="equipment-stage__shade" aria-hidden="true"></div>
-				<span class="equipment-stage__counter" data-equipment-counter>{first.number} / {total}</span>
+				<span class="equipment-stage__counter" data-equipment-counter>{firstGroup.number} / 04</span>
 			</section>
 
 			<aside class="equipment-inspector" aria-live="polite">
 				<div class="equipment-inspector__visual">
 					<img
-						src={first.image}
+						src={firstGroup.image}
 						alt=""
-						style={`--zoom:${first.zoom};--origin-x:${first.originX}%;--origin-y:${first.originY}%`}
+						style={`--zoom:${firstGroup.zoom};--origin-x:${firstGroup.originX}%;--origin-y:${firstGroup.originY}%`}
 						data-equipment-detail-image
 					/>
-					<span class="equipment-inspector__number" data-equipment-number>{first.number}</span>
+					<span class="equipment-inspector__number" data-equipment-number>{firstGroup.number}</span>
 				</div>
 				<div class="equipment-inspector__copy">
-					<p data-equipment-kicker>{first.kicker}</p>
-					<h2 data-equipment-title>{first.title}</h2>
-					<span data-equipment-specs>{first.specs}</span>
+					<p data-equipment-kicker>{localized.area} {firstGroup.number}</p>
+					<h2 data-equipment-title>{firstGroup.title}</h2>
+					<span data-equipment-specs>{firstGroup.summary}</span>
 				</div>
 			</aside>
 		</div>
 
-		<nav class="equipment-photo-views" aria-label={viewCopy.alt}>
+		<nav class="equipment-groups" aria-label={localized.instruction}>
+			{groups.map((group, index) => (
+				<button
+					type="button"
+					class:list={{ 'equipment-group': true, 'is-active': index === 0 }}
+					aria-pressed={index === 0 ? 'true' : 'false'}
+					data-equipment-group-control
+					data-group={group.id}
+					data-default-view={group.view}
+					data-number={group.number}
+					data-kicker={`${localized.area} ${group.number}`}
+					data-title={group.title}
+					data-specs={group.summary}
+					data-image={group.image}
+					data-zoom={group.zoom}
+					data-origin-x={group.originX}
+					data-origin-y={group.originY}
+				>
+					<b>{group.number}</b>
+					<span><strong>{group.title}</strong><small>{group.summary}</small></span>
+				</button>
+			))}
+		</nav>
+
+		<nav class="equipment-photo-views" aria-label={localized.photoAlt}>
 			{views.map((view, index) => (
 				<button
 					type="button"
@@ -192,8 +253,7 @@ const total = String(items.length).padStart(2, '0');
 					data-equipment-view-control
 					data-view={view.id}
 					data-image={view.image}
-					data-alt={`${viewCopy.alt}: ${view.label}`}
-					data-default-item={view.defaultItem}
+					data-alt={`${localized.photoAlt}: ${view.label}`}
 				>
 					<img src={view.image} alt="" />
 					<span><b>{view.number}</b> {view.label}</span>
@@ -201,31 +261,38 @@ const total = String(items.length).padStart(2, '0');
 			))}
 		</nav>
 
-		<nav class="equipment-views" aria-label={pageCopy.instruction}>
-			{items.map((item, index) => (
+		<nav class="equipment-views" aria-label={localized.instruction}>
+			{items.map((equipment) => (
 				<button
 					type="button"
-					class:list={{ 'equipment-view': true, 'is-active': index === 0 }}
-					aria-pressed={index === 0 ? 'true' : 'false'}
+					class="equipment-view"
+					hidden={equipment.group !== firstGroup.id}
+					aria-pressed="false"
 					data-equipment-control
-					data-id={item.id}
-					data-view={item.view}
-					data-image={item.image}
-					data-number={item.number}
-					data-kicker={item.kicker}
-					data-title={item.title}
-					data-specs={item.specs}
-					data-zoom={item.zoom}
-					data-origin-x={item.originX}
-					data-origin-y={item.originY}
+					data-group={equipment.group}
+					data-id={equipment.id}
+					data-view={equipment.view}
+					data-image={equipment.image}
+					data-number={equipment.number}
+					data-kicker={equipment.kicker}
+					data-title={equipment.title}
+					data-specs={equipment.specs}
+					data-zoom={equipment.zoom}
+					data-origin-x={equipment.originX}
+					data-origin-y={equipment.originY}
 				>
 					<span class="equipment-view__image">
-						<img src={item.image} alt="" style={`--zoom:${item.zoom};--origin-x:${item.originX}%;--origin-y:${item.originY}%`} />
+						<img src={equipment.image} alt="" style={`--zoom:${equipment.zoom};--origin-x:${equipment.originX}%;--origin-y:${equipment.originY}%`} />
 					</span>
-					<span class="equipment-view__label"><b>{item.number}</b> {item.title}</span>
+					<span class="equipment-view__label"><b>{equipment.number}</b> {equipment.title}</span>
 				</button>
 			))}
 		</nav>
+
+		<section class="equipment-calibration" aria-label={localized.calibration.title}>
+			<span aria-hidden="true">＋</span>
+			<div><h2>{localized.calibration.title}</h2><p>{localized.calibration.summary} · {localized.pending}</p></div>
+		</section>
 	</article>
 </Layout>
 
@@ -233,8 +300,9 @@ const total = String(items.length).padStart(2, '0');
 	const explorers = document.querySelectorAll<HTMLElement>('[data-equipment-explorer]');
 
 	explorers.forEach((explorer) => {
-		const controls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-control]');
-		const hotspots = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-hotspot]');
+		const itemControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-control]');
+		const groupControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-group-control]');
+		const groupHotspots = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-group-hotspot]');
 		const viewControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-view-control]');
 		const stageImage = explorer.querySelector<HTMLImageElement>('[data-equipment-stage-image]');
 		const stageBackdrop = explorer.querySelector<HTMLImageElement>('[data-equipment-stage-backdrop]');
@@ -244,32 +312,8 @@ const total = String(items.length).padStart(2, '0');
 		const kicker = explorer.querySelector<HTMLElement>('[data-equipment-kicker]');
 		const title = explorer.querySelector<HTMLElement>('[data-equipment-title]');
 		const specs = explorer.querySelector<HTMLElement>('[data-equipment-specs]');
-		const total = explorer.dataset.equipmentTotal ?? '00';
 
-		const showView = (viewId: string) => {
-			const selectedView = Array.from(viewControls).find((item) => item.dataset.view === viewId);
-			if (!selectedView) return;
-			viewControls.forEach((item) => {
-				const active = item === selectedView;
-				item.classList.toggle('is-active', active);
-				item.setAttribute('aria-pressed', String(active));
-			});
-			hotspots.forEach((item) => { item.hidden = item.dataset.view !== viewId; });
-			if (stageImage) {
-				stageImage.src = selectedView.dataset.image ?? stageImage.src;
-				stageImage.alt = selectedView.dataset.alt ?? '';
-			}
-			if (stageBackdrop) stageBackdrop.src = selectedView.dataset.image ?? stageBackdrop.src;
-		};
-
-		const activate = (control: HTMLButtonElement) => {
-			const data = control.dataset;
-			if (data.view && data.view !== 'other') showView(data.view);
-			controls.forEach((item) => {
-				const active = item.dataset.id === data.id;
-				item.classList.toggle('is-active', active);
-				item.setAttribute('aria-pressed', String(active));
-			});
+		const updateInspector = (data: DOMStringMap) => {
 			if (detailImage) {
 				detailImage.src = data.image ?? detailImage.src;
 				detailImage.style.setProperty('--zoom', data.zoom ?? '1');
@@ -277,26 +321,72 @@ const total = String(items.length).padStart(2, '0');
 				detailImage.style.setProperty('--origin-y', `${data.originY ?? 50}%`);
 			}
 			if (number) number.textContent = data.number ?? '';
-			if (counter) counter.textContent = `${data.number ?? ''} / ${total}`;
 			if (kicker) kicker.textContent = data.kicker ?? '';
 			if (title) title.textContent = data.title ?? '';
 			if (specs) specs.textContent = data.specs ?? '';
 		};
 
-		controls.forEach((control) => {
-			control.addEventListener('click', () => activate(control));
-			control.addEventListener('focus', () => activate(control));
-			control.addEventListener('pointerenter', () => activate(control));
+		const showView = (viewId: string) => {
+			const selectedView = Array.from(viewControls).find((control) => control.dataset.view === viewId);
+			if (!selectedView) return;
+			viewControls.forEach((control) => {
+				const active = control === selectedView;
+				control.classList.toggle('is-active', active);
+				control.setAttribute('aria-pressed', String(active));
+			});
+			groupHotspots.forEach((control) => { control.hidden = control.dataset.view !== viewId; });
+			if (stageImage) {
+				stageImage.src = selectedView.dataset.image ?? stageImage.src;
+				stageImage.alt = selectedView.dataset.alt ?? '';
+			}
+			if (stageBackdrop) stageBackdrop.src = selectedView.dataset.image ?? stageBackdrop.src;
+		};
+
+		const activateGroup = (control: HTMLButtonElement) => {
+			const data = control.dataset;
+			const groupId = data.group ?? '';
+			groupControls.forEach((item) => {
+				const active = item.dataset.group === groupId;
+				item.classList.toggle('is-active', active);
+				item.setAttribute('aria-pressed', String(active));
+			});
+			itemControls.forEach((item) => {
+				item.hidden = item.dataset.group !== groupId;
+				item.classList.remove('is-active');
+				item.setAttribute('aria-pressed', 'false');
+			});
+			showView(data.defaultView ?? 'left');
+			updateInspector(data);
+			if (counter) counter.textContent = `${data.number ?? ''} / 04`;
+		};
+
+		const activateItem = (control: HTMLButtonElement) => {
+			const data = control.dataset;
+			if (data.view && data.view !== 'other') showView(data.view);
+			itemControls.forEach((item) => {
+				const active = item.dataset.id === data.id;
+				item.classList.toggle('is-active', active);
+				item.setAttribute('aria-pressed', String(active));
+			});
+			updateInspector(data);
+		};
+
+		groupControls.forEach((control) => {
+			control.addEventListener('click', () => activateGroup(control));
+			control.addEventListener('focus', () => activateGroup(control));
+			control.addEventListener('pointerenter', () => activateGroup(control));
 		});
 
-		viewControls.forEach((viewControl) => {
-			const selectView = () => {
-				showView(viewControl.dataset.view ?? '');
-				const defaultItem = Array.from(controls).find((item) => item.dataset.id === viewControl.dataset.defaultItem);
-				if (defaultItem) activate(defaultItem);
-			};
-			viewControl.addEventListener('click', selectView);
-			viewControl.addEventListener('focus', selectView);
+		itemControls.forEach((control) => {
+			control.addEventListener('click', () => activateItem(control));
+			control.addEventListener('focus', () => activateItem(control));
+			control.addEventListener('pointerenter', () => activateItem(control));
+		});
+
+		viewControls.forEach((control) => {
+			const selectView = () => showView(control.dataset.view ?? '');
+			control.addEventListener('click', selectView);
+			control.addEventListener('focus', selectView);
 		});
 	});
 </script>
