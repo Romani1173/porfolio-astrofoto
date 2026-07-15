@@ -216,29 +216,6 @@ const firstGroup = groups[0];
 			</aside>
 		</div>
 
-		<nav class="equipment-groups" aria-label={localized.instruction}>
-			{groups.map((group, index) => (
-				<button
-					type="button"
-					class:list={{ 'equipment-group': true, 'is-active': index === 0 }}
-					aria-pressed={index === 0 ? 'true' : 'false'}
-					data-equipment-group-control
-					data-group={group.id}
-					data-number={group.number}
-					data-kicker={`${localized.area} ${group.number}`}
-					data-title={group.title}
-					data-specs={group.summary}
-					data-image={group.image}
-					data-zoom={group.zoom}
-					data-origin-x={group.originX}
-					data-origin-y={group.originY}
-				>
-					<b>{group.number}</b>
-					<span><strong>{group.title}</strong><small>{group.summary}</small></span>
-				</button>
-			))}
-		</nav>
-
 		<nav class="equipment-views" aria-label={localized.instruction}>
 			{items.map((equipment) => (
 				<button
