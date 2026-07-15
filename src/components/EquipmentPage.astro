@@ -123,10 +123,10 @@ const groups = [
 ];
 
 const groupHotspots = [
-	{ group: 'main', x: 76, y: 47 },
-	{ group: 'guide', x: 59, y: 27 },
-	{ group: 'mount', x: 47, y: 53 },
-	{ group: 'electronics', x: 55, y: 39 },
+	{ group: 'main', x: 15, y: 19, targetX: 35, targetY: 23 },
+	{ group: 'guide', x: 82, y: 16, targetX: 57, targetY: 27 },
+	{ group: 'mount', x: 18, y: 56, targetX: 45, targetY: 50 },
+	{ group: 'electronics', x: 82, y: 41, targetX: 53, targetY: 35 },
 ].map((point) => ({ ...groups.find((group) => group.id === point.group)!, ...point }));
 
 const item = (key: keyof typeof localized.items, id: string, group: string, number: string, image: string, zoom: number, originX: number, originY: number) => {
@@ -171,6 +171,18 @@ const firstGroup = groups[0];
 				</div>
 				<div class="equipment-stage__photo">
 					<img src={mainPhoto.image} alt={`${localized.photoAlt}: ${mainPhoto.label}`} />
+					<svg class="equipment-callouts" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+						{groupHotspots.map((point) => (
+							<g
+								class:list={{ 'equipment-callout': true, 'is-active': point.group === firstGroup.id }}
+								data-equipment-group-line
+								data-group={point.group}
+							>
+								<line x1={point.x} y1={point.y} x2={point.targetX} y2={point.targetY} vector-effect="non-scaling-stroke" />
+								<circle cx={point.targetX} cy={point.targetY} r="0.8" vector-effect="non-scaling-stroke" />
+							</g>
+						))}
+					</svg>
 					{groupHotspots.map((point) => (
 						<button
 							type="button"
@@ -264,9 +276,10 @@ const firstGroup = groups[0];
 <script>
 	const explorers = document.querySelectorAll<HTMLElement>('[data-equipment-explorer]');
 
-	explorers.forEach((explorer) => {
-		const itemControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-control]');
-		const groupControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-group-control]');
+		explorers.forEach((explorer) => {
+			const itemControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-control]');
+			const groupControls = explorer.querySelectorAll<HTMLButtonElement>('[data-equipment-group-control]');
+			const groupLines = explorer.querySelectorAll<SVGGElement>('[data-equipment-group-line]');
 		const detailImage = explorer.querySelector<HTMLImageElement>('[data-equipment-detail-image]');
 		const number = explorer.querySelector<HTMLElement>('[data-equipment-number]');
 		const counter = explorer.querySelector<HTMLElement>('[data-equipment-counter]');
@@ -290,11 +303,12 @@ const firstGroup = groups[0];
 		const activateGroup = (control: HTMLButtonElement) => {
 			const data = control.dataset;
 			const groupId = data.group ?? '';
-			groupControls.forEach((item) => {
-				const active = item.dataset.group === groupId;
-				item.classList.toggle('is-active', active);
-				item.setAttribute('aria-pressed', String(active));
-			});
+				groupControls.forEach((item) => {
+					const active = item.dataset.group === groupId;
+					item.classList.toggle('is-active', active);
+					item.setAttribute('aria-pressed', String(active));
+				});
+				groupLines.forEach((item) => item.classList.toggle('is-active', item.dataset.group === groupId));
 			itemControls.forEach((item) => {
 				item.hidden = item.dataset.group !== groupId;
 				item.classList.remove('is-active');
