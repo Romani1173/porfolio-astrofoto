@@ -2,20 +2,22 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n';
 import { copy, localeFor, photoHref } from '../i18n';
+import { photoText } from '../photoTranslations';
 
 interface Props { foto: CollectionEntry<'fotos'>; lang?: Lang; }
 const { foto, lang = 'ca' } = Astro.props;
 const t = copy[lang];
+const text = photoText(foto, lang);
 const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).format(foto.data.entorn.data);
 const hasProcess = foto.data.imatges_addicionals.some((imatge) => imatge.tipus === 'process');
 const base = import.meta.env.BASE_URL;
 ---
 
 <article class="photo-card">
-	<a href={photoHref(lang, foto.id, base)} aria-label={`${t.viewPhoto} ${foto.data.objecte}`}>
-		<img src={`${base}imagenes/${foto.data.imatge}`} alt={`${t.astroPhoto} ${foto.data.objecte}`} loading="lazy" decoding="async" />
+	<a href={photoHref(lang, foto.id, base)} aria-label={`${t.viewPhoto} ${text.objecte}`}>
+		<img src={`${base}imagenes/${foto.data.imatge}`} alt={`${t.astroPhoto} ${text.objecte}`} loading="lazy" decoding="async" />
 		<div class="photo-card__body">
-			<h2>{foto.data.objecte}</h2>
+			<h2>{text.objecte}</h2>
 			<p><b>{t.constellation}:</b> {foto.data.constellacio}</p>
 			<p><b>{t.exposure}:</b> {foto.data.exposicio.temps_total}</p>
 			<p>{date}</p>

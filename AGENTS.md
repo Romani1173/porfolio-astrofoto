@@ -25,7 +25,9 @@
 - El catalán conserva las rutas históricas sin prefijo. El castellano usa `/es/` y el inglés `/en/`.
 - El selector de idioma muestra las banderas y los códigos `CA`, `ES` y `EN`; debe llevar siempre a la página equivalente, no a la portada genérica.
 - Las rutas localizadas son: catálogo `/es/galeria` y `/en/gallery`; categorías `/es/categoria/...` y `/en/category/...`; fichas `/es/foto/...` y `/en/photo/...`.
-- La fase 1 traduce la interfaz, navegación, etiquetas técnicas, fechas y metadatos. Los nombres, descripciones y textos particulares de cada objeto permanecen en catalán hasta la fase 2.
+- La fase 1 traduce la interfaz, navegación, etiquetas técnicas, fechas y metadatos.
+- La fase 2 está en curso: las 15 fichas de `Nebuloses` ya incluyen nombre, descripción y textos de imágenes adicionales en castellano e inglés. Las fichas restantes conservan el catalán como respaldo hasta que se traduzcan.
+- Las traducciones particulares se guardan en `traduccions.es` y `traduccions.en`; las de imágenes adicionales se guardan dentro del bloque `traduccions` de cada imagen. No sustituir los textos originales en catalán.
 - No duplicar traducciones generales dentro de las páginas: usar `src/i18n.ts` y los componentes compartidos.
 
 ## Trabajo y publicación

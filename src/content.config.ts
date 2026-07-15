@@ -2,6 +2,16 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const traduccioText = z.object({
+	objecte: z.string(),
+	caracteristiques: z.string(),
+});
+
+const traduccioImatge = z.object({
+	titol: z.string(),
+	descripcio: z.string().optional(),
+});
+
 const fotos = defineCollection({
     // 1. Le decimos a Astro que busque en tu nueva carpeta "fotos"
     loader: glob({ base: './src/content/fotos', pattern: '**/*.{md,mdx}' }),
@@ -15,9 +25,17 @@ const fotos = defineCollection({
 			fitxer: z.string(),
 			titol: z.string(),
 			descripcio: z.string().optional(),
+			traduccions: z.object({
+				es: traduccioImatge,
+				en: traduccioImatge,
+			}).optional(),
 		})).optional().default([]),
         constellacio: z.string(),
         caracteristiques: z.string(),
+		traduccions: z.object({
+			es: traduccioText,
+			en: traduccioText,
+		}).optional(),
         
         // 3. Regla inamovible: Solo permite estas 4 categorías exactas
         categoria: z.enum([

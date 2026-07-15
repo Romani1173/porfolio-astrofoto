@@ -5,6 +5,7 @@ import CatalogHeader from './CatalogHeader.astro';
 import PhotoCard from './PhotoCard.astro';
 import type { CategoryKey, Lang } from '../i18n';
 import { categories, copy, languageLinks } from '../i18n';
+import { photoText } from '../photoTranslations';
 
 interface Props { lang: Lang; categoryKey: CategoryKey; fotos: CollectionEntry<'fotos'>[]; }
 const { lang, categoryKey, fotos } = Astro.props;
@@ -28,7 +29,10 @@ const t = copy[lang];
 			</div>
 		</div>
 		<div class="photo-grid" id="grid-fotos">
-			{fotos.length ? fotos.map((foto) => <div data-card data-name={foto.data.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>) : <p class="empty-state">{t.emptyCategory}</p>}
+			{fotos.length ? fotos.map((foto) => {
+				const text = photoText(foto, lang);
+				return <div data-card data-name={text.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>;
+			}) : <p class="empty-state">{t.emptyCategory}</p>}
 		</div>
 	</section>
 </Layout>

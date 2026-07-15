@@ -5,6 +5,7 @@ import CatalogHeader from './CatalogHeader.astro';
 import PhotoCard from './PhotoCard.astro';
 import type { Lang } from '../i18n';
 import { copy, languageLinks } from '../i18n';
+import { photoText } from '../photoTranslations';
 
 interface Props { lang: Lang; fotos: CollectionEntry<'fotos'>[]; }
 const { lang, fotos } = Astro.props;
@@ -34,7 +35,10 @@ const searchableText = (value: string) => value.normalize('NFD').replace(/[\u030
 			</div>
 		</div>
 		<div class="photo-grid" id="grid-fotos">
-			{fotos.map((foto) => <div data-card data-search={searchableText(foto.data.objecte)} data-name={foto.data.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>)}
+			{fotos.map((foto) => {
+				const text = photoText(foto, lang);
+				return <div data-card data-search={searchableText(text.objecte)} data-name={text.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>;
+			})}
 			<p class="empty-state" id="sense-resultats" hidden>{t.noResults}</p>
 		</div>
 	</section>
