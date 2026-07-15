@@ -63,13 +63,13 @@ imatges_addicionals:
         titol: "Identified objects"
   - tipus: "process"
     fitxer: "NGC6960_EV_process.jpg"
-    titol: "Procés de tractament"
-    descripcio: "Flux de treball de postprocessat amb PixInsight."
+    titol: "Flux de postprocessament"
+    descripcio: "Flux de treball de postprocessament amb PixInsight."
     traduccions:
       es:
-        titol: "Proceso de tratamiento"
+        titol: "Flujo de posprocesado"
         descripcio: "Flujo de trabajo de posprocesado con PixInsight."
       en:
-        titol: "Processing workflow"
+        titol: "Post-processing workflow"
         descripcio: "Post-processing workflow with PixInsight."
 ---

@@ -54,6 +54,7 @@
 - Convención habitual de nombres: `OBJETO_starless`, `OBJETO_crop`, `OBJETO_fov`, `OBJETO_annotated` y `OBJETO_process`.
 - Para variantes no cubiertas por esa convención, usar `tipus: "other"` y un título descriptivo.
 - No duplicar en el cuerpo Markdown imágenes ya declaradas en `imatges_addicionals`.
+- Las imágenes con `tipus: "process"` usan siempre el título catalán `Flux de postprocessament`, sin guion; sus equivalentes son `Flujo de posprocesado` en castellano y `Post-processing workflow` en inglés.
 
 ## Verificación
 
