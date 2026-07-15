@@ -45,6 +45,8 @@ const photo = `${base}imagenes/equipo-vista-lateral-izquierda.webp`;
 							href={groupHref(lang, group, base)}
 							aria-label={`${group.number}. ${group.title[lang]}`}
 							data-group-link={group.id}
+							data-label={group.title[lang]}
+							data-label-side={group.hotspot.x > 50 ? 'right' : 'left'}
 						>
 							<span>{group.number}</span>
 						</a>
