@@ -42,9 +42,14 @@ const localized = {
 			heaters: ['Control tèrmic', 'Escalfadors', 'Cintes de l’OTA principal i del tub de guiatge'],
 			sensor: ['Control ambiental', 'Sensor ambiental', 'Mesura de temperatura i humitat'],
 			usb: ['Connectivitat', 'Hub USB', 'Connexió centralitzada dels equips'],
-			captureControl: ['Control de captura', 'Equip de control', 'Control local del programari de captura'],
 		},
-		calibration: { title: 'Calibratge i accessoris', summary: 'Panell de flats i altres accessoris' },
+		extras: {
+			title: 'Altres equips',
+			items: [
+				{ title: 'Equip de control', summary: 'Control local del programari de captura' },
+				{ title: 'Panell de flats', summary: 'Calibratge i accessoris' },
+			],
+		},
 	},
 	es: {
 		back: 'Volver a la portada', prototype: 'Prototipo local', instruction: 'Explora las cuatro áreas del equipo', area: 'Área',
@@ -70,9 +75,14 @@ const localized = {
 			heaters: ['Control térmico', 'Calentadores', 'Cintas del OTA principal y del tubo de guiado'],
 			sensor: ['Control ambiental', 'Sensor ambiental', 'Medición de temperatura y humedad'],
 			usb: ['Conectividad', 'Hub USB', 'Conexión centralizada de los equipos'],
-			captureControl: ['Control de captura', 'Equipo de control', 'Control local del software de captura'],
 		},
-		calibration: { title: 'Calibración y accesorios', summary: 'Panel de flats y otros accesorios' },
+		extras: {
+			title: 'Otros equipos',
+			items: [
+				{ title: 'Equipo de control', summary: 'Control local del software de captura' },
+				{ title: 'Panel de flats', summary: 'Calibración y accesorios' },
+			],
+		},
 	},
 	en: {
 		back: 'Back to the home page', prototype: 'Local prototype', instruction: 'Explore the four equipment areas', area: 'Area',
@@ -98,9 +108,14 @@ const localized = {
 			heaters: ['Thermal control', 'Dew heaters', 'Straps for the main OTA and guide scope'],
 			sensor: ['Environmental control', 'Environmental sensor', 'Temperature and humidity measurement'],
 			usb: ['Connectivity', 'USB hub', 'Centralised equipment connection'],
-			captureControl: ['Capture control', 'Control unit', 'Local control of the capture software'],
 		},
-		calibration: { title: 'Calibration and accessories', summary: 'Flat-field panel and other accessories' },
+		extras: {
+			title: 'Additional equipment',
+			items: [
+				{ title: 'Control unit', summary: 'Local control of the capture software' },
+				{ title: 'Flat-field panel', summary: 'Calibration and accessories' },
+			],
+		},
 	},
 }[lang];
 
@@ -145,7 +160,6 @@ const items = [
 	item('heaters', 'heaters', 'electronics', '02', 'right', photos.right, 1.9, 70, 13),
 	item('sensor', 'sensor', 'electronics', '03', 'right', photos.right, 2.1, 80, 18),
 	item('usb', 'usb', 'electronics', '04', 'mount', photos.mount, 2.3, 47, 27),
-	item('captureControl', 'capture-control', 'electronics', '05', 'other', photos.placeholder, 2.15, 83, 71),
 ];
 
 const firstGroup = groups[0];
@@ -289,9 +303,20 @@ const firstView = views[0];
 			))}
 		</nav>
 
-		<section class="equipment-calibration" aria-label={localized.calibration.title}>
-			<span aria-hidden="true">＋</span>
-			<div><h2>{localized.calibration.title}</h2><p>{localized.calibration.summary} · {localized.pending}</p></div>
+		<section class="equipment-extras" aria-labelledby="equipment-extras-title">
+			<h2 id="equipment-extras-title">{localized.extras.title}</h2>
+			<div class="equipment-extras__grid">
+				{localized.extras.items.map((extra, index) => (
+					<article class="equipment-extra">
+						<span aria-hidden="true">＋</span>
+						<div>
+							<p>{String(index + 1).padStart(2, '0')}</p>
+							<h3>{extra.title}</h3>
+							<small>{extra.summary} · {localized.pending}</small>
+						</div>
+					</article>
+				))}
+			</div>
 		</section>
 	</article>
 </Layout>
