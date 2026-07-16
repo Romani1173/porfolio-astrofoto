@@ -13,7 +13,8 @@ export type EquipmentItemId =
 	| 'wave-150i'
 	| 'tripod'
 	| 'powerbox'
-	| 'usb-hub';
+	| 'usb-hub'
+	| 'flat-panel';
 
 type Localized = Record<Lang, string>;
 
@@ -224,6 +225,13 @@ export const equipmentGroups: EquipmentGroup[] = [
 					{ label: { ca: 'Expansió', es: 'Expansión', en: 'Expansion' }, value: { ca: 'Port RJ12 EXT', es: 'Puerto RJ12 EXT', en: 'RJ12 EXT port' } },
 					{ label: { ca: 'Dimensions i pes', es: 'Dimensiones y peso', en: 'Dimensions and weight' }, value: { ca: '100 × 72 × 24 mm · 200 g', es: '100 × 72 × 24 mm · 200 g', en: '100 × 72 × 24 mm · 200 g' } },
 				],
+			}),
+			item('flat-panel', '03', { ca: 'Panell de flats Pegasus Astro', es: 'Panel de flats Pegasus Astro', en: 'Pegasus Astro flat-field panel' }, { ca: 'Calibratge', es: 'Calibración', en: 'Calibration' }, { ca: 'Il·luminació uniforme per als flats de calibratge', es: 'Iluminación uniforme para los flats de calibración', en: 'Uniform illumination for flat-field calibration' }, { ca: 'panell-flats-pegasus', es: 'panel-flats-pegasus', en: 'pegasus-flat-field-panel' }, {
+				image: 'imagenes/equipo-flat-panel-pegasus.jpeg',
+				imageAlt: { ca: 'Panell de flats Pegasus Astro col·locat sobre l’obertura del telescopi principal', es: 'Panel de flats Pegasus Astro colocado sobre la abertura del telescopio principal', en: 'Pegasus Astro flat-field panel fitted over the main telescope aperture' },
+				additionalImage: 'imagenes/equipo-flat-panel-pegasus-posterior.jpeg',
+				additionalImageAlt: { ca: 'Vista del panell de flats amb les cintes de subjecció i la connexió d’alimentació', es: 'Vista del panel de flats con las cintas de sujeción y la conexión de alimentación', en: 'View of the flat-field panel with its retaining straps and power connection' },
+				additionalImageCaption: { ca: 'Panell, subjecció i alimentació', es: 'Panel, sujeción y alimentación', en: 'Panel, mounting and power connection' },
 			}),
 		],
 	},
