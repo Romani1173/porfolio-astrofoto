@@ -17,6 +17,11 @@ export type EquipmentItemId =
 
 type Localized = Record<Lang, string>;
 
+export interface EquipmentSpec {
+	label: Localized;
+	value: Localized;
+}
+
 export interface EquipmentItem {
 	id: EquipmentItemId;
 	number: string;
@@ -24,6 +29,12 @@ export interface EquipmentItem {
 	kicker: Localized;
 	summary: Localized;
 	slug: Localized;
+	image?: string;
+	imageAlt?: Localized;
+	additionalImage?: string;
+	additionalImageAlt?: Localized;
+	description?: Localized;
+	specs?: EquipmentSpec[];
 }
 
 export interface EquipmentGroup {
@@ -43,7 +54,8 @@ const item = (
 	kicker: Localized,
 	summary: Localized,
 	slug: Localized,
-): EquipmentItem => ({ id, number, title, kicker, summary, slug });
+	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'additionalImage' | 'additionalImageAlt' | 'description' | 'specs'>> = {},
+): EquipmentItem => ({ id, number, title, kicker, summary, slug, ...details });
 
 export const equipmentGroups: EquipmentGroup[] = [
 	{
@@ -67,8 +79,46 @@ export const equipmentGroups: EquipmentGroup[] = [
 		slug: { ca: 'tren-guiatge', es: 'tren-guiado', en: 'guiding-train' },
 		hotspot: { x: 82, y: 16, targetX: 57, targetY: 27 },
 		items: [
-			item('guide-scope', '01', { ca: 'Tub de guiatge', es: 'Tubo de guiado', en: 'Guide scope' }, { ca: 'Guiatge', es: 'Guiado', en: 'Guiding' }, { ca: 'Tub òptic dedicat al seguiment', es: 'Tubo óptico dedicado al seguimiento', en: 'Dedicated optical tube for tracking' }, { ca: 'tub-guiatge', es: 'tubo-guiado', en: 'guide-scope' }),
-			item('guide-camera', '02', { ca: 'Càmera de guiatge', es: 'Cámara de guiado', en: 'Guide camera' }, { ca: 'Guiatge', es: 'Guiado', en: 'Guiding' }, { ca: 'Sensor dedicat al seguiment', es: 'Sensor dedicado al seguimiento', en: 'Dedicated tracking sensor' }, { ca: 'camera-guiatge', es: 'camara-guiado', en: 'guide-camera' }),
+			item('guide-scope', '01', { ca: 'Svbony SV106', es: 'Svbony SV106', en: 'Svbony SV106' }, { ca: 'Tub de guiatge', es: 'Tubo de guiado', en: 'Guide scope' }, { ca: 'Tub guia de 60 mm dedicat al seguiment', es: 'Tubo guía de 60 mm dedicado al seguimiento', en: '60 mm guide scope dedicated to tracking' }, { ca: 'tub-guiatge', es: 'tubo-guiado', en: 'guide-scope' }, {
+				image: 'imagenes/equipo-tubo-guiado-provisional.png',
+				imageAlt: { ca: 'Tub de guiatge Svbony SV106 de 60 mm amb les anelles de subjecció', es: 'Tubo de guiado Svbony SV106 de 60 mm con sus anillas de sujeción', en: 'Svbony SV106 60 mm guide scope with its mounting rings' },
+				description: {
+					ca: 'El Svbony SV106 és un tub guia compacte de 60 mm i relació focal f/4. El seu camp ampli facilita la selecció d’estrelles de referència, mentre que l’enfocador helicoidal permet ajustar el focus amb precisió sense fer girar la càmera.',
+					es: 'El Svbony SV106 es un tubo guía compacto de 60 mm y relación focal f/4. Su campo amplio facilita la selección de estrellas de referencia, mientras que el enfocador helicoidal permite ajustar el foco con precisión sin hacer girar la cámara.',
+					en: 'The Svbony SV106 is a compact 60 mm f/4 guide scope. Its wide field makes guide-star selection easier, while the helical focuser allows precise adjustment without rotating the camera.',
+				},
+				specs: [
+					{ label: { ca: 'Obertura', es: 'Apertura', en: 'Aperture' }, value: { ca: '60 mm', es: '60 mm', en: '60 mm' } },
+					{ label: { ca: 'Distància focal', es: 'Distancia focal', en: 'Focal length' }, value: { ca: '240 mm', es: '240 mm', en: '240 mm' } },
+					{ label: { ca: 'Relació focal', es: 'Relación focal', en: 'Focal ratio' }, value: { ca: 'f/4', es: 'f/4', en: 'f/4' } },
+					{ label: { ca: 'Enfocador', es: 'Enfocador', en: 'Focuser' }, value: { ca: 'Helicoidal d’1,25″, recorregut de 30 mm, no rotatiu', es: 'Helicoidal de 1,25″, recorrido de 30 mm, no rotativo', en: '1.25″ helical, 30 mm travel, non-rotating' } },
+					{ label: { ca: 'Connexions', es: 'Conexiones', en: 'Connections' }, value: { ca: 'Sortida d’1,25″ o rosca T2 (M42 × 0,75)', es: 'Salida de 1,25″ o rosca T2 (M42 × 0,75)', en: '1.25″ output or T2 thread (M42 × 0.75)' } },
+					{ label: { ca: 'Pes', es: 'Peso', en: 'Weight' }, value: { ca: '690 g', es: '690 g', en: '690 g' } },
+					{ label: { ca: 'Subjecció', es: 'Sujeción', en: 'Mounting' }, value: { ca: 'Anelles guia amb cargols de punta de niló i base tipus sabata', es: 'Anillas guía con tornillos de punta de nailon y base tipo zapata', en: 'Guide rings with nylon-tipped screws and standard dovetail base' } },
+				],
+			}),
+			item('guide-camera', '02', { ca: 'ZWO ASI220MM Mini', es: 'ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini' }, { ca: 'Càmera de guiatge', es: 'Cámara de guiado', en: 'Guide camera' }, { ca: 'Sensor monocrom dedicat al seguiment', es: 'Sensor monocromo dedicado al seguimiento', en: 'Monochrome sensor dedicated to tracking' }, { ca: 'camera-guiatge', es: 'camara-guiado', en: 'guide-camera' }, {
+				image: 'imagenes/equipo-camara-guiado-provisional.png',
+				imageAlt: { ca: 'Càmera de guiatge monocroma ZWO ASI220MM Mini', es: 'Cámara de guiado monocroma ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini monochrome guide camera' },
+				additionalImage: 'imagenes/equipo-camara-guiado-datos-provisional.png',
+				additionalImageAlt: { ca: 'Resum gràfic provisional de les característiques de la ZWO ASI220MM Mini', es: 'Resumen gráfico provisional de las características de la ZWO ASI220MM Mini', en: 'Provisional graphical overview of the ZWO ASI220MM Mini specifications' },
+				description: {
+					ca: 'La ZWO ASI220MM Mini és una càmera monocroma compacta destinada a l’autoguiatge. El sensor de 2,07 megapíxels, els píxels de 4 μm i una eficiència quàntica màxima del 92 % afavoreixen la detecció d’estrelles guia amb exposicions curtes.',
+					es: 'La ZWO ASI220MM Mini es una cámara monocroma compacta destinada al autoguiado. El sensor de 2,07 megapíxeles, los píxeles de 4 μm y una eficiencia cuántica máxima del 92 % favorecen la detección de estrellas guía con exposiciones cortas.',
+					en: 'The ZWO ASI220MM Mini is a compact monochrome autoguiding camera. Its 2.07-megapixel sensor, 4 μm pixels and peak quantum efficiency of 92% support reliable guide-star detection with short exposures.',
+				},
+				specs: [
+					{ label: { ca: 'Sensor', es: 'Sensor', en: 'Sensor' }, value: { ca: 'CMOS monocrom SmartSens SC2210, format 1/1,8″', es: 'CMOS monocromo SmartSens SC2210, formato 1/1,8″', en: 'SmartSens SC2210 monochrome CMOS, 1/1.8″ format' } },
+					{ label: { ca: 'Resolució', es: 'Resolución', en: 'Resolution' }, value: { ca: '2,07 MP (1920 × 1080)', es: '2,07 MP (1920 × 1080)', en: '2.07 MP (1920 × 1080)' } },
+					{ label: { ca: 'Mida de píxel', es: 'Tamaño de píxel', en: 'Pixel size' }, value: { ca: '4,0 μm', es: '4,0 μm', en: '4.0 μm' } },
+					{ label: { ca: 'Eficiència quàntica màxima', es: 'Eficiencia cuántica máxima', en: 'Peak quantum efficiency' }, value: { ca: '92 %', es: '92 %', en: '92%' } },
+					{ label: { ca: 'Interfície', es: 'Interfaz', en: 'Interface' }, value: { ca: 'USB 2.0 tipus C i port ST4', es: 'USB 2.0 tipo C y puerto ST4', en: 'USB 2.0 Type-C and ST4 port' } },
+					{ label: { ca: 'Exposició', es: 'Exposición', en: 'Exposure' }, value: { ca: 'De 32 μs a 10 s', es: 'De 32 μs a 10 s', en: '32 μs to 10 s' } },
+					{ label: { ca: 'Convertidor', es: 'Convertidor', en: 'ADC' }, value: { ca: '12 bits', es: '12 bits', en: '12 bit' } },
+					{ label: { ca: 'Dimensions i pes', es: 'Dimensiones y peso', en: 'Dimensions and weight' }, value: { ca: 'Ø 36 × 61 mm · 60 g', es: 'Ø 36 × 61 mm · 60 g', en: 'Ø 36 × 61 mm · 60 g' } },
+					{ label: { ca: 'Back focus', es: 'Back focus', en: 'Back focus' }, value: { ca: '8,5 mm / 12,5 mm', es: '8,5 mm / 12,5 mm', en: '8.5 mm / 12.5 mm' } },
+				],
+			}),
 		],
 	},
 	{
@@ -96,9 +146,9 @@ export const equipmentGroups: EquipmentGroup[] = [
 ];
 
 export const equipmentUi: Record<Lang, Record<string, string>> = {
-	ca: { backHome: 'Tornar a la portada', backEquipment: 'Tornar a El meu equip', explore: 'Explora les quatre àrees de l’equip', prototype: 'Prototip local', components: 'components', component: 'component', photoPending: 'Fotografia pendent', provisional: 'Fitxa provisional', detailsPending: 'Característiques tècniques pendents', viewDetails: 'Veure la fitxa de' },
-	es: { backHome: 'Volver a la portada', backEquipment: 'Volver a Mi equipo', explore: 'Explora las cuatro áreas del equipo', prototype: 'Prototipo local', components: 'componentes', component: 'componente', photoPending: 'Fotografía pendiente', provisional: 'Ficha provisional', detailsPending: 'Características técnicas pendientes', viewDetails: 'Ver la ficha de' },
-	en: { backHome: 'Back to the home page', backEquipment: 'Back to My equipment', explore: 'Explore the four equipment areas', prototype: 'Local prototype', components: 'components', component: 'component', photoPending: 'Photograph pending', provisional: 'Provisional page', detailsPending: 'Technical specifications pending', viewDetails: 'View the details for' },
+	ca: { backHome: 'Tornar a la portada', backEquipment: 'Tornar a El meu equip', explore: 'Explora les quatre àrees de l’equip', prototype: 'Prototip local', components: 'components', component: 'component', photoPending: 'Fotografia pendent', provisional: 'Fitxa provisional', provisionalImage: 'Imatge provisional', detailsPending: 'Característiques tècniques pendents', specifications: 'Característiques tècniques', referenceGraphic: 'Resum gràfic provisional', viewDetails: 'Veure la fitxa de' },
+	es: { backHome: 'Volver a la portada', backEquipment: 'Volver a Mi equipo', explore: 'Explora las cuatro áreas del equipo', prototype: 'Prototipo local', components: 'componentes', component: 'componente', photoPending: 'Fotografía pendiente', provisional: 'Ficha provisional', provisionalImage: 'Imagen provisional', detailsPending: 'Características técnicas pendientes', specifications: 'Características técnicas', referenceGraphic: 'Resumen gráfico provisional', viewDetails: 'Ver la ficha de' },
+	en: { backHome: 'Back to the home page', backEquipment: 'Back to My equipment', explore: 'Explore the four equipment areas', prototype: 'Local prototype', components: 'components', component: 'component', photoPending: 'Photograph pending', provisional: 'Provisional page', provisionalImage: 'Provisional image', detailsPending: 'Technical specifications pending', specifications: 'Technical specifications', referenceGraphic: 'Provisional graphical overview', viewDetails: 'View the details for' },
 };
 
 export const groupHref = (lang: Lang, group: EquipmentGroup, base = '/') => `${equipmentHref(lang, base)}/${group.slug[lang]}`;

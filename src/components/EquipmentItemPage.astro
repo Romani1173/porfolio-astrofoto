@@ -20,13 +20,45 @@ const ui = equipmentUi[lang];
 			<h1>{equipmentItem.title[lang]}</h1>
 			<p>{equipmentItem.summary[lang]}</p>
 		</header>
-		<div class="equipment-ghost equipment-ghost--detail" aria-label={ui.photoPending}>
-			<span class="equipment-ghost__number">{equipmentItem.number}</span>
-			<span class="equipment-ghost__label">{ui.photoPending}</span>
-		</div>
-		<section class="equipment-detail__pending">
-			<p>{equipmentItem.kicker[lang]}</p>
-			<h2>{ui.detailsPending}</h2>
-		</section>
+		{equipmentItem.image && equipmentItem.imageAlt ? (
+			<figure class="equipment-provisional-image equipment-detail__image" data-watermark={ui.provisionalImage}>
+				<img src={`${base}${equipmentItem.image}`} alt={equipmentItem.imageAlt[lang]} />
+			</figure>
+		) : (
+			<div class="equipment-ghost equipment-ghost--detail" aria-label={ui.photoPending}>
+				<span class="equipment-ghost__number">{equipmentItem.number}</span>
+				<span class="equipment-ghost__label">{ui.photoPending}</span>
+			</div>
+		)}
+		{equipmentItem.description && equipmentItem.specs ? (
+			<div class="equipment-detail__content">
+				<p class="equipment-detail__description">{equipmentItem.description[lang]}</p>
+				<section class="equipment-specifications" aria-labelledby="equipment-specifications-heading">
+					<p class="equipment-kicker">{equipmentItem.kicker[lang]}</p>
+					<h2 id="equipment-specifications-heading">{ui.specifications}</h2>
+					<dl>
+						{equipmentItem.specs.map((spec) => (
+							<div>
+								<dt>{spec.label[lang]}</dt>
+								<dd>{spec.value[lang]}</dd>
+							</div>
+						))}
+					</dl>
+				</section>
+				{equipmentItem.additionalImage && equipmentItem.additionalImageAlt && (
+					<figure class="equipment-reference-graphic">
+						<div class="equipment-provisional-image" data-watermark={ui.provisionalImage}>
+							<img src={`${base}${equipmentItem.additionalImage}`} alt={equipmentItem.additionalImageAlt[lang]} loading="lazy" />
+						</div>
+						<figcaption>{ui.referenceGraphic}</figcaption>
+					</figure>
+				)}
+			</div>
+		) : (
+			<section class="equipment-detail__pending">
+				<p>{equipmentItem.kicker[lang]}</p>
+				<h2>{ui.detailsPending}</h2>
+			</section>
+		)}
 	</article>
 </Layout>
