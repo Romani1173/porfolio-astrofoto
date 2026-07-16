@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n';
-import { copy, equipmentHref, galleryHref, languageLinks } from '../i18n';
+import { copy, equipmentHref, galleryHref, languageLinks, withBase } from '../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -10,7 +10,7 @@ const t = copy[lang];
 ---
 
 <Layout title={lang === 'ca' ? 'Inici' : t.home} hero lang={lang} languageLinks={languageLinks.home(base)}>
-	<section class="welcome-hero" style={`--hero-image: url('${base}imagenes/portada.webp')`} aria-labelledby="welcome-title">
+	<section class="welcome-hero" style={`--hero-image: url('${withBase('imagenes/portada.webp', base)}')`} aria-labelledby="welcome-title">
 		<div class="welcome-hero__content">
 			<div class="welcome-hero__message">
 				<h1 id="welcome-title">El meu Cel Profund</h1>

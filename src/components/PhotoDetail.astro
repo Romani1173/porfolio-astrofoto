@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n';
-import { categoryByValue, categoryHref, copy, languageLinks, localeFor } from '../i18n';
+import { categoryByValue, categoryHref, copy, languageLinks, localeFor, withBase } from '../i18n';
 import { additionalImageText, photoText } from '../photoTranslations';
 import { photoTechnicalText } from '../technicalTranslations';
 
@@ -22,8 +22,8 @@ const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).for
 		<a class="back-link" href={categoryHref(lang, category.key, base)}>← {t.backToCategory(categoryLabel)}</a>
 		<header class="page-heading"><h1>{text.objecte}</h1></header>
 		<div class="photo-detail__image">
-			<button class="image-zoom-trigger" type="button" data-lightbox-src={`${base}imagenes/${foto.data.imatge}`} data-lightbox-alt={`${t.astroPhoto} ${text.objecte}`} aria-label={`${t.enlarge}: ${text.objecte}`}>
-				<img src={`${base}imagenes/${foto.data.imatge}`} alt={`${t.astroPhoto} ${text.objecte}`} fetchpriority="high" />
+			<button class="image-zoom-trigger" type="button" data-lightbox-src={withBase(`imagenes/${foto.data.imatge}`, base)} data-lightbox-alt={`${t.astroPhoto} ${text.objecte}`} aria-label={`${t.enlarge}: ${text.objecte}`}>
+				<img src={withBase(`imagenes/${foto.data.imatge}`, base)} alt={`${t.astroPhoto} ${text.objecte}`} fetchpriority="high" />
 				<span aria-hidden="true">{t.enlarge} ↗</span>
 			</button>
 		</div>
@@ -41,8 +41,8 @@ const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).for
 					{foto.data.imatges_addicionals.map((imatge) => {
 						const imageText = additionalImageText(imatge, lang);
 						return <figure>
-							<button class="image-zoom-trigger" type="button" data-lightbox-src={`${base}imagenes/${imatge.fitxer}`} data-lightbox-alt={`${imageText.titol}: ${text.objecte}`} aria-label={`${t.enlarge}: ${imageText.titol}`}>
-								<img src={`${base}imagenes/${imatge.fitxer}`} alt={`${imageText.titol}: ${text.objecte}`} loading="lazy" decoding="async" />
+							<button class="image-zoom-trigger" type="button" data-lightbox-src={withBase(`imagenes/${imatge.fitxer}`, base)} data-lightbox-alt={`${imageText.titol}: ${text.objecte}`} aria-label={`${t.enlarge}: ${imageText.titol}`}>
+								<img src={withBase(`imagenes/${imatge.fitxer}`, base)} alt={`${imageText.titol}: ${text.objecte}`} loading="lazy" decoding="async" />
 								<span aria-hidden="true">{t.enlarge} ↗</span>
 							</button>
 							<figcaption><strong>{imageText.titol}</strong>{imageText.descripcio && <span>{imageText.descripcio}</span>}</figcaption>

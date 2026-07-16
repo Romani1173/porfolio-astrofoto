@@ -55,14 +55,19 @@ export const copy = {
 } as const;
 
 export const localeFor = (lang: Lang) => ({ ca: 'ca-ES', es: 'es-ES', en: 'en-GB' })[lang];
-export const homeHref = (lang: Lang, base = '/') => lang === 'ca' ? base : `${base}${lang}/`;
-export const galleryHref = (lang: Lang, base = '/') => lang === 'ca' ? `${base}galeria` : `${base}${lang}/${lang === 'en' ? 'gallery' : 'galeria'}`;
-export const equipmentHref = (lang: Lang, base = '/') => lang === 'ca' ? `${base}equip` : `${base}${lang}/${lang === 'en' ? 'equipment' : 'equipo'}`;
-export const photoHref = (lang: Lang, id: string, base = '/') => lang === 'ca' ? `${base}foto/${id}` : `${base}${lang}/${lang === 'en' ? 'photo' : 'foto'}/${id}`;
+export const normalizeBase = (base = '/') => {
+	const withLeadingSlash = base.startsWith('/') ? base : `/${base}`;
+	return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`;
+};
+export const withBase = (path: string, base = '/') => `${normalizeBase(base)}${path.replace(/^\/+/, '')}`;
+export const homeHref = (lang: Lang, base = '/') => lang === 'ca' ? normalizeBase(base) : withBase(`${lang}/`, base);
+export const galleryHref = (lang: Lang, base = '/') => lang === 'ca' ? withBase('galeria', base) : withBase(`${lang}/${lang === 'en' ? 'gallery' : 'galeria'}`, base);
+export const equipmentHref = (lang: Lang, base = '/') => lang === 'ca' ? withBase('equip', base) : withBase(`${lang}/${lang === 'en' ? 'equipment' : 'equipo'}`, base);
+export const photoHref = (lang: Lang, id: string, base = '/') => lang === 'ca' ? withBase(`foto/${id}`, base) : withBase(`${lang}/${lang === 'en' ? 'photo' : 'foto'}/${id}`, base);
 export const categoryHref = (lang: Lang, key: CategoryKey, base = '/') => {
 	const category = categories.find((item) => item.key === key)!;
 	const segment = lang === 'en' ? 'category' : 'categoria';
-	return lang === 'ca' ? `${base}${segment}/${category.slugs.ca}` : `${base}${lang}/${segment}/${category.slugs[lang]}`;
+	return lang === 'ca' ? withBase(`${segment}/${category.slugs.ca}`, base) : withBase(`${lang}/${segment}/${category.slugs[lang]}`, base);
 };
 export const categoryByValue = (value: string) => categories.find((item) => item.value === value)!;
 

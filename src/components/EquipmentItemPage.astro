@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n';
+import { withBase } from '../i18n';
 import type { EquipmentGroupId, EquipmentItemId } from '../data/equipment';
 import { equipmentGroups, equipmentItemLinks, equipmentUi, groupHref } from '../data/equipment';
 
@@ -22,7 +23,7 @@ const ui = equipmentUi[lang];
 		</header>
 		{equipmentItem.image && equipmentItem.imageAlt ? (
 			<figure class:list={['equipment-image', 'equipment-detail__image', { 'equipment-provisional-image': equipmentItem.imageProvisional }]} data-watermark={equipmentItem.imageProvisional ? ui.provisionalImage : undefined}>
-				<img src={`${base}${equipmentItem.image}`} alt={equipmentItem.imageAlt[lang]} />
+				<img src={withBase(equipmentItem.image, base)} alt={equipmentItem.imageAlt[lang]} />
 			</figure>
 		) : (
 			<div class="equipment-ghost equipment-ghost--detail" aria-label={ui.photoPending}>
@@ -68,7 +69,7 @@ const ui = equipmentUi[lang];
 		{equipmentItem.additionalImage && equipmentItem.additionalImageAlt && (
 			<figure class="equipment-reference-graphic">
 				<div class:list={['equipment-image', { 'equipment-provisional-image': equipmentItem.additionalImageProvisional }]} data-watermark={equipmentItem.additionalImageProvisional ? ui.provisionalImage : undefined}>
-					<img src={`${base}${equipmentItem.additionalImage}`} alt={equipmentItem.additionalImageAlt[lang]} loading="lazy" />
+					<img src={withBase(equipmentItem.additionalImage, base)} alt={equipmentItem.additionalImageAlt[lang]} loading="lazy" />
 				</div>
 				<figcaption>{equipmentItem.additionalImageCaption?.[lang] ?? ui.referenceGraphic}</figcaption>
 			</figure>
@@ -76,7 +77,7 @@ const ui = equipmentUi[lang];
 		{equipmentItem.galleryImages?.map((galleryImage) => (
 			<figure class="equipment-reference-graphic">
 				<div class="equipment-image">
-					<img src={`${base}${galleryImage.image}`} alt={galleryImage.alt[lang]} loading="lazy" />
+					<img src={withBase(galleryImage.image, base)} alt={galleryImage.alt[lang]} loading="lazy" />
 				</div>
 				<figcaption>{galleryImage.caption[lang]}</figcaption>
 			</figure>

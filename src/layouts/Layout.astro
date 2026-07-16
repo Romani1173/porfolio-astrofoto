@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { SITE_TITLE } from '../consts';
 import LanguageSelector from '../components/LanguageSelector.astro';
 import type { Lang } from '../i18n';
-import { copy, galleryHref, homeHref, languageLinks as makeLanguageLinks } from '../i18n';
+import { copy, galleryHref, homeHref, languageLinks as makeLanguageLinks, normalizeBase, withBase } from '../i18n';
 
 interface Props { title?: string; description?: string; hero?: boolean; minimal?: boolean; lang?: Lang; languageLinks?: Record<Lang, string>; }
 const { title = SITE_TITLE, hero = false, minimal = false, lang = 'ca', languageLinks = makeLanguageLinks.home(import.meta.env.BASE_URL) } = Astro.props;
@@ -11,6 +11,7 @@ const description = Astro.props.description ?? copy[lang].siteDescription;
 const pageTitle = title === SITE_TITLE ? SITE_TITLE : `${title} | ${SITE_TITLE}`;
 const currentPath = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
+const rootHref = normalizeBase(base);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const nav = [
 	{ href: homeHref(lang, base), label: copy[lang].home },
@@ -28,8 +29,8 @@ const nav = [
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet" />
-		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-		<link rel="icon" href={`${base}favicon.ico`} />
+		<link rel="icon" type="image/svg+xml" href={withBase('favicon.svg', base)} />
+		<link rel="icon" href={withBase('favicon.ico', base)} />
 		<link rel="canonical" href={canonicalURL} />
 		{Object.entries(languageLinks).map(([language, href]) => <link rel="alternate" hreflang={language} href={new URL(href, Astro.site)} />)}
 		<link rel="alternate" hreflang="x-default" href={new URL(languageLinks.ca, Astro.site)} />
@@ -37,7 +38,7 @@ const nav = [
 	</head>
 	<body class:list={{ 'home-page': hero }}>
 		{!minimal && !hero && <header class:list={{ 'site-header': true, 'site-shell': true, 'site-header--compact': hero }}>
-			{hero ? <a class="site-brand" href={base}>{SITE_TITLE}</a> : <><h1 class="site-title"><a href={base}>{SITE_TITLE}</a></h1><p class="site-tagline">{SITE_DESCRIPTION}</p></>}
+			{hero ? <a class="site-brand" href={rootHref}>{SITE_TITLE}</a> : <><h1 class="site-title"><a href={rootHref}>{SITE_TITLE}</a></h1><p class="site-tagline">{SITE_DESCRIPTION}</p></>}
 			{!hero && <nav class="site-nav" aria-label="Navegació principal">
 				{nav.map((item) => <a href={item.href} aria-current={currentPath === decodeURIComponent(item.href) ? 'page' : undefined}>{item.label}</a>)}
 			</nav>}
