@@ -23,6 +23,17 @@ export interface EquipmentSpec {
 	value: Localized;
 }
 
+export interface EquipmentGalleryImage {
+	image: string;
+	alt: Localized;
+	caption: Localized;
+}
+
+export interface EquipmentNote {
+	title: Localized;
+	body: Localized;
+}
+
 export interface EquipmentItem {
 	id: EquipmentItemId;
 	number: string;
@@ -37,7 +48,9 @@ export interface EquipmentItem {
 	additionalImageAlt?: Localized;
 	additionalImageCaption?: Localized;
 	additionalImageProvisional?: boolean;
+	galleryImages?: EquipmentGalleryImage[];
 	description?: Localized;
+	notes?: EquipmentNote[];
 	specs?: EquipmentSpec[];
 }
 
@@ -60,13 +73,13 @@ const item = (
 	kicker: Localized,
 	summary: Localized,
 	slug: Localized,
-	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'imageProvisional' | 'additionalImage' | 'additionalImageAlt' | 'additionalImageCaption' | 'additionalImageProvisional' | 'description' | 'specs'>> = {},
+	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'imageProvisional' | 'additionalImage' | 'additionalImageAlt' | 'additionalImageCaption' | 'additionalImageProvisional' | 'galleryImages' | 'description' | 'notes' | 'specs'>> = {},
 ): EquipmentItem => ({ id, number, title, kicker, summary, slug, ...details });
 
 export const equipmentGroups: EquipmentGroup[] = [
 	{
 		id: 'main', number: '01',
-		title: { ca: 'Tren principal', es: 'Tren principal', en: 'Main imaging train' },
+		title: { ca: 'Tren Òptic Principal', es: 'Tren Óptico Principal', en: 'Main Optical Train' },
 		summary: { ca: 'Captura i formació de la imatge', es: 'Captura y formación de la imagen', en: 'Image capture and formation' },
 		slug: { ca: 'tren-principal', es: 'tren-principal', en: 'main-imaging-train' },
 		image: 'imagenes/equipo-tren-optico-principal.jpeg',
@@ -121,12 +134,19 @@ export const equipmentGroups: EquipmentGroup[] = [
 					{ label: { ca: 'Recobriment', es: 'Recubrimiento', en: 'Coating' }, value: { ca: 'Multicapa a cada superfície aire-vidre per reduir reflexos i imatges fantasma', es: 'Multicapa en cada superficie aire-vidrio para reducir reflejos e imágenes fantasma', en: 'Multi-coated on every air-to-glass surface to reduce reflections and ghosting' } },
 				],
 			}),
-			item('focuser', '03', { ca: 'ZWO EAF', es: 'ZWO EAF', en: 'ZWO EAF' }, { ca: 'Enfocament', es: 'Enfoque', en: 'Focusing' }, { ca: 'Control motoritzat de l’enfocament principal', es: 'Control motorizado del enfoque principal', en: 'Motorised focus control for the main imaging train' }, { ca: 'enfocador', es: 'enfocador', en: 'focuser' }, {
-				image: 'imagenes/equipo-electronica-vista-superior.jpeg',
-				imageAlt: { ca: 'Vista superior del tren òptic amb el motor d’enfocament ZWO EAF vermell muntat perpendicularment al tub', es: 'Vista superior del tren óptico con el motor de enfoque ZWO EAF rojo montado perpendicularmente al tubo', en: 'Top view of the optical train with the red ZWO EAF focus motor mounted perpendicular to the telescope' },
+			item('focuser', '03', { ca: 'ZWO EAF', es: 'ZWO EAF', en: 'ZWO EAF' }, { ca: 'Enfocament', es: 'Enfoque', en: 'Focusing' }, { ca: 'Control motoritzat de l’enfocament principal', es: 'Control motorizado del enfoque principal', en: 'Motorised focus control for the main optical train' }, { ca: 'enfocador', es: 'enfocador', en: 'focuser' }, {
+				image: 'imagenes/equipo-zwo-eaf-caja.png',
+				imageAlt: { ca: 'Caixa original del motor d’enfocament automàtic ZWO EAF', es: 'Caja original del motor de enfoque automático ZWO EAF', en: 'Original box for the ZWO EAF electronic automatic focuser' },
 				additionalImage: 'imagenes/equipo-camara-eaf-detalle.jpeg',
 				additionalImageAlt: { ca: 'Detall frontal del ZWO EAF al costat de la roda portafiltres EFW i la càmera principal', es: 'Detalle frontal del ZWO EAF junto a la rueda portafiltros EFW y la cámara principal', en: 'Front detail of the ZWO EAF beside the EFW filter wheel and main camera' },
 				additionalImageCaption: { ca: 'L’EAF comparteix espai amb la roda i la càmera', es: 'El EAF comparte espacio con la rueda y la cámara', en: 'The EAF shares the compact assembly with the wheel and camera' },
+				galleryImages: [
+					{
+						image: 'imagenes/equipo-electronica-vista-superior.jpeg',
+						alt: { ca: 'Vista superior del tren òptic amb el motor d’enfocament ZWO EAF vermell muntat perpendicularment al tub', es: 'Vista superior del tren óptico con el motor de enfoque ZWO EAF rojo montado perpendicularmente al tubo', en: 'Top view of the optical train with the red ZWO EAF focus motor mounted perpendicular to the telescope' },
+						caption: { ca: 'El motor EAF muntat perpendicularment al tren òptic', es: 'El motor EAF montado perpendicularmente al tren óptico', en: 'The EAF motor mounted perpendicular to the optical train' },
+					},
+				],
 				description: {
 					ca: 'El ZWO EAF és el motor vermell muntat perpendicularment al tren òptic. S’acobla a l’eix de l’enfocador mecànic de l’OTA i substitueix el gir manual, de manera que el programa de captura pot buscar i recuperar automàticament el millor punt de focus. Això permet iniciar enfocaments a distància i corregir les petites variacions produïdes pels canvis de temperatura durant la nit. S’alimenta directament a 5 V mitjançant la connexió USB-C, sense necessitat d’un cable d’alimentació independent, i la reducció 1:128 proporciona moviments molt fins i repetibles.',
 					es: 'El ZWO EAF es el motor rojo montado perpendicularmente al tren óptico. Se acopla al eje del enfocador mecánico de la OTA y sustituye el giro manual, de modo que el programa de captura puede buscar y recuperar automáticamente el mejor punto de foco. Esto permite iniciar enfoques a distancia y corregir las pequeñas variaciones producidas por los cambios de temperatura durante la noche. Se alimenta directamente a 5 V mediante la conexión USB-C, sin necesitar un cable de alimentación independiente, y la reducción 1:128 proporciona movimientos muy finos y repetibles.',
@@ -140,29 +160,79 @@ export const equipmentGroups: EquipmentGroup[] = [
 					{ label: { ca: 'Relació de reducció', es: 'Relación de reducción', en: 'Reduction ratio' }, value: { ca: '1:128', es: '1:128', en: '1:128' } },
 				],
 			}),
-			item('filter-wheel', '04', { ca: 'ZWO EFW', es: 'ZWO EFW', en: 'ZWO EFW' }, { ca: 'Tren d’imatge', es: 'Tren de imagen', en: 'Imaging train' }, { ca: 'Selecció automatitzada de filtres', es: 'Selección automatizada de filtros', en: 'Automated filter selection' }, { ca: 'roda-portafiltres', es: 'rueda-portafiltros', en: 'filter-wheel' }, {
-				image: 'imagenes/equipo-camara-principal.jpeg',
-				imageAlt: { ca: 'Detall de la roda portafiltres ZWO EFW entre el motor EAF i la càmera principal', es: 'Detalle de la rueda portafiltros ZWO EFW entre el motor EAF y la cámara principal', en: 'Detail of the ZWO EFW filter wheel between the EAF motor and main camera' },
+			item('filter-wheel', '04', { ca: 'ZWO EFW', es: 'ZWO EFW', en: 'ZWO EFW' }, { ca: 'Tren d’imatge', es: 'Tren de imagen', en: 'Imaging train' }, { ca: 'Roda portafiltres; selecció automatitzada de filtres', es: 'Rueda portafiltros; selección automatizada de filtros', en: 'Filter wheel; automated filter selection' }, { ca: 'roda-portafiltres', es: 'rueda-portafiltros', en: 'filter-wheel' }, {
+				image: 'imagenes/equipo-zwo-efw-caja.png',
+				imageAlt: { ca: 'Caixa original de la roda portafiltres electrònica ZWO EFW, utilitzada en la versió de set filtres de 36 mm', es: 'Caja original de la rueda portafiltros electrónica ZWO EFW, utilizada en la versión de siete filtros de 36 mm', en: 'Original ZWO EFW electronic filter wheel box, used here in the seven-position 36 mm version' },
 				additionalImage: 'imagenes/equipo-tren-imagen-posterior.jpeg',
 				additionalImageAlt: { ca: 'Tren d’imatge posterior amb la roda portafiltres ZWO EFW instal·lada immediatament abans de la càmera principal', es: 'Tren de imagen posterior con la rueda portafiltros ZWO EFW instalada inmediatamente antes de la cámara principal', en: 'Rear imaging train with the ZWO EFW filter wheel installed immediately in front of the main camera' },
 				additionalImageCaption: { ca: 'Posició de la roda EFW dins del tren posterior', es: 'Posición de la rueda EFW dentro del tren posterior', en: 'Position of the EFW within the rear imaging train' },
+				galleryImages: [
+					{
+						image: 'imagenes/equipo-camara-principal.jpeg',
+						alt: { ca: 'Detall de la roda portafiltres ZWO EFW entre el motor EAF i la càmera principal', es: 'Detalle de la rueda portafiltros ZWO EFW entre el motor EAF y la cámara principal', en: 'Detail of the ZWO EFW filter wheel between the EAF motor and main camera' },
+						caption: { ca: 'La roda EFW instal·lada entre l’enfocador i la càmera principal', es: 'La rueda EFW instalada entre el enfocador y la cámara principal', en: 'The EFW installed between the focuser and main camera' },
+					},
+				],
 				description: {
-					ca: 'La roda portafiltres ZWO EFW és el cos circular negre situat immediatament davant de la càmera principal. La seva posició manté els filtres a prop del sensor i permet seleccionar-los de manera automatitzada sense alterar la resta del tren òptic.',
-					es: 'La rueda portafiltros ZWO EFW es el cuerpo circular negro situado inmediatamente delante de la cámara principal. Su posición mantiene los filtros cerca del sensor y permite seleccionarlos de forma automatizada sin alterar el resto del tren óptico.',
-					en: 'The ZWO EFW filter wheel is the black circular body immediately in front of the main camera. Its position keeps the filters close to the sensor and allows automated selection without disturbing the rest of the optical train.',
+					ca: 'La ZWO EFW 7 × 36 mm és la roda portafiltres motoritzada que utilitzo amb filtres Astronomik de 36 mm. És el cos circular negre situat immediatament davant de la càmera principal: allotja fins a set filtres i permet que el programa de captura seleccioni automàticament el necessari per a cada exposició. Els filtres queden molt a prop del sensor, cosa que ajuda a reduir el risc de vinyetatge, i el seu gruix de només 20 mm facilita mantenir la distància correcta entre els diferents elements. La roda s’alimenta i es controla mitjançant un únic cable USB, amb un consum màxim aproximat de 150 mA; per això pot connectar-se directament al concentrador USB de la càmera o al hub del muntatge. La carcassa d’alumini mecanitzat combina rigidesa amb un pes inferior a 400 g.',
+					es: 'La ZWO EFW 7 × 36 mm es la rueda portafiltros motorizada que utilizo con filtros Astronomik de 36 mm. Es el cuerpo circular negro situado inmediatamente delante de la cámara principal: aloja hasta siete filtros y permite que el programa de captura seleccione automáticamente el necesario para cada exposición. Los filtros quedan muy cerca del sensor, lo que ayuda a reducir el riesgo de viñeteo, y su grosor de solo 20 mm facilita mantener la distancia correcta entre los distintos elementos. La rueda se alimenta y controla mediante un único cable USB, con un consumo máximo aproximado de 150 mA; por eso puede conectarse directamente al concentrador USB de la cámara o al hub del montaje. La carcasa de aluminio mecanizado combina rigidez con un peso inferior a 400 g.',
+					en: 'The ZWO EFW 7 × 36 mm is the motorised filter wheel I use with 36 mm Astronomik filters. It is the black circular body immediately in front of the main camera: it holds up to seven filters and allows the capture software to select the required one automatically for each exposure. Keeping the filters close to the sensor helps reduce the risk of vignetting, while its slim 20 mm body makes it easier to maintain the correct spacing between components. A single USB cable provides both power and control, with a maximum consumption of approximately 150 mA, so it can connect directly to the camera’s USB hub or the hub installed on the telescope. Its machined aluminium enclosure combines rigidity with a weight below 400 g.',
 				},
+				specs: [
+					{ label: { ca: 'Capacitat', es: 'Capacidad', en: 'Capacity' }, value: { ca: '7 filtres sense muntar de 36 mm', es: '7 filtros sin montar de 36 mm', en: '7 unmounted 36 mm filters' } },
+					{ label: { ca: 'Filtres utilitzats', es: 'Filtros utilizados', en: 'Filters used' }, value: { ca: 'Astronomik de 36 mm', es: 'Astronomik de 36 mm', en: '36 mm Astronomik filters' } },
+					{ label: { ca: 'Connexió al telescopi', es: 'Conexión al telescopio', en: 'Telescope connection' }, value: { ca: 'Rosca T2 femella', es: 'Rosca T2 hembra', en: 'Female T2 thread' } },
+					{ label: { ca: 'Connexió a la càmera', es: 'Conexión a la cámara', en: 'Camera connection' }, value: { ca: 'Rosca T2 mascle', es: 'Rosca T2 macho', en: 'Male T2 thread' } },
+					{ label: { ca: 'Connexió addicional', es: 'Conexión adicional', en: 'Additional connection' }, value: { ca: '1,25″ mitjançant l’adaptador inclòs', es: '1,25″ mediante el adaptador incluido', en: '1.25″ through the supplied adapter' } },
+					{ label: { ca: 'Gruix òptic', es: 'Grosor óptico', en: 'Optical thickness' }, value: { ca: '20 mm de T2 a T2', es: '20 mm de T2 a T2', en: '20 mm from T2 to T2' } },
+					{ label: { ca: 'Alimentació i control', es: 'Alimentación y control', en: 'Power and control' }, value: { ca: 'Un únic cable USB · consum màxim aprox. 150 mA', es: 'Un único cable USB · consumo máximo aprox. 150 mA', en: 'Single USB cable · approx. 150 mA maximum consumption' } },
+					{ label: { ca: 'Construcció', es: 'Construcción', en: 'Construction' }, value: { ca: 'Carcassa d’alumini mecanitzat CNC', es: 'Carcasa de aluminio mecanizado CNC', en: 'CNC-machined aluminium enclosure' } },
+					{ label: { ca: 'Pes', es: 'Peso', en: 'Weight' }, value: { ca: 'Menys de 400 g', es: 'Menos de 400 g', en: 'Below 400 g' } },
+				],
 			}),
 			item('main-camera', '05', { ca: 'ZWO ASI294MM Pro', es: 'ZWO ASI294MM Pro', en: 'ZWO ASI294MM Pro' }, { ca: 'Captura principal', es: 'Captura principal', en: 'Main capture' }, { ca: 'Càmera monocroma refrigerada de captura', es: 'Cámara monocroma refrigerada de captura', en: 'Cooled monochrome imaging camera' }, { ca: 'camera-principal', es: 'camara-principal', en: 'main-camera' }, {
-				image: 'imagenes/equipo-camara-eaf-detalle.jpeg',
-				imageAlt: { ca: 'Càmera principal ZWO ASI294MM Pro refrigerada amb la roda portafiltres EFW i el motor EAF visibles', es: 'Cámara principal ZWO ASI294MM Pro refrigerada con la rueda portafiltros EFW y el motor EAF visibles', en: 'Cooled ZWO ASI294MM Pro main camera with the EFW filter wheel and EAF motor visible' },
+				image: 'imagenes/equipo-asi294mm-pro-trasera.png',
+				imageAlt: { ca: 'Vista posterior de la ZWO ASI294MM Pro amb el ventilador, les connexions USB i l’entrada d’alimentació de 12 V', es: 'Vista posterior de la ZWO ASI294MM Pro con el ventilador, las conexiones USB y la entrada de alimentación de 12 V', en: 'Rear view of the ZWO ASI294MM Pro showing the fan, USB connections and 12 V power input' },
 				additionalImage: 'imagenes/equipo-tren-imagen-posterior.jpeg',
 				additionalImageAlt: { ca: 'Vista lateral de la càmera principal al final del tren òptic, darrere de la roda portafiltres i del reductor-aplanador', es: 'Vista lateral de la cámara principal al final del tren óptico, detrás de la rueda portafiltros y del reductor-aplanador', en: 'Side view of the main camera at the end of the optical train, behind the filter wheel and reducer-flattener' },
 				additionalImageCaption: { ca: 'Ordre complet del tren d’imatge posterior', es: 'Orden completo del tren de imagen posterior', en: 'Complete rear imaging-train order' },
+				galleryImages: [
+					{
+						image: 'imagenes/equipo-camara-eaf-detalle.jpeg',
+						alt: { ca: 'Càmera principal ZWO ASI294MM Pro refrigerada amb la roda portafiltres EFW i el motor EAF visibles', es: 'Cámara principal ZWO ASI294MM Pro refrigerada con la rueda portafiltros EFW y el motor EAF visibles', en: 'Cooled ZWO ASI294MM Pro main camera with the EFW filter wheel and EAF motor visible' },
+						caption: { ca: 'La càmera principal instal·lada amb la roda EFW i el motor EAF', es: 'La cámara principal instalada con la rueda EFW y el motor EAF', en: 'The main camera installed with the EFW and EAF motor' },
+					},
+					{
+						image: 'imagenes/equipo-asi294mm-camara-abierta.jpeg',
+						alt: { ca: 'Cos de la ZWO ASI294MM Pro amb el conjunt frontal retirat per accedir a la cambra del sensor', es: 'Cuerpo de la ZWO ASI294MM Pro con el conjunto frontal retirado para acceder a la cámara del sensor', en: 'ZWO ASI294MM Pro body with the front assembly removed to access the sensor chamber' },
+						caption: { ca: 'Accés a la cambra del sensor després de retirar el conjunt frontal', es: 'Acceso a la cámara del sensor tras retirar el conjunto frontal', en: 'Access to the sensor chamber after removing the front assembly' },
+					},
+					{
+						image: 'imagenes/equipo-asi294mm-pastillas-desecantes.jpeg',
+						alt: { ca: 'Quatre pastilles dessecants muntades a la cara interior del conjunt frontal de la càmera', es: 'Cuatro pastillas desecantes montadas en la cara interior del conjunto frontal de la cámara', en: 'Four desiccant tablets mounted on the inside of the camera front assembly' },
+						caption: { ca: 'Posició de les quatre pastilles dessecants que controlen la humitat interna', es: 'Posición de las cuatro pastillas desecantes que controlan la humedad interna', en: 'Position of the four desiccant tablets that control internal humidity' },
+					},
+					{
+						image: 'imagenes/equipo-asi294mm-sensor.jpeg',
+						alt: { ca: 'Detall del sensor monocrom de la ZWO ASI294MM Pro dins del cos de la càmera', es: 'Detalle del sensor monocromo de la ZWO ASI294MM Pro dentro del cuerpo de la cámara', en: 'Close view of the ZWO ASI294MM Pro monochrome sensor inside the camera body' },
+						caption: { ca: 'El sensor és la zona que cal mantenir lliure de condensació', es: 'El sensor es la zona que debe mantenerse libre de condensación', en: 'The sensor is the area that must remain free of condensation' },
+					},
+				],
 				description: {
-					ca: 'La ZWO ASI294MM Pro és la càmera principal i ocupa l’extrem del tren òptic, unida directament a la roda portafiltres EFW. El sensor monocrom de format 4/3 registra la llum sense una matriu de color; per això els filtres de la roda permeten construir la imatge final o treballar amb bandes concretes. La refrigeració Peltier regulada pot mantenir el sensor fins a 35 °C per sota de la temperatura ambient, reduint el soroll tèrmic i fent més consistents les exposicions llargues. La connexió USB 3.0 i la memòria intermèdia de 256 MB també permeten lectures ràpides i captura planetària. Es pot controlar amb els controladors de ZWO, ASCOM i aplicacions habituals d’astrofotografia; ASIStudio ofereix captura planetària i de cel profund, apilament en directe i visualització de fitxers FITS.',
-					es: 'La ZWO ASI294MM Pro es la cámara principal y ocupa el extremo del tren óptico, unida directamente a la rueda portafiltros EFW. El sensor monocromo de formato 4/3 registra la luz sin una matriz de color; por eso los filtros de la rueda permiten construir la imagen final o trabajar con bandas concretas. La refrigeración Peltier regulada puede mantener el sensor hasta 35 °C por debajo de la temperatura ambiente, reduciendo el ruido térmico y haciendo más consistentes las exposiciones largas. La conexión USB 3.0 y la memoria intermedia de 256 MB también permiten lecturas rápidas y captura planetaria. Puede controlarse con los drivers de ZWO, ASCOM y las aplicaciones habituales de astrofotografía; ASIStudio ofrece captura planetaria y de cielo profundo, apilamiento en vivo y visualización de archivos FITS.',
-					en: 'The ZWO ASI294MM Pro is the main imaging camera and sits at the end of the optical train, directly attached to the EFW filter wheel. Its monochrome Four Thirds sensor records light without a colour filter array, allowing the wheel’s filters to build the final colour image or isolate specific wavelength bands. Regulated Peltier cooling can hold the sensor up to 35 °C below ambient temperature, reducing thermal noise and making long exposures more consistent. USB 3.0 and a 256 MB buffer also support fast readout and planetary capture. It can be controlled through ZWO drivers, ASCOM and common astrophotography applications; ASIStudio supports planetary and deep-sky capture, live stacking and FITS viewing.',
+					ca: 'La ZWO ASI294MM Pro és la càmera principal i ocupa l’extrem del tren òptic, unida directament a la roda portafiltres EFW. El sensor monocrom de format 4/3 registra la llum sense una matriu de color; per això els filtres de la roda permeten construir la imatge final o treballar amb bandes concretes. La refrigeració Peltier regulada pot mantenir el sensor fins a 35 °C per sota de la temperatura ambient, reduint el soroll tèrmic i fent més consistents les exposicions llargues. La connexió USB 3.0 i la memòria intermèdia de 256 MB també permeten lectures ràpides i captura planetària. Es pot controlar amb els controladors de ZWO, ASCOM i les aplicacions habituals d’astrofotografia.',
+					es: 'La ZWO ASI294MM Pro es la cámara principal y ocupa el extremo del tren óptico, unida directamente a la rueda portafiltros EFW. El sensor monocromo de formato 4/3 registra la luz sin una matriz de color; por eso los filtros de la rueda permiten construir la imagen final o trabajar con bandas concretas. La refrigeración Peltier regulada puede mantener el sensor hasta 35 °C por debajo de la temperatura ambiente, reduciendo el ruido térmico y haciendo más consistentes las exposiciones largas. La conexión USB 3.0 y la memoria intermedia de 256 MB también permiten lecturas rápidas y captura planetaria. Puede controlarse con los drivers de ZWO, ASCOM y las aplicaciones habituales de astrofotografía.',
+					en: 'The ZWO ASI294MM Pro is the main imaging camera and sits at the end of the optical train, directly attached to the EFW filter wheel. Its monochrome Four Thirds sensor records light without a colour filter array, allowing the wheel’s filters to build the final colour image or isolate specific wavelength bands. Regulated Peltier cooling can hold the sensor up to 35 °C below ambient temperature, reducing thermal noise and making long exposures more consistent. USB 3.0 and a 256 MB buffer also support fast readout and planetary capture. It can be controlled through ZWO drivers, ASCOM and common astrophotography applications.',
 				},
+				notes: [
+					{
+						title: { ca: 'Refrigeració gradual i control de la condensació', es: 'Refrigeración gradual y control de la condensación', en: 'Gradual cooling and condensation control' },
+						body: {
+							ca: 'Les càmeres Pro incorporen refrigeració termoelèctrica mitjançant una cèl·lula Peltier. En el meu cas evito ordenar un salt directe des de la temperatura ambient fins a la temperatura de treball. A l’estiu, a l’Ampolla, és habitual començar a uns +32 °C i treballar a −10 °C; per això programo quatre rampes, amb objectius de +20 °C, +10 °C, 0 °C i −10 °C, i mantinc cada pas durant 10 minuts. Amb humitats que sovint superen el 80 %, aquest descens gradual ajuda a reduir el risc de condensació a l’interior de la càmera. Si hi apareix humitat, les quatre pastilles dessecants poden arribar a saturar-se i cal obrir la cambra per substituir-les o regenerar-les seguint les indicacions del fabricant. Les fotografies mostren el conjunt que s’ha de desmuntar, la posició de les pastilles i el sensor que cal mantenir lliure de condensació.',
+							es: 'Las cámaras Pro incorporan refrigeración termoeléctrica mediante una célula Peltier. En mi caso evito ordenar un salto directo desde la temperatura ambiente hasta la temperatura de trabajo. En verano, en l’Ampolla, es habitual comenzar a unos +32 °C y trabajar a −10 °C; por eso programo cuatro rampas, con objetivos de +20 °C, +10 °C, 0 °C y −10 °C, y mantengo cada paso durante 10 minutos. Con humedades que a menudo superan el 80 %, este descenso gradual ayuda a reducir el riesgo de condensación en el interior de la cámara. Si aparece humedad, las cuatro pastillas desecantes pueden llegar a saturarse y es necesario abrir la cámara para sustituirlas o regenerarlas siguiendo las indicaciones del fabricante. Las fotografías muestran el conjunto que debe desmontarse, la posición de las pastillas y el sensor que debe mantenerse libre de condensación.',
+							en: 'Pro cameras use thermoelectric cooling based on a Peltier module. In my setup I avoid commanding a direct jump from ambient temperature to the working setpoint. Summer temperatures in l’Ampolla often start around +32 °C, while I normally image at −10 °C, so I programme four stages at +20 °C, +10 °C, 0 °C and −10 °C, allowing 10 minutes for each step. With humidity often above 80%, this gradual cool-down helps reduce the risk of condensation inside the camera. If moisture does appear, the four desiccant tablets can become saturated and the chamber must be opened so they can be replaced or regenerated according to the manufacturer’s instructions. The photographs show the assembly that must be removed, the position of the tablets and the sensor that needs to remain free of condensation.',
+						},
+					},
+				],
 				specs: [
 					{ label: { ca: 'Sensor', es: 'Sensor', en: 'Sensor' }, value: { ca: 'Sony IMX492 monocrom · format 4/3', es: 'Sony IMX492 monocromo · formato 4/3', en: 'Monochrome Sony IMX492 · Four Thirds format' } },
 					{ label: { ca: 'Mida del sensor', es: 'Tamaño del sensor', en: 'Sensor size' }, value: { ca: '19,1 × 13 mm', es: '19,1 × 13 mm', en: '19.1 × 13 mm' } },
@@ -180,7 +250,7 @@ export const equipmentGroups: EquipmentGroup[] = [
 					{ label: { ca: 'Backfocus', es: 'Backfocus', en: 'Backfocus' }, value: { ca: '17,5 mm / 6,5 mm segons l’adaptador', es: '17,5 mm / 6,5 mm según el adaptador', en: '17.5 mm / 6.5 mm depending on adapter' } },
 					{ label: { ca: 'Connexions mecàniques', es: 'Conexiones mecánicas', en: 'Mechanical connections' }, value: { ca: 'M42 femella · M42 mascle · casquet de 50,8 mm', es: 'M42 hembra · M42 macho · casquillo de 50,8 mm', en: 'Female M42 · male M42 · 50.8 mm nosepiece' } },
 					{ label: { ca: 'Pes', es: 'Peso', en: 'Weight' }, value: { ca: '500 g', es: '500 g', en: '500 g' } },
-					{ label: { ca: 'Programari', es: 'Software', en: 'Software' }, value: { ca: 'Controladors ZWO i ASCOM · ASIStudio · Windows, Linux, ARM Linux i macOS', es: 'Drivers ZWO y ASCOM · ASIStudio · Windows, Linux, ARM Linux y macOS', en: 'ZWO and ASCOM drivers · ASIStudio · Windows, Linux, ARM Linux and macOS' } },
+					{ label: { ca: 'Programari', es: 'Software', en: 'Software' }, value: { ca: 'Controladors ZWO i ASCOM · Windows, Linux, ARM Linux i macOS', es: 'Drivers ZWO y ASCOM · Windows, Linux, ARM Linux y macOS', en: 'ZWO and ASCOM drivers · Windows, Linux, ARM Linux and macOS' } },
 				],
 			}),
 		],
@@ -211,8 +281,11 @@ export const equipmentGroups: EquipmentGroup[] = [
 				],
 			}),
 			item('guide-camera', '02', { ca: 'ZWO ASI220MM Mini', es: 'ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini' }, { ca: 'Càmera de guiatge', es: 'Cámara de guiado', en: 'Guide camera' }, { ca: 'Sensor monocrom dedicat al seguiment', es: 'Sensor monocromo dedicado al seguimiento', en: 'Monochrome sensor dedicated to tracking' }, { ca: 'camera-guiatge', es: 'camara-guiado', en: 'guide-camera' }, {
-				image: 'imagenes/equipo-camara-guiado.jpeg',
-				imageAlt: { ca: 'Càmera de guiatge monocroma ZWO ASI220MM Mini connectada al tub Svbony SV106 en el muntatge', es: 'Cámara de guiado monocroma ZWO ASI220MM Mini conectada al tubo Svbony SV106 en el montaje', en: 'ZWO ASI220MM Mini monochrome guide camera connected to the Svbony SV106 scope on the rig' },
+				image: 'imagenes/equipo-asi220mm-mini-caja.png',
+				imageAlt: { ca: 'Caixa original de la càmera de guiatge ZWO ASI220MM Mini', es: 'Caja original de la cámara de guiado ZWO ASI220MM Mini', en: 'Original box for the ZWO ASI220MM Mini guide camera' },
+				additionalImage: 'imagenes/equipo-camara-guiado.jpeg',
+				additionalImageAlt: { ca: 'Càmera de guiatge monocroma ZWO ASI220MM Mini connectada al tub Svbony SV106 en el muntatge', es: 'Cámara de guiado monocroma ZWO ASI220MM Mini conectada al tubo Svbony SV106 en el montaje', en: 'ZWO ASI220MM Mini monochrome guide camera connected to the Svbony SV106 scope on the rig' },
+				additionalImageCaption: { ca: 'La ASI220MM Mini instal·lada al tub de guiatge', es: 'La ASI220MM Mini instalada en el tubo de guiado', en: 'The ASI220MM Mini installed on the guide scope' },
 				description: {
 					ca: 'La ZWO ASI220MM Mini és una càmera monocroma compacta destinada a l’autoguiatge. El sensor de 2,07 megapíxels, els píxels de 4 μm i una eficiència quàntica màxima del 92 % afavoreixen la detecció d’estrelles guia amb exposicions curtes.',
 					es: 'La ZWO ASI220MM Mini es una cámara monocroma compacta destinada al autoguiado. El sensor de 2,07 megapíxeles, los píxeles de 4 μm y una eficiencia cuántica máxima del 92 % favorecen la detección de estrellas guía con exposiciones cortas.',
@@ -277,6 +350,13 @@ export const equipmentGroups: EquipmentGroup[] = [
 				additionalImage: 'imagenes/equipo-tripode-heq5-lastre.jpeg',
 				additionalImageAlt: { ca: 'Detall de les potes del trípode HEQ-5 i del suport triangular inferior amb la bossa de llast', es: 'Detalle de las patas del trípode HEQ-5 y del soporte triangular inferior con la bolsa de lastre', en: 'Detail of the HEQ-5 tripod legs and the lower triangular support with its ballast bag' },
 				additionalImageCaption: { ca: 'El llast de 8–10 kg reforça l’estabilitat del conjunt', es: 'El lastre de 8–10 kg refuerza la estabilidad del conjunto', en: 'The 8–10 kg ballast adds stability to the assembly' },
+				galleryImages: [
+					{
+						image: 'imagenes/equipo-tripode-heq5-lastre-practico.jpeg',
+						alt: { ca: 'Bossa inferior del trípode carregada amb pedres utilitzades com a llast', es: 'Bolsa inferior del trípode cargada con piedras utilizadas como lastre', en: 'Lower tripod bag loaded with stones used as ballast' },
+						caption: { ca: 'Una solució pràctica: pedres disponibles al lloc d’observació aporten el pes sense haver de transportar-lo', es: 'Una solución práctica: las piedras disponibles en el lugar de observación aportan el peso sin tener que transportarlo', en: 'A practical solution: stones found at the observing site provide the weight without having to transport it' },
+					},
+				],
 				description: {
 					ca: 'La base és un trípode d’acer inoxidable utilitzat a la sèrie HEQ-5 de Sky-Watcher. L’he escurçat per situar la plataforma de muntatge a 650 mm del terra: en abaixar el centre de gravetat, el conjunt resulta més estable i menys sensible a vibracions. Sota les potes he afegit un suport triangular per col·locar-hi normalment entre 8 i 10 kg de llast. Entre el trípode i la muntura hi ha una extensió ZWO de 20 cm; a la part inferior utilitza un adaptador per a HEQ-5 i, a la superior, una connexió compatible amb la Sky-Watcher Wave 150i. El resultat continua sent relativament fàcil de transportar, però és sòlid i molt estable per a fotografia. Com a contrapartida, l’alçada reduïda no és adequada per a observació visual còmoda.',
 					es: 'La base es un trípode de acero inoxidable utilizado en la serie HEQ-5 de Sky-Watcher. Lo he recortado para situar la plataforma de montaje a 650 mm del suelo: al bajar el centro de gravedad, el conjunto resulta más estable y menos sensible a las vibraciones. Bajo las patas he añadido un soporte triangular en el que normalmente coloco entre 8 y 10 kg de lastre. Entre el trípode y la montura hay una extensión ZWO de 20 cm; en la parte inferior utiliza un adaptador para HEQ-5 y, en la superior, una conexión compatible con la Sky-Watcher Wave 150i. El resultado sigue siendo relativamente fácil de transportar, pero es sólido y muy estable para fotografía. Como contrapartida, la altura reducida no es adecuada para una observación visual cómoda.',
@@ -336,6 +416,16 @@ export const equipmentGroups: EquipmentGroup[] = [
 					es: 'El Pegasus Astro USB Control Hub concentra seis conexiones USB en una unidad preparada para astrofotografía. Cada puerto puede activarse o desactivarse de forma independiente, incluidas las líneas de datos y alimentación, y la arquitectura Multi Transaction Operation mantiene el rendimiento USB 3.1 aunque haya dispositivos USB 2.0 conectados.',
 					en: 'The Pegasus Astro USB Control Hub brings six USB connections together in a unit designed for astrophotography. Each port can be switched independently, including its data and power lines, while Multi Transaction Operation preserves USB 3.1 performance when USB 2.0 devices are also connected.',
 				},
+				notes: [
+					{
+						title: { ca: 'Connexió amb l’ordinador i programari de control', es: 'Conexión con el ordenador y software de control', en: 'Computer connection and control software' },
+						body: {
+							ca: 'El hub es connecta mitjançant un cable USB actiu de 5 metres a un ordinador portàtil amb Windows 11, on s’executen els programes que coordinen tot l’equip. NINA gestiona les sessions de captura i el telescopi; PHD2 s’encarrega de l’autoguiatge, i Stellarium proporciona el planetari i la selecció d’objectes. Pegasus Astro Unity supervisa conjuntament el USB Control Hub i la PPB Micro, mostrant l’estat de les connexions, la temperatura i la humitat, el consum elèctric i el nivell de potència aplicat als escalfadors anticondensació del tub principal i del tub de guiatge. D’aquesta manera, un únic enllaç USB comunica el muntatge amb l’ordinador i permet controlar i vigilar el sistema des d’un sol punt.',
+							es: 'El hub se conecta mediante un cable USB activo de 5 metros a un ordenador portátil con Windows 11, donde se ejecutan los programas que coordinan todo el equipo. NINA gestiona las sesiones de captura y el telescopio; PHD2 se encarga del autoguiado, y Stellarium proporciona el planetario y la selección de objetos. Pegasus Astro Unity supervisa conjuntamente el USB Control Hub y la PPB Micro, mostrando el estado de las conexiones, la temperatura y la humedad, el consumo eléctrico y el nivel de potencia aplicado a los calentadores anticondensación del tubo principal y del tubo de guiado. De este modo, un único enlace USB comunica el montaje con el ordenador y permite controlar y vigilar el sistema desde un solo punto.',
+							en: 'The hub connects through a 5-metre active USB cable to a Windows 11 laptop running the applications that coordinate the complete setup. NINA manages imaging sessions and telescope control; PHD2 handles autoguiding, while Stellarium provides the planetarium view and target selection. Pegasus Astro Unity monitors the USB Control Hub and PPB Micro together, displaying connection status, temperature and humidity, power consumption and the output level of the dew heaters fitted to the main telescope and guide scope. In this way, a single USB link connects the rig to the computer and allows the whole system to be controlled and monitored from one place.',
+						},
+					},
+				],
 				specs: [
 					{ label: { ca: 'Ports', es: 'Puertos', en: 'Ports' }, value: { ca: '6 × USB 3.1 Gen 1, compatibles amb USB 1.0 i 2.0', es: '6 × USB 3.1 Gen 1, compatibles con USB 1.0 y 2.0', en: '6 × USB 3.1 Gen 1, backward compatible with USB 1.0 and 2.0' } },
 					{ label: { ca: 'Gestió de ports', es: 'Gestión de puertos', en: 'Port management' }, value: { ca: 'Dades i alimentació commutables per port mitjançant programari o ASCOM Switch', es: 'Datos y alimentación conmutables por puerto mediante software o ASCOM Switch', en: 'Per-port data and power switching via software or ASCOM Switch' } },

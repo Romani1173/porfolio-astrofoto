@@ -30,9 +30,15 @@ const ui = equipmentUi[lang];
 				<span class="equipment-ghost__label">{ui.photoPending}</span>
 			</div>
 		)}
-		{equipmentItem.description || equipmentItem.specs ? (
+		{equipmentItem.description || equipmentItem.notes || equipmentItem.specs ? (
 			<div class="equipment-detail__content">
 				{equipmentItem.description && <p class="equipment-detail__description">{equipmentItem.description[lang]}</p>}
+				{equipmentItem.notes?.map((note) => (
+					<section class="equipment-detail__note">
+						<h2>{note.title[lang]}</h2>
+						<p>{note.body[lang]}</p>
+					</section>
+				))}
 				{equipmentItem.specs ? (
 					<section class="equipment-specifications" aria-labelledby="equipment-specifications-heading">
 						<p class="equipment-kicker">{equipmentItem.kicker[lang]}</p>
@@ -67,5 +73,13 @@ const ui = equipmentUi[lang];
 				<figcaption>{equipmentItem.additionalImageCaption?.[lang] ?? ui.referenceGraphic}</figcaption>
 			</figure>
 		)}
+		{equipmentItem.galleryImages?.map((galleryImage) => (
+			<figure class="equipment-reference-graphic">
+				<div class="equipment-image">
+					<img src={`${base}${galleryImage.image}`} alt={galleryImage.alt[lang]} loading="lazy" />
+				</div>
+				<figcaption>{galleryImage.caption[lang]}</figcaption>
+			</figure>
+		))}
 	</article>
 </Layout>
