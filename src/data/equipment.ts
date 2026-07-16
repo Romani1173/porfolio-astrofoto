@@ -81,9 +81,8 @@ export const equipmentGroups: EquipmentGroup[] = [
 		hotspot: { x: 82, y: 16, targetX: 57, targetY: 27 },
 		items: [
 			item('guide-scope', '01', { ca: 'Svbony SV106', es: 'Svbony SV106', en: 'Svbony SV106' }, { ca: 'Tub de guiatge', es: 'Tubo de guiado', en: 'Guide scope' }, { ca: 'Tub guia de 60 mm dedicat al seguiment', es: 'Tubo guía de 60 mm dedicado al seguimiento', en: '60 mm guide scope dedicated to tracking' }, { ca: 'tub-guiatge', es: 'tubo-guiado', en: 'guide-scope' }, {
-				image: 'imagenes/equipo-tubo-guiado-provisional.png',
-				imageProvisional: true,
-				imageAlt: { ca: 'Tub de guiatge Svbony SV106 de 60 mm amb les anelles de subjecció', es: 'Tubo de guiado Svbony SV106 de 60 mm con sus anillas de sujeción', en: 'Svbony SV106 60 mm guide scope with its mounting rings' },
+				image: 'imagenes/equipo-tubo-guiado.jpeg',
+				imageAlt: { ca: 'Tub de guiatge Svbony SV106 de 60 mm amb la càmera ZWO ASI220MM Mini instal·lats sobre l’equip', es: 'Tubo de guiado Svbony SV106 de 60 mm con la cámara ZWO ASI220MM Mini instalados sobre el equipo', en: 'Svbony SV106 60 mm guide scope with the ZWO ASI220MM Mini camera installed on the rig' },
 				description: {
 					ca: 'El Svbony SV106 és un tub guia compacte de 60 mm i relació focal f/4. El seu camp ampli facilita la selecció d’estrelles de referència, mentre que l’enfocador helicoidal permet ajustar el focus amb precisió sense fer girar la càmera.',
 					es: 'El Svbony SV106 es un tubo guía compacto de 60 mm y relación focal f/4. Su campo amplio facilita la selección de estrellas de referencia, mientras que el enfocador helicoidal permite ajustar el foco con precisión sin hacer girar la cámara.',
@@ -100,11 +99,8 @@ export const equipmentGroups: EquipmentGroup[] = [
 				],
 			}),
 			item('guide-camera', '02', { ca: 'ZWO ASI220MM Mini', es: 'ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini' }, { ca: 'Càmera de guiatge', es: 'Cámara de guiado', en: 'Guide camera' }, { ca: 'Sensor monocrom dedicat al seguiment', es: 'Sensor monocromo dedicado al seguimiento', en: 'Monochrome sensor dedicated to tracking' }, { ca: 'camera-guiatge', es: 'camara-guiado', en: 'guide-camera' }, {
-				image: 'imagenes/equipo-camara-guiado-provisional.png',
-				imageProvisional: true,
-				imageAlt: { ca: 'Càmera de guiatge monocroma ZWO ASI220MM Mini', es: 'Cámara de guiado monocroma ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini monochrome guide camera' },
-				additionalImage: 'imagenes/equipo-camara-guiado-datos-provisional.png',
-				additionalImageAlt: { ca: 'Resum gràfic provisional de les característiques de la ZWO ASI220MM Mini', es: 'Resumen gráfico provisional de las características de la ZWO ASI220MM Mini', en: 'Provisional graphical overview of the ZWO ASI220MM Mini specifications' },
+				image: 'imagenes/equipo-camara-guiado.jpeg',
+				imageAlt: { ca: 'Càmera de guiatge monocroma ZWO ASI220MM Mini connectada al tub Svbony SV106 en el muntatge', es: 'Cámara de guiado monocroma ZWO ASI220MM Mini conectada al tubo Svbony SV106 en el montaje', en: 'ZWO ASI220MM Mini monochrome guide camera connected to the Svbony SV106 scope on the rig' },
 				description: {
 					ca: 'La ZWO ASI220MM Mini és una càmera monocroma compacta destinada a l’autoguiatge. El sensor de 2,07 megapíxels, els píxels de 4 μm i una eficiència quàntica màxima del 92 % afavoreixen la detecció d’estrelles guia amb exposicions curtes.',
 					es: 'La ZWO ASI220MM Mini es una cámara monocroma compacta destinada al autoguiado. El sensor de 2,07 megapíxeles, los píxeles de 4 μm y una eficiencia cuántica máxima del 92 % favorecen la detección de estrellas guía con exposiciones cortas.',
