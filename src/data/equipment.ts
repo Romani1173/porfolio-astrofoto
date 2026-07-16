@@ -94,9 +94,9 @@ export const equipmentGroups: EquipmentGroup[] = [
 			item('focuser', '03', { ca: 'ZWO EAF', es: 'ZWO EAF', en: 'ZWO EAF' }, { ca: 'Enfocament', es: 'Enfoque', en: 'Focusing' }, { ca: 'Control motoritzat de l’enfocament principal', es: 'Control motorizado del enfoque principal', en: 'Motorised focus control for the main imaging train' }, { ca: 'enfocador', es: 'enfocador', en: 'focuser' }, {
 				image: 'imagenes/equipo-electronica-vista-superior.jpeg',
 				imageAlt: { ca: 'Vista superior del tren òptic amb el motor d’enfocament ZWO EAF vermell muntat perpendicularment al tub', es: 'Vista superior del tren óptico con el motor de enfoque ZWO EAF rojo montado perpendicularmente al tubo', en: 'Top view of the optical train with the red ZWO EAF focus motor mounted perpendicular to the telescope' },
-				additionalImage: 'imagenes/equipo-camara-principal.jpeg',
-				additionalImageAlt: { ca: 'Detall del ZWO EAF al costat de la roda portafiltres EFW i la càmera principal', es: 'Detalle del ZWO EAF junto a la rueda portafiltros EFW y la cámara principal', en: 'Detail of the ZWO EAF beside the EFW filter wheel and main camera' },
-				additionalImageCaption: { ca: 'EAF, roda portafiltres i càmera principal', es: 'EAF, rueda portafiltros y cámara principal', en: 'EAF, filter wheel and main camera' },
+				additionalImage: 'imagenes/equipo-camara-eaf-detalle.jpeg',
+				additionalImageAlt: { ca: 'Detall frontal del ZWO EAF al costat de la roda portafiltres EFW i la càmera principal', es: 'Detalle frontal del ZWO EAF junto a la rueda portafiltros EFW y la cámara principal', en: 'Front detail of the ZWO EAF beside the EFW filter wheel and main camera' },
+				additionalImageCaption: { ca: 'L’EAF comparteix espai amb la roda i la càmera', es: 'El EAF comparte espacio con la rueda y la cámara', en: 'The EAF shares the compact assembly with the wheel and camera' },
 				description: {
 					ca: 'El motor ZWO EAF és la peça vermella muntada perpendicularment al tren òptic. Acciona el mecanisme d’enfocament de l’OTA i permet ajustar el focus de manera remota i repetible, una funció especialment útil per compensar els canvis de temperatura durant una sessió.',
 					es: 'El motor ZWO EAF es la pieza roja montada perpendicularmente al tren óptico. Acciona el mecanismo de enfoque de la OTA y permite ajustar el foco de forma remota y repetible, una función especialmente útil para compensar los cambios de temperatura durante una sesión.',
@@ -106,6 +106,9 @@ export const equipmentGroups: EquipmentGroup[] = [
 			item('filter-wheel', '04', { ca: 'ZWO EFW', es: 'ZWO EFW', en: 'ZWO EFW' }, { ca: 'Tren d’imatge', es: 'Tren de imagen', en: 'Imaging train' }, { ca: 'Selecció automatitzada de filtres', es: 'Selección automatizada de filtros', en: 'Automated filter selection' }, { ca: 'roda-portafiltres', es: 'rueda-portafiltros', en: 'filter-wheel' }, {
 				image: 'imagenes/equipo-tren-imagen-posterior.jpeg',
 				imageAlt: { ca: 'Tren d’imatge posterior amb la roda portafiltres ZWO EFW instal·lada immediatament abans de la càmera principal', es: 'Tren de imagen posterior con la rueda portafiltros ZWO EFW instalada inmediatamente antes de la cámara principal', en: 'Rear imaging train with the ZWO EFW filter wheel installed immediately in front of the main camera' },
+				additionalImage: 'imagenes/equipo-camara-principal.jpeg',
+				additionalImageAlt: { ca: 'Detall de la roda portafiltres ZWO EFW entre el motor EAF i la càmera principal', es: 'Detalle de la rueda portafiltros ZWO EFW entre el motor EAF y la cámara principal', en: 'Detail of the ZWO EFW filter wheel between the EAF motor and main camera' },
+				additionalImageCaption: { ca: 'La roda EFW dins del conjunt compacte', es: 'La rueda EFW dentro del conjunto compacto', en: 'The EFW within the compact assembly' },
 				description: {
 					ca: 'La roda portafiltres ZWO EFW és el cos circular negre situat immediatament davant de la càmera principal. La seva posició manté els filtres a prop del sensor i permet seleccionar-los de manera automatitzada sense alterar la resta del tren òptic.',
 					es: 'La rueda portafiltros ZWO EFW es el cuerpo circular negro situado inmediatamente delante de la cámara principal. Su posición mantiene los filtros cerca del sensor y permite seleccionarlos de forma automatizada sin alterar el resto del tren óptico.',
@@ -113,8 +116,8 @@ export const equipmentGroups: EquipmentGroup[] = [
 				},
 			}),
 			item('main-camera', '05', { ca: 'ZWO ASI294MM Pro', es: 'ZWO ASI294MM Pro', en: 'ZWO ASI294MM Pro' }, { ca: 'Captura principal', es: 'Captura principal', en: 'Main capture' }, { ca: 'Càmera monocroma refrigerada de captura', es: 'Cámara monocroma refrigerada de captura', en: 'Cooled monochrome imaging camera' }, { ca: 'camera-principal', es: 'camara-principal', en: 'main-camera' }, {
-				image: 'imagenes/equipo-camara-principal.jpeg',
-				imageAlt: { ca: 'Càmera principal ZWO ASI294MM Pro refrigerada connectada a la roda portafiltres EFW', es: 'Cámara principal ZWO ASI294MM Pro refrigerada conectada a la rueda portafiltros EFW', en: 'Cooled ZWO ASI294MM Pro main camera connected to the EFW filter wheel' },
+				image: 'imagenes/equipo-camara-eaf-detalle.jpeg',
+				imageAlt: { ca: 'Càmera principal ZWO ASI294MM Pro refrigerada amb la roda portafiltres EFW i el motor EAF visibles', es: 'Cámara principal ZWO ASI294MM Pro refrigerada con la rueda portafiltros EFW y el motor EAF visibles', en: 'Cooled ZWO ASI294MM Pro main camera with the EFW filter wheel and EAF motor visible' },
 				additionalImage: 'imagenes/equipo-tren-imagen-posterior.jpeg',
 				additionalImageAlt: { ca: 'Vista lateral de la càmera principal al final del tren òptic, darrere de la roda portafiltres i del reductor-aplanador', es: 'Vista lateral de la cámara principal al final del tren óptico, detrás de la rueda portafiltros y del reductor-aplanador', en: 'Side view of the main camera at the end of the optical train, behind the filter wheel and reducer-flattener' },
 				additionalImageCaption: { ca: 'Ordre complet del tren d’imatge posterior', es: 'Orden completo del tren de imagen posterior', en: 'Complete rear imaging-train order' },
