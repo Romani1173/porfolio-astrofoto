@@ -30,21 +30,28 @@ const ui = equipmentUi[lang];
 				<span class="equipment-ghost__label">{ui.photoPending}</span>
 			</div>
 		)}
-		{equipmentItem.description && equipmentItem.specs ? (
+		{equipmentItem.description || equipmentItem.specs ? (
 			<div class="equipment-detail__content">
-				<p class="equipment-detail__description">{equipmentItem.description[lang]}</p>
-				<section class="equipment-specifications" aria-labelledby="equipment-specifications-heading">
-					<p class="equipment-kicker">{equipmentItem.kicker[lang]}</p>
-					<h2 id="equipment-specifications-heading">{ui.specifications}</h2>
-					<dl>
-						{equipmentItem.specs.map((spec) => (
-							<div>
-								<dt>{spec.label[lang]}</dt>
-								<dd>{spec.value[lang]}</dd>
-							</div>
-						))}
-					</dl>
-				</section>
+				{equipmentItem.description && <p class="equipment-detail__description">{equipmentItem.description[lang]}</p>}
+				{equipmentItem.specs ? (
+					<section class="equipment-specifications" aria-labelledby="equipment-specifications-heading">
+						<p class="equipment-kicker">{equipmentItem.kicker[lang]}</p>
+						<h2 id="equipment-specifications-heading">{ui.specifications}</h2>
+						<dl>
+							{equipmentItem.specs.map((spec) => (
+								<div>
+									<dt>{spec.label[lang]}</dt>
+									<dd>{spec.value[lang]}</dd>
+								</div>
+							))}
+						</dl>
+					</section>
+				) : (
+					<section class="equipment-detail__pending">
+						<p>{equipmentItem.kicker[lang]}</p>
+						<h2>{ui.detailsPending}</h2>
+					</section>
+				)}
 			</div>
 		) : (
 			<section class="equipment-detail__pending">
