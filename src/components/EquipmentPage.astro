@@ -60,14 +60,34 @@ const photo = `${base}imagenes/equipo-vista-lateral-izquierda.webp`;
 
 <script>
 	const links = document.querySelectorAll<HTMLElement>('[data-group-link]');
+	const usesTouchNavigation = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+	let activeTouchLink: HTMLElement | null = null;
 	const setLine = (id: string | undefined, active: boolean) => {
 		if (!id) return;
 		document.querySelector(`[data-group-line="${id}"]`)?.classList.toggle('is-active', active);
+	};
+	const clearTouchSelection = () => {
+		if (!activeTouchLink) return;
+		activeTouchLink.classList.remove('is-active');
+		setLine(activeTouchLink.dataset.groupLink, false);
+		activeTouchLink = null;
 	};
 	links.forEach((link) => {
 		link.addEventListener('pointerenter', () => setLine(link.dataset.groupLink, true));
 		link.addEventListener('pointerleave', () => setLine(link.dataset.groupLink, false));
 		link.addEventListener('focus', () => setLine(link.dataset.groupLink, true));
 		link.addEventListener('blur', () => setLine(link.dataset.groupLink, false));
+		link.addEventListener('click', (event) => {
+			if (!usesTouchNavigation || link === activeTouchLink) return;
+			event.preventDefault();
+			clearTouchSelection();
+			link.classList.add('is-active');
+			setLine(link.dataset.groupLink, true);
+			activeTouchLink = link;
+		});
+	});
+	document.addEventListener('pointerdown', (event) => {
+		if (activeTouchLink?.contains(event.target as Node)) return;
+		clearTouchSelection();
 	});
 </script>
