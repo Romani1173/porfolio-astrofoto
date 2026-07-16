@@ -27,7 +27,7 @@ const countLabel = group.items.length === 1 ? ui.component : ui.components;
 				<article class="photo-card equipment-card">
 					<a href={itemHref(lang, group, equipmentItem, base)} aria-label={`${ui.viewDetails} ${equipmentItem.title[lang]}`}>
 						{equipmentItem.image && equipmentItem.imageAlt ? (
-							<div class="equipment-provisional-image equipment-card__image" data-watermark={ui.provisionalImage}>
+							<div class:list={['equipment-image', 'equipment-card__image', { 'equipment-provisional-image': equipmentItem.imageProvisional }]} data-watermark={equipmentItem.imageProvisional ? ui.provisionalImage : undefined}>
 								<img src={`${base}${equipmentItem.image}`} alt={equipmentItem.imageAlt[lang]} loading="lazy" />
 							</div>
 						) : (

@@ -31,6 +31,7 @@ export interface EquipmentItem {
 	slug: Localized;
 	image?: string;
 	imageAlt?: Localized;
+	imageProvisional?: boolean;
 	additionalImage?: string;
 	additionalImageAlt?: Localized;
 	description?: Localized;
@@ -54,7 +55,7 @@ const item = (
 	kicker: Localized,
 	summary: Localized,
 	slug: Localized,
-	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'additionalImage' | 'additionalImageAlt' | 'description' | 'specs'>> = {},
+	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'imageProvisional' | 'additionalImage' | 'additionalImageAlt' | 'description' | 'specs'>> = {},
 ): EquipmentItem => ({ id, number, title, kicker, summary, slug, ...details });
 
 export const equipmentGroups: EquipmentGroup[] = [
@@ -81,6 +82,7 @@ export const equipmentGroups: EquipmentGroup[] = [
 		items: [
 			item('guide-scope', '01', { ca: 'Svbony SV106', es: 'Svbony SV106', en: 'Svbony SV106' }, { ca: 'Tub de guiatge', es: 'Tubo de guiado', en: 'Guide scope' }, { ca: 'Tub guia de 60 mm dedicat al seguiment', es: 'Tubo guía de 60 mm dedicado al seguimiento', en: '60 mm guide scope dedicated to tracking' }, { ca: 'tub-guiatge', es: 'tubo-guiado', en: 'guide-scope' }, {
 				image: 'imagenes/equipo-tubo-guiado-provisional.png',
+				imageProvisional: true,
 				imageAlt: { ca: 'Tub de guiatge Svbony SV106 de 60 mm amb les anelles de subjecció', es: 'Tubo de guiado Svbony SV106 de 60 mm con sus anillas de sujeción', en: 'Svbony SV106 60 mm guide scope with its mounting rings' },
 				description: {
 					ca: 'El Svbony SV106 és un tub guia compacte de 60 mm i relació focal f/4. El seu camp ampli facilita la selecció d’estrelles de referència, mentre que l’enfocador helicoidal permet ajustar el focus amb precisió sense fer girar la càmera.',
@@ -99,6 +101,7 @@ export const equipmentGroups: EquipmentGroup[] = [
 			}),
 			item('guide-camera', '02', { ca: 'ZWO ASI220MM Mini', es: 'ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini' }, { ca: 'Càmera de guiatge', es: 'Cámara de guiado', en: 'Guide camera' }, { ca: 'Sensor monocrom dedicat al seguiment', es: 'Sensor monocromo dedicado al seguimiento', en: 'Monochrome sensor dedicated to tracking' }, { ca: 'camera-guiatge', es: 'camara-guiado', en: 'guide-camera' }, {
 				image: 'imagenes/equipo-camara-guiado-provisional.png',
+				imageProvisional: true,
 				imageAlt: { ca: 'Càmera de guiatge monocroma ZWO ASI220MM Mini', es: 'Cámara de guiado monocroma ZWO ASI220MM Mini', en: 'ZWO ASI220MM Mini monochrome guide camera' },
 				additionalImage: 'imagenes/equipo-camara-guiado-datos-provisional.png',
 				additionalImageAlt: { ca: 'Resum gràfic provisional de les característiques de la ZWO ASI220MM Mini', es: 'Resumen gráfico provisional de las características de la ZWO ASI220MM Mini', en: 'Provisional graphical overview of the ZWO ASI220MM Mini specifications' },
@@ -139,8 +142,14 @@ export const equipmentGroups: EquipmentGroup[] = [
 		slug: { ca: 'electronica-control', es: 'electronica-control', en: 'electronics-control' },
 		hotspot: { x: 82, y: 41, targetX: 53, targetY: 35 },
 		items: [
-			item('powerbox', '01', { ca: 'Distribuïdor Powerbox', es: 'Distribuidor Powerbox', en: 'Powerbox distributor' }, { ca: 'Electrònica', es: 'Electrónica', en: 'Electronics' }, { ca: 'Alimentació, escalfadors i control ambiental', es: 'Alimentación, calentadores y control ambiental', en: 'Power, dew-heater and environmental control' }, { ca: 'distribuidor-powerbox', es: 'distribuidor-powerbox', en: 'powerbox-distributor' }),
-			item('usb-hub', '02', { ca: 'Hub USB', es: 'Hub USB', en: 'USB hub' }, { ca: 'Connectivitat', es: 'Conectividad', en: 'Connectivity' }, { ca: 'Connexió centralitzada dels equips', es: 'Conexión centralizada de los equipos', en: 'Centralised equipment connection' }, { ca: 'hub-usb', es: 'hub-usb', en: 'usb-hub' }),
+			item('powerbox', '01', { ca: 'Distribuïdor Powerbox', es: 'Distribuidor Powerbox', en: 'Powerbox distributor' }, { ca: 'Electrònica', es: 'Electrónica', en: 'Electronics' }, { ca: 'Alimentació, escalfadors i control ambiental', es: 'Alimentación, calentadores y control ambiental', en: 'Power, dew-heater and environmental control' }, { ca: 'distribuidor-powerbox', es: 'distribuidor-powerbox', en: 'powerbox-distributor' }, {
+				image: 'imagenes/equipo-powerbox.png',
+				imageAlt: { ca: 'Distribuïdor Powerbox blau instal·lat a l’equip d’astrofotografia', es: 'Distribuidor Powerbox azul instalado en el equipo de astrofotografía', en: 'Blue Powerbox distributor installed on the astrophotography rig' },
+			}),
+			item('usb-hub', '02', { ca: 'Hub USB', es: 'Hub USB', en: 'USB hub' }, { ca: 'Connectivitat', es: 'Conectividad', en: 'Connectivity' }, { ca: 'Connexió centralitzada dels equips', es: 'Conexión centralizada de los equipos', en: 'Centralised equipment connection' }, { ca: 'hub-usb', es: 'hub-usb', en: 'usb-hub' }, {
+				image: 'imagenes/equipo-hub-usb.png',
+				imageAlt: { ca: 'Hub USB blau instal·lat a l’equip d’astrofotografia', es: 'Hub USB azul instalado en el equipo de astrofotografía', en: 'Blue USB hub installed on the astrophotography rig' },
+			}),
 		],
 	},
 ];

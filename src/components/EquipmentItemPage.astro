@@ -21,7 +21,7 @@ const ui = equipmentUi[lang];
 			<p>{equipmentItem.summary[lang]}</p>
 		</header>
 		{equipmentItem.image && equipmentItem.imageAlt ? (
-			<figure class="equipment-provisional-image equipment-detail__image" data-watermark={ui.provisionalImage}>
+			<figure class:list={['equipment-image', 'equipment-detail__image', { 'equipment-provisional-image': equipmentItem.imageProvisional }]} data-watermark={equipmentItem.imageProvisional ? ui.provisionalImage : undefined}>
 				<img src={`${base}${equipmentItem.image}`} alt={equipmentItem.imageAlt[lang]} />
 			</figure>
 		) : (
@@ -47,7 +47,7 @@ const ui = equipmentUi[lang];
 				</section>
 				{equipmentItem.additionalImage && equipmentItem.additionalImageAlt && (
 					<figure class="equipment-reference-graphic">
-						<div class="equipment-provisional-image" data-watermark={ui.provisionalImage}>
+						<div class="equipment-image equipment-provisional-image" data-watermark={ui.provisionalImage}>
 							<img src={`${base}${equipmentItem.additionalImage}`} alt={equipmentItem.additionalImageAlt[lang]} loading="lazy" />
 						</div>
 						<figcaption>{ui.referenceGraphic}</figcaption>
