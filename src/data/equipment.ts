@@ -82,10 +82,48 @@ export const equipmentGroups: EquipmentGroup[] = [
 					en: 'The photograph shows the main OTA integrated into the imaging rig. The main heater band is visible around the front section of the telescope, while a second band protects the guide scope. A temperature probe attached to the side of the OTA provides an environmental reference for the dew-control system. Although these small components belong to the power and environmental-control system, they are documented here because their position on the optical tubes explains their purpose more clearly and they do not require separate photographic pages.',
 				},
 			}),
-			item('reducer', '02', { ca: 'Reductor-aplanador', es: 'Reductor-aplanador', en: 'Reducer-flattener' }, { ca: 'Tren òptic', es: 'Tren óptico', en: 'Optical train' }, { ca: 'Correcció de camp i reducció focal', es: 'Corrección de campo y reducción focal', en: 'Field correction and focal reduction' }, { ca: 'reductor-aplanador', es: 'reductor-aplanador', en: 'reducer-flattener' }),
-			item('focuser', '03', { ca: 'Enfocador', es: 'Enfocador', en: 'Focuser' }, { ca: 'Enfocament', es: 'Enfoque', en: 'Focusing' }, { ca: 'Control de l’enfocament del tren principal', es: 'Control del enfoque del tren principal', en: 'Focus control for the main imaging train' }, { ca: 'enfocador', es: 'enfocador', en: 'focuser' }),
-			item('filter-wheel', '04', { ca: 'Roda portafiltres', es: 'Rueda portafiltros', en: 'Filter wheel' }, { ca: 'Tren d’imatge', es: 'Tren de imagen', en: 'Imaging train' }, { ca: 'Selecció automatitzada de filtres', es: 'Selección automatizada de filtros', en: 'Automated filter selection' }, { ca: 'roda-portafiltres', es: 'rueda-portafiltros', en: 'filter-wheel' }),
-			item('main-camera', '05', { ca: 'Càmera principal', es: 'Cámara principal', en: 'Main camera' }, { ca: 'Captura principal', es: 'Captura principal', en: 'Main capture' }, { ca: 'Sensor principal de captura', es: 'Sensor principal de captura', en: 'Main image-capture sensor' }, { ca: 'camera-principal', es: 'camara-principal', en: 'main-camera' }),
+			item('reducer', '02', { ca: 'Reductor-aplanador 0,8×', es: 'Reductor-aplanador 0,8×', en: '0.8× reducer-flattener' }, { ca: 'Tren òptic', es: 'Tren óptico', en: 'Optical train' }, { ca: 'Correcció de camp i reducció focal', es: 'Corrección de campo y reducción focal', en: 'Field correction and focal reduction' }, { ca: 'reductor-aplanador', es: 'reductor-aplanador', en: 'reducer-flattener' }, {
+				image: 'imagenes/equipo-tren-imagen-posterior.jpeg',
+				imageAlt: { ca: 'Vista lateral del tren d’imatge amb el reductor-aplanador 0,8× situat entre l’enfocador i la roda portafiltres', es: 'Vista lateral del tren de imagen con el reductor-aplanador 0,8× situado entre el enfocador y la rueda portafiltros', en: 'Side view of the imaging train with the 0.8× reducer-flattener positioned between the focuser and filter wheel' },
+				description: {
+					ca: 'En aquesta vista lateral es pot localitzar el reductor-aplanador 0,8× dins del tren òptic posterior. Està instal·lat després del mecanisme d’enfocament i abans de la roda portafiltres i la càmera principal. Aquesta posició permet reduir la distància focal i corregir el camp abans que la llum arribi als filtres i al sensor.',
+					es: 'En esta vista lateral se puede localizar el reductor-aplanador 0,8× dentro del tren óptico posterior. Está instalado después del mecanismo de enfoque y antes de la rueda portafiltros y la cámara principal. Esta posición permite reducir la distancia focal y corregir el campo antes de que la luz llegue a los filtros y al sensor.',
+					en: 'This side view shows the 0.8× reducer-flattener within the rear optical train. It is installed after the focusing mechanism and before the filter wheel and main camera. This position reduces the focal length and corrects the field before the light reaches the filters and sensor.',
+				},
+			}),
+			item('focuser', '03', { ca: 'ZWO EAF', es: 'ZWO EAF', en: 'ZWO EAF' }, { ca: 'Enfocament', es: 'Enfoque', en: 'Focusing' }, { ca: 'Control motoritzat de l’enfocament principal', es: 'Control motorizado del enfoque principal', en: 'Motorised focus control for the main imaging train' }, { ca: 'enfocador', es: 'enfocador', en: 'focuser' }, {
+				image: 'imagenes/equipo-electronica-vista-superior.jpeg',
+				imageAlt: { ca: 'Vista superior del tren òptic amb el motor d’enfocament ZWO EAF vermell muntat perpendicularment al tub', es: 'Vista superior del tren óptico con el motor de enfoque ZWO EAF rojo montado perpendicularmente al tubo', en: 'Top view of the optical train with the red ZWO EAF focus motor mounted perpendicular to the telescope' },
+				additionalImage: 'imagenes/equipo-camara-principal.jpeg',
+				additionalImageAlt: { ca: 'Detall del ZWO EAF al costat de la roda portafiltres EFW i la càmera principal', es: 'Detalle del ZWO EAF junto a la rueda portafiltros EFW y la cámara principal', en: 'Detail of the ZWO EAF beside the EFW filter wheel and main camera' },
+				additionalImageCaption: { ca: 'EAF, roda portafiltres i càmera principal', es: 'EAF, rueda portafiltros y cámara principal', en: 'EAF, filter wheel and main camera' },
+				description: {
+					ca: 'El motor ZWO EAF és la peça vermella muntada perpendicularment al tren òptic. Acciona el mecanisme d’enfocament de l’OTA i permet ajustar el focus de manera remota i repetible, una funció especialment útil per compensar els canvis de temperatura durant una sessió.',
+					es: 'El motor ZWO EAF es la pieza roja montada perpendicularmente al tren óptico. Acciona el mecanismo de enfoque de la OTA y permite ajustar el foco de forma remota y repetible, una función especialmente útil para compensar los cambios de temperatura durante una sesión.',
+					en: 'The ZWO EAF is the red motor mounted perpendicular to the optical train. It drives the OTA focusing mechanism and provides remote, repeatable focus adjustment, which is particularly useful for compensating for temperature changes during an imaging session.',
+				},
+			}),
+			item('filter-wheel', '04', { ca: 'ZWO EFW', es: 'ZWO EFW', en: 'ZWO EFW' }, { ca: 'Tren d’imatge', es: 'Tren de imagen', en: 'Imaging train' }, { ca: 'Selecció automatitzada de filtres', es: 'Selección automatizada de filtros', en: 'Automated filter selection' }, { ca: 'roda-portafiltres', es: 'rueda-portafiltros', en: 'filter-wheel' }, {
+				image: 'imagenes/equipo-tren-imagen-posterior.jpeg',
+				imageAlt: { ca: 'Tren d’imatge posterior amb la roda portafiltres ZWO EFW instal·lada immediatament abans de la càmera principal', es: 'Tren de imagen posterior con la rueda portafiltros ZWO EFW instalada inmediatamente antes de la cámara principal', en: 'Rear imaging train with the ZWO EFW filter wheel installed immediately in front of the main camera' },
+				description: {
+					ca: 'La roda portafiltres ZWO EFW és el cos circular negre situat immediatament davant de la càmera principal. La seva posició manté els filtres a prop del sensor i permet seleccionar-los de manera automatitzada sense alterar la resta del tren òptic.',
+					es: 'La rueda portafiltros ZWO EFW es el cuerpo circular negro situado inmediatamente delante de la cámara principal. Su posición mantiene los filtros cerca del sensor y permite seleccionarlos de forma automatizada sin alterar el resto del tren óptico.',
+					en: 'The ZWO EFW filter wheel is the black circular body immediately in front of the main camera. Its position keeps the filters close to the sensor and allows automated selection without disturbing the rest of the optical train.',
+				},
+			}),
+			item('main-camera', '05', { ca: 'ZWO ASI294MM Pro', es: 'ZWO ASI294MM Pro', en: 'ZWO ASI294MM Pro' }, { ca: 'Captura principal', es: 'Captura principal', en: 'Main capture' }, { ca: 'Càmera monocroma refrigerada de captura', es: 'Cámara monocroma refrigerada de captura', en: 'Cooled monochrome imaging camera' }, { ca: 'camera-principal', es: 'camara-principal', en: 'main-camera' }, {
+				image: 'imagenes/equipo-camara-principal.jpeg',
+				imageAlt: { ca: 'Càmera principal ZWO ASI294MM Pro refrigerada connectada a la roda portafiltres EFW', es: 'Cámara principal ZWO ASI294MM Pro refrigerada conectada a la rueda portafiltros EFW', en: 'Cooled ZWO ASI294MM Pro main camera connected to the EFW filter wheel' },
+				additionalImage: 'imagenes/equipo-tren-imagen-posterior.jpeg',
+				additionalImageAlt: { ca: 'Vista lateral de la càmera principal al final del tren òptic, darrere de la roda portafiltres i del reductor-aplanador', es: 'Vista lateral de la cámara principal al final del tren óptico, detrás de la rueda portafiltros y del reductor-aplanador', en: 'Side view of the main camera at the end of the optical train, behind the filter wheel and reducer-flattener' },
+				additionalImageCaption: { ca: 'Ordre complet del tren d’imatge posterior', es: 'Orden completo del tren de imagen posterior', en: 'Complete rear imaging-train order' },
+				description: {
+					ca: 'La ZWO ASI294MM Pro és la càmera principal de captura i ocupa l’extrem del tren òptic. En el detall es veu el cos refrigerat vermell unit directament a la roda portafiltres EFW; la segona vista permet seguir la seva posició respecte de l’enfocador i del reductor-aplanador 0,8×.',
+					es: 'La ZWO ASI294MM Pro es la cámara principal de captura y ocupa el extremo del tren óptico. En el detalle se aprecia el cuerpo refrigerado rojo unido directamente a la rueda portafiltros EFW; la segunda vista permite seguir su posición respecto al enfocador y al reductor-aplanador 0,8×.',
+					en: 'The ZWO ASI294MM Pro is the main imaging camera and sits at the end of the optical train. The close view shows its red cooled body directly attached to the EFW filter wheel, while the second view shows its position relative to the focuser and 0.8× reducer-flattener.',
+				},
+			}),
 		],
 	},
 	{
