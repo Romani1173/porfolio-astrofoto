@@ -142,13 +142,47 @@ export const equipmentGroups: EquipmentGroup[] = [
 		slug: { ca: 'electronica-control', es: 'electronica-control', en: 'electronics-control' },
 		hotspot: { x: 82, y: 41, targetX: 53, targetY: 35 },
 		items: [
-			item('powerbox', '01', { ca: 'Distribuïdor Powerbox', es: 'Distribuidor Powerbox', en: 'Powerbox distributor' }, { ca: 'Electrònica', es: 'Electrónica', en: 'Electronics' }, { ca: 'Alimentació, escalfadors i control ambiental', es: 'Alimentación, calentadores y control ambiental', en: 'Power, dew-heater and environmental control' }, { ca: 'distribuidor-powerbox', es: 'distribuidor-powerbox', en: 'powerbox-distributor' }, {
+			item('powerbox', '01', { ca: 'Pegasus Astro PPB Micro', es: 'Pegasus Astro PPB Micro', en: 'Pegasus Astro PPB Micro' }, { ca: 'Distribució d’alimentació', es: 'Distribución de alimentación', en: 'Power distribution' }, { ca: 'Alimentació, escalfadors i control ambiental', es: 'Alimentación, calentadores y control ambiental', en: 'Power, dew-heater and environmental control' }, { ca: 'distribuidor-powerbox', es: 'distribuidor-powerbox', en: 'powerbox-distributor' }, {
 				image: 'imagenes/equipo-powerbox.png',
-				imageAlt: { ca: 'Distribuïdor Powerbox blau instal·lat a l’equip d’astrofotografia', es: 'Distribuidor Powerbox azul instalado en el equipo de astrofotografía', en: 'Blue Powerbox distributor installed on the astrophotography rig' },
+				imageAlt: { ca: 'Pegasus Astro PPB Micro instal·lada a l’equip d’astrofotografia', es: 'Pegasus Astro PPB Micro instalada en el equipo de astrofotografía', en: 'Pegasus Astro PPB Micro installed on the astrophotography rig' },
+				description: {
+					ca: 'La Pegasus Astro Pocket Powerbox Micro centralitza l’alimentació i el control ambiental de l’equip en una carcassa compacta. Permet commutar les sortides de corrent, regular una sortida auxiliar i controlar dos escalfadors anticondensació, tant des de l’ordinador com en funcionament autònom.',
+					es: 'La Pegasus Astro Pocket Powerbox Micro centraliza la alimentación y el control ambiental del equipo en una carcasa compacta. Permite conmutar las salidas de corriente, regular una salida auxiliar y controlar dos calentadores anticondensación, tanto desde el ordenador como en funcionamiento autónomo.',
+					en: 'The Pegasus Astro Pocket Powerbox Micro centralises power distribution and environmental control in a compact enclosure. It provides switched power outlets, an adjustable auxiliary output and control of two dew heaters, either from a computer or in standalone operation.',
+				},
+				specs: [
+					{ label: { ca: 'Sortides principals', es: 'Salidas principales', en: 'Main outputs' }, value: { ca: '4 × 12 V CC, commutables per programari', es: '4 × 12 V CC, conmutables mediante software', en: '4 × 12 V DC, software switchable' } },
+					{ label: { ca: 'Potència total', es: 'Capacidad total', en: 'Total capacity' }, value: { ca: '10 A', es: '10 A', en: '10 A' } },
+					{ label: { ca: 'Sortida regulable', es: 'Salida regulable', en: 'Adjustable output' }, value: { ca: '3, 5, 8, 9 o 12 V; commutable', es: '3, 5, 8, 9 o 12 V; conmutable', en: '3, 5, 8, 9 or 12 V; switchable' } },
+					{ label: { ca: 'Escalfadors', es: 'Calentadores', en: 'Dew heaters' }, value: { ca: '2 canals PWM amb sortides RCA', es: '2 canales PWM con salidas RCA', en: '2 PWM channels with RCA outputs' } },
+					{ label: { ca: 'Control anticondensació', es: 'Control anticondensación', en: 'Dew control' }, value: { ca: 'Auto-Dew amb sensor d’humitat i temperatura inclòs', es: 'Auto-Dew con sensor de humedad y temperatura incluido', en: 'Auto-Dew with included humidity and temperature sensor' } },
+					{ label: { ca: 'Proteccions', es: 'Protecciones', en: 'Protection' }, value: { ca: 'Polaritat inversa i sobretensió', es: 'Polaridad inversa y sobretensión', en: 'Reverse polarity and overvoltage' } },
+					{ label: { ca: 'Funcionament', es: 'Funcionamiento', en: 'Operation' }, value: { ca: 'Control USB/PC o funcionament autònom', es: 'Control USB/PC o funcionamiento autónomo', en: 'USB/PC controlled or standalone' } },
+					{ label: { ca: 'Carcassa', es: 'Carcasa', en: 'Enclosure' }, value: { ca: 'Alumini CNC compacte', es: 'Aluminio CNC compacto', en: 'Compact CNC aluminium' } },
+					{ label: { ca: 'Dimensions i pes', es: 'Dimensiones y peso', en: 'Dimensions and weight' }, value: { ca: '66 × 66 × 24 mm · 115 g', es: '66 × 66 × 24 mm · 115 g', en: '66 × 66 × 24 mm · 115 g' } },
+				],
 			}),
-			item('usb-hub', '02', { ca: 'Hub USB', es: 'Hub USB', en: 'USB hub' }, { ca: 'Connectivitat', es: 'Conectividad', en: 'Connectivity' }, { ca: 'Connexió centralitzada dels equips', es: 'Conexión centralizada de los equipos', en: 'Centralised equipment connection' }, { ca: 'hub-usb', es: 'hub-usb', en: 'usb-hub' }, {
+			item('usb-hub', '02', { ca: 'Pegasus Astro USB Control Hub', es: 'Pegasus Astro USB Control Hub', en: 'Pegasus Astro USB Control Hub' }, { ca: 'Connectivitat', es: 'Conectividad', en: 'Connectivity' }, { ca: 'Connexió USB centralitzada i commutable', es: 'Conexión USB centralizada y conmutable', en: 'Centralised, switchable USB connectivity' }, { ca: 'hub-usb', es: 'hub-usb', en: 'usb-hub' }, {
 				image: 'imagenes/equipo-hub-usb.png',
-				imageAlt: { ca: 'Hub USB blau instal·lat a l’equip d’astrofotografia', es: 'Hub USB azul instalado en el equipo de astrofotografía', en: 'Blue USB hub installed on the astrophotography rig' },
+				imageAlt: { ca: 'Pegasus Astro USB Control Hub instal·lat a l’equip d’astrofotografia', es: 'Pegasus Astro USB Control Hub instalado en el equipo de astrofotografía', en: 'Pegasus Astro USB Control Hub installed on the astrophotography rig' },
+				description: {
+					ca: 'El Pegasus Astro USB Control Hub concentra sis connexions USB en una unitat preparada per a l’astrofotografia. Cada port es pot activar o desactivar de manera independent, incloses les línies de dades i d’alimentació, i l’arquitectura Multi Transaction Operation manté el rendiment USB 3.1 encara que hi hagi dispositius USB 2.0 connectats.',
+					es: 'El Pegasus Astro USB Control Hub concentra seis conexiones USB en una unidad preparada para astrofotografía. Cada puerto puede activarse o desactivarse de forma independiente, incluidas las líneas de datos y alimentación, y la arquitectura Multi Transaction Operation mantiene el rendimiento USB 3.1 aunque haya dispositivos USB 2.0 conectados.',
+					en: 'The Pegasus Astro USB Control Hub brings six USB connections together in a unit designed for astrophotography. Each port can be switched independently, including its data and power lines, while Multi Transaction Operation preserves USB 3.1 performance when USB 2.0 devices are also connected.',
+				},
+				specs: [
+					{ label: { ca: 'Ports', es: 'Puertos', en: 'Ports' }, value: { ca: '6 × USB 3.1 Gen 1, compatibles amb USB 1.0 i 2.0', es: '6 × USB 3.1 Gen 1, compatibles con USB 1.0 y 2.0', en: '6 × USB 3.1 Gen 1, backward compatible with USB 1.0 and 2.0' } },
+					{ label: { ca: 'Gestió de ports', es: 'Gestión de puertos', en: 'Port management' }, value: { ca: 'Dades i alimentació commutables per port mitjançant programari o ASCOM Switch', es: 'Datos y alimentación conmutables por puerto mediante software o ASCOM Switch', en: 'Per-port data and power switching via software or ASCOM Switch' } },
+					{ label: { ca: 'Operació simultània', es: 'Operación simultánea', en: 'Concurrent operation' }, value: { ca: 'Multi Transaction Operation: USB 3.1 a 5 Gbit/s independent del trànsit USB 2.0', es: 'Multi Transaction Operation: USB 3.1 a 5 Gbit/s independiente del tráfico USB 2.0', en: 'Multi Transaction Operation: 5 Gbps USB 3.1 transfers remain independent of USB 2.0 traffic' } },
+					{ label: { ca: 'Entrada', es: 'Entrada', en: 'Input' }, value: { ca: '12–14 V CC', es: '12–14 V CC', en: '12–14 V DC' } },
+					{ label: { ca: 'Sortida per port', es: 'Salida por puerto', en: 'Output per port' }, value: { ca: 'Fins a 2,5 A', es: 'Hasta 2,5 A', en: 'Up to 2.5 A' } },
+					{ label: { ca: 'Capacitat total', es: 'Capacidad total', en: 'Total capacity' }, value: { ca: '8 A', es: '8 A', en: '8 A' } },
+					{ label: { ca: 'Protecció', es: 'Protección', en: 'Protection' }, value: { ca: 'Límit de corrent intel·ligent per port contra curtcircuits', es: 'Límite de corriente inteligente por puerto contra cortocircuitos', en: 'Per-port intelligent current limiting with short-circuit protection' } },
+					{ label: { ca: 'Temperatura de treball', es: 'Temperatura de trabajo', en: 'Operating temperature' }, value: { ca: 'De −40 °C a +85 °C', es: 'De −40 °C a +85 °C', en: '−40 °C to +85 °C' } },
+					{ label: { ca: 'Construcció', es: 'Construcción', en: 'Construction' }, value: { ca: 'Alumini anoditzat; protecció ESD de ±5 kV', es: 'Aluminio anodizado; protección ESD de ±5 kV', en: 'Anodised aluminium; ±5 kV ESD protection' } },
+					{ label: { ca: 'Expansió', es: 'Expansión', en: 'Expansion' }, value: { ca: 'Port RJ12 EXT', es: 'Puerto RJ12 EXT', en: 'RJ12 EXT port' } },
+					{ label: { ca: 'Dimensions i pes', es: 'Dimensiones y peso', en: 'Dimensions and weight' }, value: { ca: '100 × 72 × 24 mm · 200 g', es: '100 × 72 × 24 mm · 200 g', en: '100 × 72 × 24 mm · 200 g' } },
+				],
 			}),
 		],
 	},
