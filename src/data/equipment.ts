@@ -47,6 +47,8 @@ export interface EquipmentGroup {
 	title: Localized;
 	summary: Localized;
 	slug: Localized;
+	image?: string;
+	imageAlt?: Localized;
 	hotspot: { x: number; y: number; targetX: number; targetY: number };
 	items: EquipmentItem[];
 }
@@ -67,6 +69,8 @@ export const equipmentGroups: EquipmentGroup[] = [
 		title: { ca: 'Tren principal', es: 'Tren principal', en: 'Main imaging train' },
 		summary: { ca: 'Captura i formació de la imatge', es: 'Captura y formación de la imagen', en: 'Image capture and formation' },
 		slug: { ca: 'tren-principal', es: 'tren-principal', en: 'main-imaging-train' },
+		image: 'imagenes/equipo-tren-optico-principal.jpeg',
+		imageAlt: { ca: 'Vista general del tren òptic principal complet instal·lat sobre la muntura', es: 'Vista general del tren óptico principal completo instalado sobre la montura', en: 'General view of the complete main optical train installed on the mount' },
 		hotspot: { x: 15, y: 19, targetX: 35, targetY: 23 },
 		items: [
 			item('ota', '01', { ca: 'OTA principal', es: 'OTA principal', en: 'Main OTA' }, { ca: 'Captura principal', es: 'Captura principal', en: 'Main capture' }, { ca: 'Tub òptic principal de captura', es: 'Tubo óptico principal de captura', en: 'Main optical tube for image capture' }, { ca: 'ota-principal', es: 'ota-principal', en: 'main-ota' }),

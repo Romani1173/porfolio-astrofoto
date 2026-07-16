@@ -22,6 +22,11 @@ const countLabel = group.items.length === 1 ? ui.component : ui.components;
 			<p>{group.summary[lang]}</p>
 			<p class="equipment-catalog__count">{group.items.length} {countLabel}</p>
 		</div>
+		{group.image && group.imageAlt && (
+			<figure class="equipment-image equipment-catalog__image">
+				<img src={`${base}${group.image}`} alt={group.imageAlt[lang]} />
+			</figure>
+		)}
 		<div class="photo-grid equipment-catalog-grid">
 			{group.items.map((equipmentItem) => (
 				<article class="photo-card equipment-card">

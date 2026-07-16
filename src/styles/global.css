@@ -211,6 +211,7 @@ main { padding: 1rem 0 4rem; }
 .equipment-catalog__heading .equipment-kicker { margin-bottom: .45rem; }
 .equipment-catalog__heading > p:not(.equipment-kicker) { max-width: 38rem; margin-right: auto; margin-left: auto; }
 .equipment-catalog__count { color: var(--color-accent) !important; font-family: var(--font-technical); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
+.equipment-catalog__image { margin: 0 0 1.5rem; aspect-ratio: 4 / 3; border: 1px solid var(--color-border); border-radius: .8rem; }
 .equipment-catalog-grid { align-items: stretch; }
 .equipment-card { height: 100%; }
 .equipment-card__kicker { margin: 0 0 .3rem !important; color: var(--color-accent) !important; font-family: var(--font-technical); font-size: .62rem !important; letter-spacing: .09em; text-transform: uppercase; }
