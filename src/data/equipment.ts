@@ -104,11 +104,11 @@ export const equipmentGroups: EquipmentGroup[] = [
 				},
 			}),
 			item('filter-wheel', '04', { ca: 'ZWO EFW', es: 'ZWO EFW', en: 'ZWO EFW' }, { ca: 'Tren d’imatge', es: 'Tren de imagen', en: 'Imaging train' }, { ca: 'Selecció automatitzada de filtres', es: 'Selección automatizada de filtros', en: 'Automated filter selection' }, { ca: 'roda-portafiltres', es: 'rueda-portafiltros', en: 'filter-wheel' }, {
-				image: 'imagenes/equipo-tren-imagen-posterior.jpeg',
-				imageAlt: { ca: 'Tren d’imatge posterior amb la roda portafiltres ZWO EFW instal·lada immediatament abans de la càmera principal', es: 'Tren de imagen posterior con la rueda portafiltros ZWO EFW instalada inmediatamente antes de la cámara principal', en: 'Rear imaging train with the ZWO EFW filter wheel installed immediately in front of the main camera' },
-				additionalImage: 'imagenes/equipo-camara-principal.jpeg',
-				additionalImageAlt: { ca: 'Detall de la roda portafiltres ZWO EFW entre el motor EAF i la càmera principal', es: 'Detalle de la rueda portafiltros ZWO EFW entre el motor EAF y la cámara principal', en: 'Detail of the ZWO EFW filter wheel between the EAF motor and main camera' },
-				additionalImageCaption: { ca: 'La roda EFW dins del conjunt compacte', es: 'La rueda EFW dentro del conjunto compacto', en: 'The EFW within the compact assembly' },
+				image: 'imagenes/equipo-camara-principal.jpeg',
+				imageAlt: { ca: 'Detall de la roda portafiltres ZWO EFW entre el motor EAF i la càmera principal', es: 'Detalle de la rueda portafiltros ZWO EFW entre el motor EAF y la cámara principal', en: 'Detail of the ZWO EFW filter wheel between the EAF motor and main camera' },
+				additionalImage: 'imagenes/equipo-tren-imagen-posterior.jpeg',
+				additionalImageAlt: { ca: 'Tren d’imatge posterior amb la roda portafiltres ZWO EFW instal·lada immediatament abans de la càmera principal', es: 'Tren de imagen posterior con la rueda portafiltros ZWO EFW instalada inmediatamente antes de la cámara principal', en: 'Rear imaging train with the ZWO EFW filter wheel installed immediately in front of the main camera' },
+				additionalImageCaption: { ca: 'Posició de la roda EFW dins del tren posterior', es: 'Posición de la rueda EFW dentro del tren posterior', en: 'Position of the EFW within the rear imaging train' },
 				description: {
 					ca: 'La roda portafiltres ZWO EFW és el cos circular negre situat immediatament davant de la càmera principal. La seva posició manté els filtres a prop del sensor i permet seleccionar-los de manera automatitzada sense alterar la resta del tren òptic.',
 					es: 'La rueda portafiltros ZWO EFW es el cuerpo circular negro situado inmediatamente delante de la cámara principal. Su posición mantiene los filtros cerca del sensor y permite seleccionarlos de forma automatizada sin alterar el resto del tren óptico.',
