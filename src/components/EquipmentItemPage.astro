@@ -45,20 +45,20 @@ const ui = equipmentUi[lang];
 						))}
 					</dl>
 				</section>
-				{equipmentItem.additionalImage && equipmentItem.additionalImageAlt && (
-					<figure class="equipment-reference-graphic">
-						<div class="equipment-image equipment-provisional-image" data-watermark={ui.provisionalImage}>
-							<img src={`${base}${equipmentItem.additionalImage}`} alt={equipmentItem.additionalImageAlt[lang]} loading="lazy" />
-						</div>
-						<figcaption>{ui.referenceGraphic}</figcaption>
-					</figure>
-				)}
 			</div>
 		) : (
 			<section class="equipment-detail__pending">
 				<p>{equipmentItem.kicker[lang]}</p>
 				<h2>{ui.detailsPending}</h2>
 			</section>
+		)}
+		{equipmentItem.additionalImage && equipmentItem.additionalImageAlt && (
+			<figure class="equipment-reference-graphic">
+				<div class:list={['equipment-image', { 'equipment-provisional-image': equipmentItem.additionalImageProvisional }]} data-watermark={equipmentItem.additionalImageProvisional ? ui.provisionalImage : undefined}>
+					<img src={`${base}${equipmentItem.additionalImage}`} alt={equipmentItem.additionalImageAlt[lang]} loading="lazy" />
+				</div>
+				<figcaption>{equipmentItem.additionalImageCaption?.[lang] ?? ui.referenceGraphic}</figcaption>
+			</figure>
 		)}
 	</article>
 </Layout>

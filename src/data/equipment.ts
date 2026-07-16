@@ -34,6 +34,8 @@ export interface EquipmentItem {
 	imageProvisional?: boolean;
 	additionalImage?: string;
 	additionalImageAlt?: Localized;
+	additionalImageCaption?: Localized;
+	additionalImageProvisional?: boolean;
 	description?: Localized;
 	specs?: EquipmentSpec[];
 }
@@ -55,7 +57,7 @@ const item = (
 	kicker: Localized,
 	summary: Localized,
 	slug: Localized,
-	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'imageProvisional' | 'additionalImage' | 'additionalImageAlt' | 'description' | 'specs'>> = {},
+	details: Partial<Pick<EquipmentItem, 'image' | 'imageAlt' | 'imageProvisional' | 'additionalImage' | 'additionalImageAlt' | 'additionalImageCaption' | 'additionalImageProvisional' | 'description' | 'specs'>> = {},
 ): EquipmentItem => ({ id, number, title, kicker, summary, slug, ...details });
 
 export const equipmentGroups: EquipmentGroup[] = [
@@ -128,6 +130,11 @@ export const equipmentGroups: EquipmentGroup[] = [
 		hotspot: { x: 18, y: 56, targetX: 45, targetY: 50 },
 		items: [
 			item('wave-150i', '01', { ca: 'Sky-Watcher Wave 150i', es: 'Sky-Watcher Wave 150i', en: 'Sky-Watcher Wave 150i' }, { ca: 'Muntura harmònica', es: 'Montura armónica', en: 'Harmonic mount' }, { ca: 'Seguiment equatorial o azimutal de gran capacitat', es: 'Seguimiento ecuatorial o azimutal de gran capacidad', en: 'High-capacity equatorial or alt-azimuth tracking' }, { ca: 'wave-150i', es: 'wave-150i', en: 'wave-150i' }, {
+				image: 'imagenes/equipo-wave-150i.jpeg',
+				imageAlt: { ca: 'Muntura Sky-Watcher Wave 150i instal·lada sobre la torreta d’extensió', es: 'Montura Sky-Watcher Wave 150i instalada sobre la torreta de extensión', en: 'Sky-Watcher Wave 150i mount installed on the extension pier' },
+				additionalImage: 'imagenes/equipo-wave-150i-posterior.jpeg',
+				additionalImageAlt: { ca: 'Vista posterior de la Wave 150i amb les connexions i la torreta d’extensió', es: 'Vista posterior de la Wave 150i con las conexiones y la torreta de extensión', en: 'Rear view of the Wave 150i showing its connections and extension pier' },
+				additionalImageCaption: { ca: 'Vista posterior i connexions', es: 'Vista posterior y conexiones', en: 'Rear view and connections' },
 				description: {
 					ca: 'La Sky-Watcher Wave 150i combina una construcció compacta de 5,8 kg amb una capacitat de càrrega de fins a 15 kg sense contrapesos i 25 kg amb contrapesos opcionals. La transmissió harmònica de relació 300:1 proporciona un parell elevat i permet treballar tant en configuració equatorial com azimutal. La motorització de doble eix s’encarrega del seguiment, el moviment, el guiatge i l’apuntat GOTO, amb control des d’un dispositiu mòbil o mitjançant programari compatible amb ASCOM.',
 					es: 'La Sky-Watcher Wave 150i combina una construcción compacta de 5,8 kg con una capacidad de carga de hasta 15 kg sin contrapesos y 25 kg con contrapesos opcionales. La transmisión armónica con relación 300:1 proporciona un par elevado y permite trabajar tanto en configuración ecuatorial como azimutal. La motorización de doble eje se encarga del seguimiento, movimiento, guiado y apuntado GOTO, con control desde un dispositivo móvil o mediante software compatible con ASCOM.',
@@ -154,7 +161,13 @@ export const equipmentGroups: EquipmentGroup[] = [
 					{ label: { ca: 'Temperatura de treball', es: 'Temperatura de trabajo', en: 'Operating temperature' }, value: { ca: 'De −10 °C a +50 °C', es: 'De −10 °C a +50 °C', en: '−10 °C to +50 °C' } },
 				],
 			}),
-			item('tripod', '02', { ca: 'Trípode', es: 'Trípode', en: 'Tripod' }, { ca: 'Suport', es: 'Soporte', en: 'Support' }, { ca: 'Suport i base d’unió de la muntura', es: 'Soporte y base de unión de la montura', en: 'Mount support and connection base' }, { ca: 'tripode', es: 'tripode', en: 'tripod' }),
+			item('tripod', '02', { ca: 'Trípode HEQ-5', es: 'Trípode HEQ-5', en: 'HEQ-5 tripod' }, { ca: 'Suport modificat', es: 'Soporte modificado', en: 'Modified support' }, { ca: 'Trípode rebaixat amb suport inferior per a llast', es: 'Trípode rebajado con soporte inferior para lastre', en: 'Lowered tripod with a lower ballast support' }, { ca: 'tripode', es: 'tripode', en: 'tripod' }, {
+				image: 'imagenes/equipo-tripode-heq5.jpeg',
+				imageAlt: { ca: 'Conjunt del trípode HEQ-5 rebaixat amb la torreta d’extensió i la muntura Wave 150i', es: 'Conjunto del trípode HEQ-5 rebajado con la torreta de extensión y la montura Wave 150i', en: 'Lowered HEQ-5 tripod assembly with the extension pier and Wave 150i mount' },
+				additionalImage: 'imagenes/equipo-tripode-heq5-lastre.jpeg',
+				additionalImageAlt: { ca: 'Detall de les potes del trípode HEQ-5 i del suport triangular inferior amb la bossa de llast', es: 'Detalle de las patas del trípode HEQ-5 y del soporte triangular inferior con la bolsa de lastre', en: 'Detail of the HEQ-5 tripod legs and the lower triangular support with its ballast bag' },
+				additionalImageCaption: { ca: 'Suport inferior per a llast', es: 'Soporte inferior para lastre', en: 'Lower ballast support' },
+			}),
 		],
 	},
 	{
