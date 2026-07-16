@@ -169,8 +169,8 @@ export const equipmentGroups: EquipmentGroup[] = [
 		hotspot: { x: 82, y: 41, targetX: 53, targetY: 35 },
 		items: [
 			item('powerbox', '01', { ca: 'Pegasus Astro PPB Micro', es: 'Pegasus Astro PPB Micro', en: 'Pegasus Astro PPB Micro' }, { ca: 'Distribució d’alimentació', es: 'Distribución de alimentación', en: 'Power distribution' }, { ca: 'Alimentació, escalfadors i control ambiental', es: 'Alimentación, calentadores y control ambiental', en: 'Power, dew-heater and environmental control' }, { ca: 'distribuidor-powerbox', es: 'distribuidor-powerbox', en: 'powerbox-distributor' }, {
-				image: 'imagenes/equipo-powerbox.png',
-				imageAlt: { ca: 'Pegasus Astro PPB Micro instal·lada a l’equip d’astrofotografia', es: 'Pegasus Astro PPB Micro instalada en el equipo de astrofotografía', en: 'Pegasus Astro PPB Micro installed on the astrophotography rig' },
+				image: 'imagenes/equipo-powerbox.jpeg',
+				imageAlt: { ca: 'Pegasus Astro PPB Micro instal·lada sobre el tub principal amb les connexions d’alimentació i els escalfadors', es: 'Pegasus Astro PPB Micro instalada sobre el tubo principal con las conexiones de alimentación y los calentadores', en: 'Pegasus Astro PPB Micro installed on the main telescope with its power and dew-heater connections' },
 				description: {
 					ca: 'La Pegasus Astro Pocket Powerbox Micro centralitza l’alimentació i el control ambiental de l’equip en una carcassa compacta. Permet commutar les sortides de corrent, regular una sortida auxiliar i controlar dos escalfadors anticondensació, tant des de l’ordinador com en funcionament autònom.',
 					es: 'La Pegasus Astro Pocket Powerbox Micro centraliza la alimentación y el control ambiental del equipo en una carcasa compacta. Permite conmutar las salidas de corriente, regular una salida auxiliar y controlar dos calentadores anticondensación, tanto desde el ordenador como en funcionamiento autónomo.',
@@ -189,8 +189,8 @@ export const equipmentGroups: EquipmentGroup[] = [
 				],
 			}),
 			item('usb-hub', '02', { ca: 'Pegasus Astro USB Control Hub', es: 'Pegasus Astro USB Control Hub', en: 'Pegasus Astro USB Control Hub' }, { ca: 'Connectivitat', es: 'Conectividad', en: 'Connectivity' }, { ca: 'Connexió USB centralitzada i commutable', es: 'Conexión USB centralizada y conmutable', en: 'Centralised, switchable USB connectivity' }, { ca: 'hub-usb', es: 'hub-usb', en: 'usb-hub' }, {
-				image: 'imagenes/equipo-hub-usb.png',
-				imageAlt: { ca: 'Pegasus Astro USB Control Hub instal·lat a l’equip d’astrofotografia', es: 'Pegasus Astro USB Control Hub instalado en el equipo de astrofotografía', en: 'Pegasus Astro USB Control Hub installed on the astrophotography rig' },
+				image: 'imagenes/equipo-hub-usb.jpeg',
+				imageAlt: { ca: 'Pegasus Astro USB Control Hub instal·lat sobre el tub principal i connectat als dispositius de l’equip', es: 'Pegasus Astro USB Control Hub instalado sobre el tubo principal y conectado a los dispositivos del equipo', en: 'Pegasus Astro USB Control Hub installed on the main telescope and connected to the rig devices' },
 				description: {
 					ca: 'El Pegasus Astro USB Control Hub concentra sis connexions USB en una unitat preparada per a l’astrofotografia. Cada port es pot activar o desactivar de manera independent, incloses les línies de dades i d’alimentació, i l’arquitectura Multi Transaction Operation manté el rendiment USB 3.1 encara que hi hagi dispositius USB 2.0 connectats.',
 					es: 'El Pegasus Astro USB Control Hub concentra seis conexiones USB en una unidad preparada para astrofotografía. Cada puerto puede activarse o desactivarse de forma independiente, incluidas las líneas de datos y alimentación, y la arquitectura Multi Transaction Operation mantiene el rendimiento USB 3.1 aunque haya dispositivos USB 2.0 conectados.',
