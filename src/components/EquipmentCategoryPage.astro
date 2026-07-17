@@ -13,11 +13,9 @@ const ui = equipmentUi[lang];
 const countLabel = group.items.length === 1 ? ui.component : ui.components;
 ---
 
-<Layout minimal lang={lang} title={group.title[lang]} description={group.summary[lang]} languageLinks={equipmentGroupLinks(group, base)}>
+<Layout minimal compact lang={lang} title={group.title[lang]} description={group.summary[lang]} languageLinks={equipmentGroupLinks(group, base)} backLink={{ href: equipmentHref(lang, base), label: ui.backEquipment }}>
 	<section class="equipment-catalog" aria-labelledby="equipment-category-heading">
-		<a class="back-link" href={equipmentHref(lang, base)}>← {ui.backEquipment}</a>
 		<div class="page-heading equipment-catalog__heading">
-			<p class="equipment-kicker">{ui.prototype} · {group.number}</p>
 			<h1 id="equipment-category-heading">{group.title[lang]}</h1>
 			<p>{group.summary[lang]}</p>
 			<p class="equipment-catalog__count">{group.items.length} {countLabel}</p>

@@ -12,13 +12,11 @@ const ui = equipmentUi[lang];
 const photo = withBase('imagenes/equipo-vista-lateral-izquierda.webp', base);
 ---
 
-<Layout minimal lang={lang} title={t.myEquipment} languageLinks={languageLinks.equipment(base)}>
+<Layout minimal compact lang={lang} title={t.myEquipment} languageLinks={languageLinks.equipment(base)} backLink={{ href: homeHref(lang, base), label: ui.backHome }}>
 	<article class="equipment-page">
 		<header class="equipment-heading">
-			<a class="back-link" href={homeHref(lang, base)}>← {ui.backHome}</a>
 			<div class="equipment-heading__title">
 				<div>
-					<p class="equipment-kicker">{ui.prototype}</p>
 					<h1>{t.myEquipment}</h1>
 				</div>
 				<p class="equipment-instruction"><span aria-hidden="true">◎</span> {ui.explore}</p>
@@ -39,17 +37,28 @@ const photo = withBase('imagenes/equipo-vista-lateral-izquierda.webp', base);
 						))}
 					</svg>
 					{equipmentGroups.map((group) => (
-						<a
-							class="equipment-hotspot equipment-hotspot--group"
+						<div
+							class="equipment-hotspot-wrapper"
 							style={`--x:${group.hotspot.x}%;--y:${group.hotspot.y}%`}
-							href={groupHref(lang, group, base)}
-							aria-label={`${group.number}. ${group.title[lang]}`}
-							data-group-link={group.id}
-							data-label={group.title[lang]}
 							data-label-side={group.hotspot.x > 50 ? 'right' : 'left'}
 						>
-							<span>{group.number}</span>
-						</a>
+							<button
+								type="button"
+								class="equipment-hotspot equipment-hotspot--group"
+								aria-label={`${group.number}. ${group.title[lang]}`}
+								aria-expanded="false"
+								aria-controls={`equipment-label-${group.id}`}
+								data-group-trigger={group.id}
+							>
+								<span>{group.number}</span>
+							</button>
+							<a
+								id={`equipment-label-${group.id}`}
+								class="equipment-hotspot__label"
+								href={groupHref(lang, group, base)}
+								tabindex="-1"
+							>{group.title[lang]}</a>
+						</div>
 					))}
 				</div>
 				<div class="equipment-stage__shade" aria-hidden="true"></div>
@@ -59,35 +68,31 @@ const photo = withBase('imagenes/equipo-vista-lateral-izquierda.webp', base);
 </Layout>
 
 <script>
-	const links = document.querySelectorAll<HTMLElement>('[data-group-link]');
-	const usesTouchNavigation = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-	let activeTouchLink: HTMLElement | null = null;
+	const triggers = document.querySelectorAll<HTMLButtonElement>('[data-group-trigger]');
+	let activeTrigger: HTMLButtonElement | null = null;
 	const setLine = (id: string | undefined, active: boolean) => {
 		if (!id) return;
 		document.querySelector(`[data-group-line="${id}"]`)?.classList.toggle('is-active', active);
 	};
-	const clearTouchSelection = () => {
-		if (!activeTouchLink) return;
-		activeTouchLink.classList.remove('is-active');
-		setLine(activeTouchLink.dataset.groupLink, false);
-		activeTouchLink = null;
+	const clearSelection = () => {
+		if (!activeTrigger) return;
+		activeTrigger.closest('.equipment-hotspot-wrapper')?.classList.remove('is-active');
+		activeTrigger.setAttribute('aria-expanded', 'false');
+		setLine(activeTrigger.dataset.groupTrigger, false);
+		activeTrigger = null;
 	};
-	links.forEach((link) => {
-		link.addEventListener('pointerenter', () => setLine(link.dataset.groupLink, true));
-		link.addEventListener('pointerleave', () => setLine(link.dataset.groupLink, false));
-		link.addEventListener('focus', () => setLine(link.dataset.groupLink, true));
-		link.addEventListener('blur', () => setLine(link.dataset.groupLink, false));
-		link.addEventListener('click', (event) => {
-			if (!usesTouchNavigation || link === activeTouchLink) return;
-			event.preventDefault();
-			clearTouchSelection();
-			link.classList.add('is-active');
-			setLine(link.dataset.groupLink, true);
-			activeTouchLink = link;
+	triggers.forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			if (trigger === activeTrigger) return;
+			clearSelection();
+			trigger.closest('.equipment-hotspot-wrapper')?.classList.add('is-active');
+			trigger.setAttribute('aria-expanded', 'true');
+			setLine(trigger.dataset.groupTrigger, true);
+			activeTrigger = trigger;
 		});
 	});
 	document.addEventListener('pointerdown', (event) => {
-		if (activeTouchLink?.contains(event.target as Node)) return;
-		clearTouchSelection();
+		if (activeTrigger?.closest('.equipment-hotspot-wrapper')?.contains(event.target as Node)) return;
+		clearSelection();
 	});
 </script>

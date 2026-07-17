@@ -13,9 +13,8 @@ const equipmentItem = group.items.find((candidate) => candidate.id === itemId)!;
 const ui = equipmentUi[lang];
 ---
 
-<Layout minimal lang={lang} title={equipmentItem.title[lang]} description={equipmentItem.summary[lang]} languageLinks={equipmentItemLinks(group, equipmentItem, base)}>
+<Layout minimal compact lang={lang} title={equipmentItem.title[lang]} description={equipmentItem.summary[lang]} languageLinks={equipmentItemLinks(group, equipmentItem, base)} backLink={{ href: groupHref(lang, group, base), label: group.title[lang] }}>
 	<article class="equipment-detail">
-		<a class="back-link" href={groupHref(lang, group, base)}>← {group.title[lang]}</a>
 		<header class="equipment-detail__heading">
 			<p class="equipment-kicker">{group.number}.{equipmentItem.number} · {ui.provisional}</p>
 			<h1>{equipmentItem.title[lang]}</h1>
