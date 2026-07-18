@@ -31,13 +31,20 @@ const searchableText = (value: string) => value.normalize('NFD').replace(/[\u030
 					<label for="ordre">{t.order}</label>
 					<select id="ordre"><option value="date">{t.recent}</option><option value="name">{t.name}</option></select>
 				</div>
-				<p class="catalog-count">{fotos.length} {fotos.length === 1 ? t.object : t.objects}</p>
+				<p
+					class="catalog-count"
+					id="recompte-fotos"
+					aria-live="polite"
+					data-singular={t.object}
+					data-plural={t.objects}
+				>{fotos.length} {fotos.length === 1 ? t.object : t.objects}</p>
 			</div>
 		</div>
 		<div class="photo-grid" id="grid-fotos">
 			{fotos.map((foto) => {
 				const text = photoText(foto, lang);
-				return <div data-card data-search={searchableText(text.objecte)} data-name={text.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>;
+				const searchIndex = searchableText([foto.id, text.objecte, foto.data.constellacio, foto.data.categoria].join(' '));
+				return <div data-card data-search={searchIndex} data-name={text.objecte} data-date={foto.data.entorn.data.valueOf()}><PhotoCard foto={foto} lang={lang} /></div>;
 			})}
 			<p class="empty-state" id="sense-resultats" hidden>{t.noResults}</p>
 		</div>
@@ -50,7 +57,13 @@ const searchableText = (value: string) => value.normalize('NFD').replace(/[\u030
 	const grid = document.querySelector<HTMLElement>('#grid-fotos');
 	const cards = [...document.querySelectorAll<HTMLElement>('[data-card]')];
 	const empty = document.querySelector<HTMLElement>('#sense-resultats');
+	const count = document.querySelector<HTMLElement>('#recompte-fotos');
 	const collator = new Intl.Collator(document.documentElement.lang, { numeric: true, sensitivity: 'base' });
+	const updateCount = (visible: number) => {
+		if (!count) return;
+		const label = visible === 1 ? count.dataset.singular : count.dataset.plural;
+		count.textContent = `${visible} ${label ?? ''}`.trim();
+	};
 
 	search?.addEventListener('input', () => {
 		const term = search.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLocaleLowerCase();
@@ -61,6 +74,7 @@ const searchableText = (value: string) => value.normalize('NFD').replace(/[\u030
 			if (matches) visible += 1;
 		});
 		if (empty) empty.hidden = visible !== 0;
+		updateCount(visible);
 	});
 
 	order?.addEventListener('change', () => {

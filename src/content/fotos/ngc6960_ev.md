@@ -53,6 +53,17 @@ imatges_addicionals:
         titol: "Detalle del Velo oriental"
       en:
         titol: "Eastern Veil detail"
+  - tipus: "crop"
+    fitxer: "NGC6960_EV_crop_starless.jpg"
+    titol: "Detall del Vel Est sense estrelles"
+    descripcio: "Retall ampliat sense estrelles que destaca els filaments d'Hα i [O III] modelats per l'ona de xoc."
+    traduccions:
+      es:
+        titol: "Detalle del Velo oriental sin estrellas"
+        descripcio: "Recorte ampliado sin estrellas que destaca los filamentos de Hα y [O III] modelados por la onda de choque."
+      en:
+        titol: "Starless Eastern Veil detail"
+        descripcio: "Enlarged starless crop highlighting the Hα and [O III] filaments shaped by the shock wave."
   - tipus: "annotated"
     fitxer: "NGC6960_EV_annotated.jpg"
     titol: "Objectes identificats"
