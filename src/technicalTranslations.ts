@@ -35,9 +35,12 @@ export function constellationName(value: string, lang: Lang) {
 export function technicalValue(value: string, lang: Lang) {
 	if (lang === 'ca') return value;
 	if (!value.trim()) return 'N/A';
+	if (value === 'No especificat') return lang === 'es' ? 'No especificado' : 'Not specified';
 
 	if (lang === 'es') {
 		return value
+			.replace(/\bSessió del\b/g, 'Sesión del')
+			.replace(/\bsessió del\b/g, 'sesión del')
 			.replace(/^Focuser /, 'Enfocador ')
 			.replace(/^Sense Guiat$/, 'Sin guiado')
 			.replace(/\b[Tt]ub (?=\d)/g, 'Tubo ')
@@ -58,6 +61,8 @@ export function technicalValue(value: string, lang: Lang) {
 	}
 
 	return value
+		.replace(/\bSessió del\b/g, 'Session on')
+		.replace(/\bsessió del\b/g, 'session on')
 		.replace(/^Focuser (.+)$/, '$1 focuser')
 		.replace(/^Nikon D90 modificada$/, 'modified Nikon D90')
 		.replace(/^Sense Guiat$/, 'No guiding')
@@ -84,7 +89,7 @@ export function technicalValue(value: string, lang: Lang) {
 		.replace(/ de (\d+\s?s)\b/g, ' at $1')
 		.replace(/ de (\d+)\s?nm\b/g, ', $1 nm')
 		.replace(/ de (\d+)\s?mm\b/g, ', $1 mm')
-		.replace(/ a (-?\d+\s?ºC)\b/g, ' at $1')
+		.replace(/ a (-?\d+\s?[º°]C)\b/g, ' at $1')
 		.replace(/\bHalfa\b/g, 'H-alpha')
 		.replace(/\bmodificada\b/g, 'modified')
 		.replace(/\bde biblioteca\b/g, 'from a library');
