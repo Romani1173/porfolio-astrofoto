@@ -25,7 +25,7 @@ export const copy = {
 		viewPhoto: 'Veure la fitxa de', astroPhoto: 'Fotografia astronòmica de', constellation: 'Constel·lació', exposure: 'Exposició', includesProcess: 'Inclou el flux de postprocessament',
 		generalInfo: 'Informació general', category: 'Categoria', date: 'Data', capture: 'Captura', totalTime: 'Temps total', subframes: 'Subframes', gainOffset: 'Guany / Offset', calibration: 'Calibratge',
 		equipment: 'Equip', telescope: 'Telescopi', camera: 'Càmera', filters: 'Filtres', mount: 'Muntura', guiding: 'Guiat', focuser: 'Enfocador', filterWheel: 'Roda de filtres',
-		processingEnvironment: 'Processat i entorn', processing: 'Processat', acquisition: 'Adquisició', place: 'Lloc', sky: 'Cel', additionalVersions: 'Versions addicionals', enlarge: 'Ampliar', enlargedImage: 'Imatge ampliada', closeImage: 'Tancar la imatge ampliada',
+		processingEnvironment: 'Processat i entorn', processing: 'Processat', acquisition: 'Adquisició', place: 'Lloc', sky: 'Cel', additionalVersions: 'Versions addicionals', enlarge: 'Ampliar', enlargedImage: 'Imatge ampliada', closeImage: 'Tancar la imatge ampliada', previousImage: 'Imatge anterior', nextImage: 'Imatge següent',
 		languageSelector: 'Selecciona l’idioma', backToCategory: (category: string) => `Tornar a ${category}`, categoryDescription: (category: string) => `Fotografies de ${category.toLocaleLowerCase('ca')} de la meva galeria de cel profund.`,
 	},
 	es: {
@@ -37,7 +37,7 @@ export const copy = {
 		viewPhoto: 'Ver la ficha de', astroPhoto: 'Fotografía astronómica de', constellation: 'Constelación', exposure: 'Exposición', includesProcess: 'Incluye el flujo de posprocesado',
 		generalInfo: 'Información general', category: 'Categoría', date: 'Fecha', capture: 'Captura', totalTime: 'Tiempo total', subframes: 'Subframes', gainOffset: 'Ganancia / Offset', calibration: 'Calibración',
 		equipment: 'Equipo', telescope: 'Telescopio', camera: 'Cámara', filters: 'Filtros', mount: 'Montura', guiding: 'Guiado', focuser: 'Enfocador', filterWheel: 'Rueda de filtros',
-		processingEnvironment: 'Procesado y entorno', processing: 'Procesado', acquisition: 'Adquisición', place: 'Lugar', sky: 'Cielo', additionalVersions: 'Versiones adicionales', enlarge: 'Ampliar', enlargedImage: 'Imagen ampliada', closeImage: 'Cerrar la imagen ampliada',
+		processingEnvironment: 'Procesado y entorno', processing: 'Procesado', acquisition: 'Adquisición', place: 'Lugar', sky: 'Cielo', additionalVersions: 'Versiones adicionales', enlarge: 'Ampliar', enlargedImage: 'Imagen ampliada', closeImage: 'Cerrar la imagen ampliada', previousImage: 'Imagen anterior', nextImage: 'Imagen siguiente',
 		languageSelector: 'Selecciona el idioma', backToCategory: (category: string) => `Volver a ${category}`, categoryDescription: (category: string) => `Fotografías de ${category.toLocaleLowerCase('es')} de mi galería de cielo profundo.`,
 	},
 	en: {
@@ -49,7 +49,7 @@ export const copy = {
 		viewPhoto: 'View the details for', astroPhoto: 'Astronomical photograph of', constellation: 'Constellation', exposure: 'Exposure', includesProcess: 'Includes the post-processing workflow',
 		generalInfo: 'General information', category: 'Category', date: 'Date', capture: 'Capture', totalTime: 'Total time', subframes: 'Subframes', gainOffset: 'Gain / Offset', calibration: 'Calibration',
 		equipment: 'Equipment', telescope: 'Telescope', camera: 'Camera', filters: 'Filters', mount: 'Mount', guiding: 'Guiding', focuser: 'Focuser', filterWheel: 'Filter wheel',
-		processingEnvironment: 'Processing and environment', processing: 'Processing', acquisition: 'Acquisition', place: 'Location', sky: 'Sky', additionalVersions: 'Additional versions', enlarge: 'Enlarge', enlargedImage: 'Enlarged image', closeImage: 'Close enlarged image',
+		processingEnvironment: 'Processing and environment', processing: 'Processing', acquisition: 'Acquisition', place: 'Location', sky: 'Sky', additionalVersions: 'Additional versions', enlarge: 'Enlarge', enlargedImage: 'Enlarged image', closeImage: 'Close enlarged image', previousImage: 'Previous image', nextImage: 'Next image',
 		languageSelector: 'Select language', backToCategory: (category: string) => `Back to ${category}`, categoryDescription: (category: string) => `Photographs of ${category.toLocaleLowerCase('en')} from my deep-sky gallery.`,
 	},
 } as const;
