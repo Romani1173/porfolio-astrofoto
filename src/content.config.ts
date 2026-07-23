@@ -72,6 +72,12 @@ const fotos = defineCollection({
             // 4. Convierte tu fecha ISO automáticamente para poder ordenarlas
             data: z.coerce.date(),
             bortle: z.string(),
+            sessions: z.array(z.object({
+                inici: z.coerce.date(),
+                fi: z.coerce.date().optional(),
+                captura: z.string().optional(),
+                lloc: z.string().optional(),
+            })).optional().default([]),
         }),
     }),
 });

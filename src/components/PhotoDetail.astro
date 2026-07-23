@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n';
 import { categoryByValue, categoryHref, copy, languageLinks, localeFor, withBase } from '../i18n';
 import { additionalImageText, photoText } from '../photoTranslations';
-import { photoTechnicalText } from '../technicalTranslations';
+import { photoTechnicalText, technicalValue } from '../technicalTranslations';
 
 interface Props { foto: CollectionEntry<'fotos'>; lang: Lang; }
 const { foto, lang } = Astro.props;
@@ -14,7 +14,19 @@ const text = photoText(foto, lang);
 const technical = photoTechnicalText(foto, lang);
 const category = categoryByValue(foto.data.categoria);
 const categoryLabel = category.labels[lang];
-const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).format(foto.data.entorn.data);
+const dateFormatter = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' });
+const sessionDateFormatter = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'medium' });
+const date = dateFormatter.format(foto.data.entorn.data);
+const sessions = foto.data.entorn.sessions.map((session) => {
+	const interval = session.fi
+		? `${sessionDateFormatter.format(session.inici)} – ${sessionDateFormatter.format(session.fi)}`
+		: sessionDateFormatter.format(session.inici);
+	const details = [
+		session.captura ? technicalValue(session.captura, lang) : undefined,
+		session.lloc ? technicalValue(session.lloc, lang) : undefined,
+	].filter(Boolean);
+	return details.length > 0 ? `${interval} — ${details.join(' · ')}` : interval;
+});
 ---
 
 <Layout title={text.objecte} description={text.caracteristiques} minimal lang={lang} languageLinks={languageLinks.photo(foto.id, base)}>
@@ -29,7 +41,7 @@ const date = new Intl.DateTimeFormat(localeFor(lang), { dateStyle: 'long' }).for
 		</div>
 		<p class="photo-detail__summary">{text.caracteristiques}</p>
 		<div class="data-grid">
-			<section class="data-panel" aria-labelledby="general"><h2 id="general">{t.generalInfo}</h2><dl class="data-list"><div><dt>{t.constellation}</dt><dd>{technical.constellacio}</dd></div><div><dt>{t.category}</dt><dd>{categoryLabel}</dd></div><div><dt>{t.date}</dt><dd>{date}</dd></div></dl></section>
+			<section class="data-panel" aria-labelledby="general"><h2 id="general">{t.generalInfo}</h2><dl class="data-list"><div><dt>{t.constellation}</dt><dd>{technical.constellacio}</dd></div><div><dt>{t.category}</dt><dd>{categoryLabel}</dd></div><div><dt>{t.date}</dt><dd>{date}</dd></div>{sessions.length > 0 && <div><dt>{t.captureSessions}</dt><dd>{sessions.map((session, index) => <span>{session}{index < sessions.length - 1 && <br />}</span>)}</dd></div>}</dl></section>
 			<section class="data-panel" aria-labelledby="capture"><h2 id="capture">{t.capture}</h2><dl class="data-list"><div><dt>{t.totalTime}</dt><dd>{technical.tempsTotal}</dd></div><div><dt>{t.subframes}</dt><dd>{technical.subframes}</dd></div><div><dt>{t.gainOffset}</dt><dd>{technical.gain} / {technical.offset}</dd></div><div><dt>{t.calibration}</dt><dd>{technical.calibratge}</dd></div></dl></section>
 			<section class="data-panel" aria-labelledby="equipment"><h2 id="equipment">{t.equipment}</h2><dl class="data-list"><div><dt>{t.telescope}</dt><dd>{technical.ota}</dd></div><div><dt>{t.camera}</dt><dd>{technical.camera}</dd></div><div><dt>{t.filters}</dt><dd>{technical.filtres}</dd></div><div><dt>{t.mount}</dt><dd>{technical.muntura}</dd></div><div><dt>{t.guiding}</dt><dd>{technical.guiat}</dd></div>{foto.data.equip.enfocador !== 'N/A' && <div><dt>{t.focuser}</dt><dd>{technical.enfocador}</dd></div>}{foto.data.equip.roda_filtres !== 'N/A' && <div><dt>{t.filterWheel}</dt><dd>{technical.rodaFiltres}</dd></div>}</dl></section>
 			<section class="data-panel" aria-labelledby="process"><h2 id="process">{t.processingEnvironment}</h2><dl class="data-list"><div><dt>{t.processing}</dt><dd>{technical.processat}</dd></div>{foto.data.tractament.adquisicio !== 'N/A' && <div><dt>{t.acquisition}</dt><dd>{technical.adquisicio}</dd></div>}<div><dt>{t.place}</dt><dd>{technical.lloc}</dd></div><div><dt>{t.sky}</dt><dd>Bortle {foto.data.entorn.bortle}</dd></div></dl></section>
